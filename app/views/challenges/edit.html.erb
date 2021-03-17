@@ -2,5 +2,30 @@
 
 <%= render 'form', challenge: @challenge %>
 
+<hr>
+
+<% @invited = @challenge.invites %>
+
+  <% @invited.each do |invit| %>
+
+    <%= form_with(model: invit) do |form| %>
+
+      <div>
+        <%= form.label :email %><br>
+        <%= form.email_field :email %>
+      </div>
+      
+      <div class="actions">
+        <%= form.submit %>
+      </div>
+      <br>
+      <br>
+
+    <% end %>
+
+  <% end %>
+
+<hr>
+
 <%= link_to 'Show', @challenge %> |
 <%= link_to 'Back', challenges_path %>

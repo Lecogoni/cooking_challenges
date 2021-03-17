@@ -29,16 +29,17 @@ class ChallengesController < ApplicationController
     
     respond_to do |format|
       if @challenge.save
-        format.html { redirect_to @challenge, notice: "Challenge was successfully created." }
-        format.json { render :show, status: :created, location: @challenge }
 
         # Associate on Event table the new challenge whit the current_user
         @owner_event = Event.create(user_id: current_user.id, challenge_id: @challenge.id, role: "créateur")
 
         # create the invite_number of Invite with the id of the current challenge
         @num_invited.times do
-          Invite.create(email: "mail@test.fr", challenge_id: @challenge.id)
+          Invite.create(email: "", challenge_id: @challenge.id)
         end
+
+        format.html { redirect_to edit_challenge_path(@challenge), notice: "Challenge was successfully created." }
+        format.json { render :show, status: :created, location: @challenge }
 
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -46,9 +47,7 @@ class ChallengesController < ApplicationController
       end
     end
 
-    
 
-  
   end
 
   # PATCH/PUT /challenges/1 or /challenges/1.json

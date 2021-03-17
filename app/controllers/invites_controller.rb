@@ -1,5 +1,6 @@
 class InvitesController < ApplicationController
   before_action :set_invite, only: %i[ show edit update destroy ]
+  after_action :transfer_invite_to_user, only: %i[ update ]
 
   # GET /invites or /invites.json
   def index
@@ -39,7 +40,7 @@ class InvitesController < ApplicationController
     respond_to do |format|
       if @invite.update(invite_params)
         format.html { redirect_to @invite, notice: "Invite was successfully updated." }
-        format.json { render :show, status: :ok, location: @invite }
+        format.json { render :show, status: :created, location: @invite }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @invite.errors, status: :unprocessable_entity }
@@ -56,6 +57,14 @@ class InvitesController < ApplicationController
     end
   end
 
+  def transfer_invite_to_user
+    puts "#######"
+    puts "il est d'accord"
+    puts "#######"
+
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_invite
@@ -64,6 +73,6 @@ class InvitesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def invite_params
-      params.fetch(:invite, {})
+      params.require(:invite).permit(:email)
     end
 end
