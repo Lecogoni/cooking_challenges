@@ -4,19 +4,14 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Salut <%= @user.email %> Cooking Chalenge t'invite !</h1>
+    <h1>Salut <%= @user.username.capitalize %></h1>
     <p>
+      Tu es invité à participer à un Cooking Challenge.
       Tu es invité : <%= @user.email %>.
     </p>
 
     <p>
-      raw : <%= @raw %>
-    </p>
-
-    <p>
         Si tu souhaites confirmer ta participation à ce challenge clic <%= link_to 'ici', @url %>
-
-      
     </p>
 
   

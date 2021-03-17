@@ -15,7 +15,7 @@ class UserMailer < ApplicationMailer
     @user = user
     @raw = raw
     @url  = edit_user_password_url(reset_password_token: @raw)
-    mail(to: @user.email, subject: @user.email + 'tu es invités au Cooking Challenge !') 
+    mail(to: @user.email, subject: 'tu es invités au Cooking Challenge !') 
   end
 
 end
