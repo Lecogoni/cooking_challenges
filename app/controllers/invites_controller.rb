@@ -1,6 +1,6 @@
 class InvitesController < ApplicationController
   before_action :set_invite, only: %i[ show edit update destroy ]
-  after_action :transfer_invite_to_user, only: %i[ update ]
+  #after_action :transfer_invite_to_user, only: %i[ update ]
 
   # GET /invites or /invites.json
   def index
@@ -38,14 +38,19 @@ class InvitesController < ApplicationController
   # PATCH/PUT
   def update
 
-      # get challenge_id for the mentionned invited challenge
-      @challenge_id = params[:challenge]
-     
-      if @invite.update(invite_params)
-        flash.now[:notice] = 'invitation envoyé!'
-      else
-        flash.now[:alert] = 'Error !'
+    # get challenge_id for the mentionned invited challenge
+    @challenge_id = params[:challenge]
+    
+    if @invite.update(invite_params)
+      if User.exists?(email: @invite.email)
+        puts "#####"
+        puts "déja en dB"
+        puts "#####"
       end
+      flash.now[:notice] = 'invitation envoyé!'
+    else
+      flash.now[:alert] = 'Error !'
+    end    
 
   end
 
