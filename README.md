@@ -31,3 +31,9 @@ Things you may want to cover:
 
 - git push heroku master
 - heroku run rake db:migrate
+
+
+# nico info 
+
+lien url reset password token en production
+https://mokacoding.com/blog/how-to-manually-generate-devise-reset-password-link/

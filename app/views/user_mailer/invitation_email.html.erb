@@ -8,9 +8,18 @@
     <p>
       Tu es invité : <%= @user.email %>.
     </p>
+
     <p>
-      Pour accéder à ton espace client, connecte-toi via : <%= @url %>.
+      raw : <%= @raw %>
     </p>
+
+    <p>
+        Si tu souhaites confirmer ta participation à ce challenge clic <%= link_to 'ici', @url %>
+
+      
+    </p>
+
+  
     
   </body>
 </html>
