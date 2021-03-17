@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :events
+  resources :challenges
   devise_for :users
   resources :users
   root 'users#index'
