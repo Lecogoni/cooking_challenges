@@ -58,6 +58,9 @@ class InvitesController < ApplicationController
   def transfer_invite_to_user
     @inviting = Invite.find_by(email: @invite.email)
     @invinting_user = User.create(email: @inviting.email, password: "cooking" )
+    puts "#####"
+    puts "ca mail"
+    UserMailer.invitation_email(@invinting_user).deliver_now
   end
 
 

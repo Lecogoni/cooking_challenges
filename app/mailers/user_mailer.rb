@@ -13,4 +13,10 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: 'Bienvenue chez nous !') 
   end
 
+  def invitation_email(user)
+    @user = user 
+    @url  = 'https://cooking-challenges.herokuapp.com' 
+    mail(to: @user.email, subject: 'tu es invités au Cooking Challenge !') 
+  end
+
 end
