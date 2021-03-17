@@ -23,15 +23,37 @@ class ChallengesController < ApplicationController
   def create
     @challenge = Challenge.new(challenge_params)
 
+  
+    @num_invited = @challenge.invite_number
+
+    puts "---------------------------"
+    puts @num_invited
+    puts "---------------------------"
+  
+    
+    @u = User.create(email: "email@test.fr")
+
+    puts "------######------------"
+    puts  @u
+    puts "-------######------------"
+
     respond_to do |format|
       if @challenge.save
         format.html { redirect_to @challenge, notice: "Challenge was successfully created." }
         format.json { render :show, status: :created, location: @challenge }
+        # Association via table Event du new challenge avec le current_user
+        
+        @owner_event = Event.create(user_id: current_user.id, challenge_id: @challenge.id)
+
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @challenge.errors, status: :unprocessable_entity }
       end
     end
+
+    
+
+  
   end
 
   # PATCH/PUT /challenges/1 or /challenges/1.json
@@ -64,6 +86,6 @@ class ChallengesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def challenge_params
-      params.require(:challenge).permit(:title, :statut, :description)
+      params.require(:challenge).permit(:title, :statut, :description, :invite_number)
     end
 end
