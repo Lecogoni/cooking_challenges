@@ -43,7 +43,7 @@ class ChallengesController < ApplicationController
         format.json { render :show, status: :created, location: @challenge }
         # Association via table Event du new challenge avec le current_user
         
-        @owner_event = Event.create(user_id: current_user.id, challenge_id: @challenge.id)
+        @owner_event = Event.create(user_id: current_user.id, challenge_id: @challenge.id, role: "créateur")
 
       else
         format.html { render :new, status: :unprocessable_entity }
