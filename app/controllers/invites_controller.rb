@@ -62,7 +62,7 @@ class InvitesController < ApplicationController
     # get info on invinted user
     @inviting = Invite.find_by(email: @invite.email)
     # create a new user from the invited user
-    @invinting_user = User.create(email: @inviting.email, password: "cooking" )
+    @invinting_user = User.create(username: @inviting.username, email: @inviting.email, password: "cooking" )
 
     # Create an Event link to the mentionned challenge and invinted user
     @new_event = Event.create(user_id: @invinting_user.id, challenge_id: @challenge_id )
@@ -88,6 +88,6 @@ class InvitesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def invite_params
-      params.require(:invite).permit(:email)
+      params.require(:invite).permit(:email, :username)
     end
 end

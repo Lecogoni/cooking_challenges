@@ -1,11 +1,13 @@
 <h1>Editing Challenge</h1>
 <p>
-  <%= current_user.username %> il ne te reste plus que quelques champs à compléter pour définir ton challenge et inviter tes amis à te rejoindre
+  <%= current_user.username.capitalize %> il ne te reste plus que quelques champs à compléter pour définir ton challenge et inviter tes amis à te rejoindre
 </p>
 
 <%= render 'form', challenge: @challenge %>
 
 <hr>
+
+<h3>Invite tes amis à participer</h3>
 
 <% @invited = @challenge.invites %>
 
@@ -14,6 +16,11 @@
     <%= form_with(model: invit) do |form| %>
 
       <%= hidden_field_tag(:challenge, @challenge.id) %>
+
+      <div>
+        <%= form.label :username %><br>
+        <%= form.text_field :username %>
+      </div>
 
       <div>
         <%= form.label :email %><br>
