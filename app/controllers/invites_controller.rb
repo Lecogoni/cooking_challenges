@@ -76,7 +76,7 @@ class InvitesController < ApplicationController
     user.save
 
     # send invitation email to new user
-    UserMailer.invitation_email(user, raw).deliver_now
+    UserMailer.invitation_email(user, raw, current_user).deliver_now
   end
 
 

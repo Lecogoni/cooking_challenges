@@ -6,15 +6,13 @@
   <body>
     <h1>Salut <%= @user.username.capitalize %></h1>
     <p>
-      Tu es invité à participer à un Cooking Challenge.
-      Tu es invité : <%= @user.email %>.
+      Tu es invité par <%= @current_user.username.capitalize %> (<%= @current_user.email %>)
+      à participer à un Cooking Challenge.
     </p>
 
     <p>
         Si tu souhaites confirmer ta participation à ce challenge clic <%= link_to 'ici', @url %>
     </p>
 
-  
-    
   </body>
 </html>
