@@ -22,25 +22,23 @@ class ChallengesController < ApplicationController
   # POST /challenges or /challenges.json
   def create
     @challenge = Challenge.new(challenge_params)
-
   
+    # stock the number of invites from params
     @num_invited = @challenge.invite_number
 
-    puts "---------------------------"
-    puts @num_invited
-    puts "---------------------------"
-  
     
-    @u = Invite.create(email: "email@test.fr")
-
-
     respond_to do |format|
       if @challenge.save
         format.html { redirect_to @challenge, notice: "Challenge was successfully created." }
         format.json { render :show, status: :created, location: @challenge }
-        # Association via table Event du new challenge avec le current_user
-        
+
+        # Associate on Event table the new challenge whit the current_user
         @owner_event = Event.create(user_id: current_user.id, challenge_id: @challenge.id, role: "créateur")
+
+        # create the invite_number of Invite with the id of the current challenge
+        @num_invited.times do
+          Invite.create(email: "mail@test.fr", challenge_id: @challenge.id)
+        end
 
       else
         format.html { render :new, status: :unprocessable_entity }
