@@ -31,11 +31,8 @@ class ChallengesController < ApplicationController
     puts "---------------------------"
   
     
-    @u = User.create(email: "email@test.fr")
+    @u = Invite.create(email: "email@test.fr")
 
-    puts "------######------------"
-    puts  @u
-    puts "-------######------------"
 
     respond_to do |format|
       if @challenge.save

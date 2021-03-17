@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :invites
   resources :events
   resources :challenges
   devise_for :users
