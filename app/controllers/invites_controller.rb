@@ -37,15 +37,14 @@ class InvitesController < ApplicationController
 
   # PATCH/PUT /invites/1 or /invites/1.json
   def update
-    respond_to do |format|
+    
       if @invite.update(invite_params)
-        format.html { redirect_to @invite, notice: "Invite was successfully updated." }
-        format.json { render :show, status: :created, location: @invite }
+        flash.now[:notice] = 'invitation envoyé!'
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @invite.errors, status: :unprocessable_entity }
+        flash.now[:alert] = 'Error !'
       end
-    end
+
+  
   end
 
   # DELETE /invites/1 or /invites/1.json
