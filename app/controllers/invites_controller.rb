@@ -44,7 +44,6 @@ class InvitesController < ApplicationController
         flash.now[:alert] = 'Error !'
       end
 
-  
   end
 
   # DELETE /invites/1 or /invites/1.json
@@ -57,10 +56,8 @@ class InvitesController < ApplicationController
   end
 
   def transfer_invite_to_user
-    puts "#######"
-    puts "il est d'accord"
-    puts "#######"
-
+    @inviting = Invite.find_by(email: @invite.email)
+    @invinting_user = User.create(email: @inviting.email, password: "cooking" )
   end
 
 
