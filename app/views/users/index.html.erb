@@ -2,6 +2,35 @@
 
 <h1>Users</h1>
 
+
+<hr>
+<% if user_signed_in? %>
+  <p>
+    <%= link_to 'se déconnecter', destroy_user_session_path, method: :delete %> 
+  </p>
+<% else %>
+  <p>
+    <%= link_to 'se connecter', new_user_session_path %>  
+  </p>
+<% end %>
+
+<hr>
+
+<hr>
+
+<p>
+  <span><strong>user_signed_in? : </strong><%= user_signed_in? %> </span>
+</p>
+<% if user_signed_in? %>
+  <p>
+    <strong>email : </strong><%= current_user.email %><br>
+    <strong>id : </strong><%= current_user.id %> 
+  </p>
+<% end %>
+
+<hr>
+
+
 <table>
   <thead>
     <tr>
@@ -23,3 +52,19 @@
 <br>
 
 <%= link_to 'New User', new_user_path %>
+
+<hr>
+
+<p>
+  <%= debug user_signed_in? %>
+</p>
+
+<% if debug user_signed_in? %>
+  <p>
+    <span class="strong">current_user : <%= current_user %> </span>
+  </p>
+<% end %>
+
+<p>
+  <%= debug session.to_hash %>
+</p>
