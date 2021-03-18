@@ -65,19 +65,6 @@ class InvitesController < ApplicationController
   end
 
   
-  
-  private
-  # Use callbacks to share common setup or constraints between actions.
-
-  def set_invite
-    @invite = Invite.find(params[:id])
-  end
-  
-  # Only allow a list of trusted parameters through.
-  def invite_params
-    params.require(:invite).permit(:email, :username)
-  end
-
   def transfer_invite_to_user()
     # get info on invinted user
     @inviting = Invite.find_by(email: @invite.email)
@@ -98,5 +85,18 @@ class InvitesController < ApplicationController
     # send invitation email to new user
     UserMailer.invitation_email_new_user(user, raw, current_user).deliver_now
   end
+  
+  private
+  # Use callbacks to share common setup or constraints between actions.
+
+  def set_invite
+    @invite = Invite.find(params[:id])
+  end
+  
+  # Only allow a list of trusted parameters through.
+  def invite_params
+    params.require(:invite).permit(:email, :username)
+  end
+
 
 end
