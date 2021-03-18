@@ -45,6 +45,11 @@ class InvitesController < ApplicationController
       if User.exists?(email: @invite.email)
         # send invitation email to existing user
         user = User.find_by(email: @invite.email)
+
+        @inviting = User.find_by(email: @invite.email)
+        # Create an Event link to the mentionned challenge and  user
+        @new_event = Event.create(user_id: @invite.id, challenge_id: @challenge_id )
+
         UserMailer.invitation_email(user, current_user).deliver_now
       else
         flash.now[:notice] = 'invitation envoyé!'
