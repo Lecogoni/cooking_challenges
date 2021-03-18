@@ -46,9 +46,10 @@ class InvitesController < ApplicationController
         # send invitation email to existing user
         user = User.find_by(email: @invite.email)
         UserMailer.invitation_email(user, current_user).deliver_now
+      else
+        flash.now[:notice] = 'invitation envoyé!'
+        transfer_invite_to_user()
       end
-      flash.now[:notice] = 'invitation envoyé!'
-      transfer_invite_to_user()
     else
       flash.now[:alert] = 'Error !'
     end    
