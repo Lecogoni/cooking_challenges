@@ -25,7 +25,9 @@ Things you may want to cover:
 
 * Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+# Deployment instructions
+
+- supprimer lien inutile des mails d'invitations
 
 - git push heroku master
 - heroku run rake db:migrate
@@ -35,6 +37,3 @@ Things you may want to cover:
 
 
 # nico info 
-
-lien url reset password token en production
-https://mokacoding.com/blog/how-to-manually-generate-devise-reset-password-link/

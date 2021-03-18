@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<h2>Profil de <%= @user.username %></h2>
 <h3>Tout mes Event</h3>
 
 <% @all_challenges = @user.events %>
@@ -33,7 +34,7 @@
 <% @participant_challenge.each do |event| %>
   <p>
     <strong>challenge : <%= event.challenge.title %></strong><br>
-    <small>role : <%= event.role %> - statut : <%= event.statut %></small>
+    <small>role : <%= event.role %> - statut : <%= event.statut %></small> <%= link_to event.statut, toggle_statut_event_path, method: 'post'%>
   </p>
 <% end %>
 

@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[ show edit update destroy ]
+  before_action :set_event, only: %i[ show edit update destroy toggle_statut ]
 
   # GET /events or /events.json
   def index
@@ -55,6 +55,18 @@ class EventsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  def toggle_statut
+    if @event.statut == "confirmed"
+      @event.statut = "pending"
+      @event.save
+    else
+      @event.statut = "confirmed"
+      @event.save
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

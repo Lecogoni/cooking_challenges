@@ -1,6 +1,5 @@
 class InvitesController < ApplicationController
   before_action :set_invite, only: %i[ show edit update destroy ]
-  #after_action :transfer_invite_to_user, only: %i[ update ]
 
   # GET /invites or /invites.json
   def index
@@ -46,9 +45,9 @@ class InvitesController < ApplicationController
         # send invitation email to existing user
         user = User.find_by(email: @invite.email)
 
-        @inviting = User.find_by(email: @invite.email)
         # Create an Event link to the mentionned challenge and  user
-        @new_event = Event.create(user_id: @invite.id, challenge_id: @challenge_id )
+        @inviting = User.find_by(email: @invite.email)
+        @new_event = Event.create(user_id: @inviting.id, challenge_id: @challenge_id )
 
         UserMailer.invitation_email(user, current_user).deliver_now
       else
