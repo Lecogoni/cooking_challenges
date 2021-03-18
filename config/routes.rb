@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :events do
     member do
-      post :toggle_statut
+      post :toggle_participation
     end
   end
 

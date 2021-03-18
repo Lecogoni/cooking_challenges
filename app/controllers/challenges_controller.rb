@@ -31,7 +31,7 @@ class ChallengesController < ApplicationController
       if @challenge.save
 
         # Associate on Event table the new challenge whit the current_user
-        @owner_event = Event.create(user_id: current_user.id, challenge_id: @challenge.id, role: "créateur", statut: "confirmed")
+        @owner_event = Event.create(user_id: current_user.id, challenge_id: @challenge.id, role: "créateur", participation: "confirmed")
 
         # create the invite_number of Invite with the id of the current challenge
         @num_invited.times do

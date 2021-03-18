@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[ show edit update destroy toggle_statut ]
+  before_action :set_event, only: %i[ show edit update destroy toggle_participation ]
 
   # GET /events or /events.json
   def index
@@ -57,12 +57,12 @@ class EventsController < ApplicationController
   end
 
 
-  def toggle_statut
-    if @event.statut == "confirmed"
-      @event.statut = "pending"
+  def toggle_participation
+    if @event.participation == "confirmed"
+      @event.participation = "pending"
       @event.save
     else
-      @event.statut = "confirmed"
+      @event.participation = "confirmed"
       @event.save
     end
   end
