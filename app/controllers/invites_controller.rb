@@ -43,11 +43,12 @@ class InvitesController < ApplicationController
     
     if @invite.update(invite_params)
       if User.exists?(email: @invite.email)
-        puts "#####"
-        puts "déja en dB"
-        puts "#####"
+        # send invitation email to existing user
+        user = User.find_by(email: @invite.email)
+        UserMailer.invitation_email(user, current_user).deliver_now
       end
       flash.now[:notice] = 'invitation envoyé!'
+      transfer_invite_to_user()
     else
       flash.now[:alert] = 'Error !'
     end    
@@ -63,7 +64,21 @@ class InvitesController < ApplicationController
     end
   end
 
-  def transfer_invite_to_user
+  
+  
+  private
+  # Use callbacks to share common setup or constraints between actions.
+
+  def set_invite
+    @invite = Invite.find(params[:id])
+  end
+  
+  # Only allow a list of trusted parameters through.
+  def invite_params
+    params.require(:invite).permit(:email, :username)
+  end
+
+  def transfer_invite_to_user()
     # get info on invinted user
     @inviting = Invite.find_by(email: @invite.email)
     # create a new user from the invited user
@@ -81,18 +96,7 @@ class InvitesController < ApplicationController
     user.save
 
     # send invitation email to new user
-    UserMailer.invitation_email(user, raw, current_user).deliver_now
+    UserMailer.invitation_email_new_user(user, raw, current_user).deliver_now
   end
 
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_invite
-      @invite = Invite.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def invite_params
-      params.require(:invite).permit(:email, :username)
-    end
 end

@@ -11,12 +11,21 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: 'Bienvenue chez nous !') 
   end
 
-  def invitation_email(user, raw, current_user)
+  def invitation_email_new_user(user, raw, current_user)
     @user = user
     @current_user = current_user
     @raw = raw
     @url  = edit_user_password_url(reset_password_token: @raw)
     mail(to: @user.email, subject: current_user.username.capitalize + " t'invite à son Cooking Challenge !") 
   end
+
+
+  def invitation_email(user, current_user)
+    @user = user
+    @current_user = current_user
+    @url  = new_user_session_url
+    mail(to: @user.email, subject: current_user.username.capitalize + " t'invite à son Cooking Challenge !") 
+  end
+
 
 end
