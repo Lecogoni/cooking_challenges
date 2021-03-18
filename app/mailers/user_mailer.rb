@@ -15,17 +15,19 @@ class UserMailer < ApplicationMailer
     @user = user
     @current_user = current_user
     @raw = raw
-    @url  = edit_user_password_url(reset_password_token: @raw)
+    #@url  = edit_user_password_url(reset_password_token: @raw)
+    @url  = "https://cooking-challenges.herokuapp.com/users/password/edit#{(reset_password_token: @raw)}"
     mail(to: @user.email, subject: current_user.username.capitalize + " t'invite à son Cooking Challenge !") 
   end
+  
 
 
   def invitation_email(user, current_user)
     @user = user
     @current_user = current_user
-    @url  = new_user_session_url
+    #@url  = new_user_session_url
+    @url  = "https://cooking-challenges.herokuapp.com/users/sign_in"
     mail(to: @user.email, subject: current_user.username.capitalize + " t'invite à son Cooking Challenge !") 
   end
-
 
 end
