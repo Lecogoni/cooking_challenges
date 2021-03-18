@@ -1,6 +1,6 @@
 class InvitesController < ApplicationController
   before_action :set_invite, only: %i[ show edit update destroy ]
-  after_action :transfer_invite_to_user, only: %i[ update ]
+  #after_action :transfer_invite_to_user, only: %i[ update ]
 
   # GET /invites or /invites.json
   def index
@@ -38,14 +38,21 @@ class InvitesController < ApplicationController
   # PATCH/PUT
   def update
 
-      # get challenge_id for the mentionned invited challenge
-      @challenge_id = params[:challenge]
-     
-      if @invite.update(invite_params)
-        flash.now[:notice] = 'invitation envoyé!'
+    # get challenge_id for the mentionned invited challenge
+    @challenge_id = params[:challenge]
+    
+    if @invite.update(invite_params)
+      if User.exists?(email: @invite.email)
+        # send invitation email to existing user
+        user = User.find_by(email: @invite.email)
+        UserMailer.invitation_email(user, current_user).deliver_now
       else
-        flash.now[:alert] = 'Error !'
+        flash.now[:notice] = 'invitation envoyé!'
+        transfer_invite_to_user()
       end
+    else
+      flash.now[:alert] = 'Error !'
+    end    
 
   end
 
@@ -58,7 +65,8 @@ class InvitesController < ApplicationController
     end
   end
 
-  def transfer_invite_to_user
+  
+  def transfer_invite_to_user()
     # get info on invinted user
     @inviting = Invite.find_by(email: @invite.email)
     # create a new user from the invited user
@@ -76,18 +84,20 @@ class InvitesController < ApplicationController
     user.save
 
     # send invitation email to new user
-    UserMailer.invitation_email(user, raw, current_user).deliver_now
+    UserMailer.invitation_email_new_user(user, raw, current_user).deliver_now
+  end
+  
+  private
+  # Use callbacks to share common setup or constraints between actions.
+
+  def set_invite
+    @invite = Invite.find(params[:id])
+  end
+  
+  # Only allow a list of trusted parameters through.
+  def invite_params
+    params.require(:invite).permit(:email, :username)
   end
 
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_invite
-      @invite = Invite.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def invite_params
-      params.require(:invite).permit(:email, :username)
-    end
 end

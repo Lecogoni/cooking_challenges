@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :events, dependent: :destroy
   has_many :challenges, through: :events
 
+  validates :username, presence: true
+
   #after_create :welcome_send
 
   def welcome_send
