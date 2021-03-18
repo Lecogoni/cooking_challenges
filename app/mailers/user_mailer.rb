@@ -1,6 +1,6 @@
 class UserMailer < ApplicationMailer
 
-  default from: 'cooking-challenges.herokuapp.com'
+  default from: 'cooking@yopmail.com'
  
   def welcome_email(user)
     #on récupère l'instance user pour ensuite pouvoir la passer à la view en @user
