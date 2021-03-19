@@ -1,5 +1,5 @@
 <header>
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary fixed-top">
     <div class="container">
       <a class="navbar-brand" <%= link_to 'Cooking Challenge', root_path %></a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -7,13 +7,18 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-
+            <li class="nav-item">
+                <a class="nav-link" <%= link_to 'theme/kit', welcome_index_path %></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://bootswatch.com/journal/">site web du Kit</a>
+            </li>
             <% if user_signed_in? %>
           <li class="nav-item">
-          <a class="nav-link btn btn-outline-danger" <%= link_to 'Logout', destroy_user_session_path, method: :delete %></a>
+          <a class="nav-link btn btn-danger" <%= link_to 'Logout', destroy_user_session_path, method: :delete %></a>
           <% else %>
           <li class="nav-item">
-          <a class="nav-link btn btn-outline-primary" <%= link_to 'Login', new_user_session_path %></a>
+          <a class="nav-link btn btn-secondary" <%= link_to 'Login', new_user_session_path %></a>
           <% end %>
         </li>
           </div>

@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Bootstrap core CSS -->
+    <!-- Custom styles for this template -->
     <title>CookingChallenges</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_pack_tag 'application' %>
   </head>
 
   <body>
-  <%= render 'layouts/navbar' %>
-  <%= render 'layouts/flash' %>
-  <div class="container">
+    <%= render 'layouts/navbar' %>
     <%= yield %>
-  </div>
-  <%= render 'layouts/footer' %>
+    <%= render 'layouts/flash' %>
+    <%= render 'layouts/footer' %>
+
+
+  <!-- Bootstrap core JavaScript -->
+
   </body>
 </html>
