@@ -45,15 +45,6 @@ ActiveRecord::Schema.define(version: 2021_03_19_141226) do
     t.index ["challenge_id"], name: "index_guests_on_challenge_id"
   end
 
-  create_table "invites", force: :cascade do |t|
-    t.string "email"
-    t.bigint "challenge_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "username", default: ""
-    t.index ["challenge_id"], name: "index_invites_on_challenge_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -70,5 +61,4 @@ ActiveRecord::Schema.define(version: 2021_03_19_141226) do
   add_foreign_key "events", "challenges"
   add_foreign_key "events", "users"
   add_foreign_key "guests", "challenges"
-  add_foreign_key "invites", "challenges"
 end

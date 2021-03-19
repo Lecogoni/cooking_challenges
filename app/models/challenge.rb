@@ -4,7 +4,6 @@ class Challenge < ApplicationRecord
   has_many :users, through: :events
 
   has_many :guests, dependent: :destroy
-  has_many :invites, dependent: :destroy
 
   validates :number_of_guest, {
     :presence => true,

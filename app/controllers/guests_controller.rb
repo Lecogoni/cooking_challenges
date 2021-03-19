@@ -52,7 +52,7 @@ class GuestsController < ApplicationController
         UserMailer.invitation_email(user, current_user).deliver_now
       else
         flash.now[:notice] = 'invitation envoyé!'
-        transfer_invite_to_user()
+        transfer_guest_to_user()
       end
     else
       flash.now[:alert] = 'Error !'
@@ -70,7 +70,7 @@ class GuestsController < ApplicationController
   end
 
 
-  def transfer_invite_to_user()
+  def transfer_guest_to_user
     # get info on invinted user
     @inviting = Guest.find_by(email: @guest.email)
     # create a new user from the invited user
