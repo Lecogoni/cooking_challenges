@@ -9,11 +9,11 @@
 
 <h3>Invite tes amis à participer</h3>
 
-<% @invited = @challenge.invites %>
+<% @guests = @challenge.guests %>
 
-  <% @invited.each do |invit| %>
+  <% @guests.each do |guest| %>
 
-    <%= form_with(model: invit) do |form| %>
+    <%= form_with(model: guest) do |form| %>
 
       <%= hidden_field_tag(:challenge, @challenge.id) %>
 
