@@ -2,4 +2,86 @@
 
 <%= render 'form', challenge: @challenge %>
 
+    <section class="py-5 text-center container">
+    <h1 class="fw-light">Une petite faim ? 🍔 </h1>
+    <p class="lead text-muted">Choisis ta catégorie dans la liste</p>
+    <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <div class="form-group">
+            <select class="form-control search-content" id="search-input">
+              <option selected>Choisis...</option>
+              <option>Breakfast</option>
+              <option>Starter</option>
+              <option>Dessert</option>
+              <option>Seafood</option>
+              <option>Beef</option>
+              <option>Chicken</option>
+              <option>Lamb</option>
+              <option>Pork</option>
+              <option>Pasta</option>
+              <option>Vegan</option>
+              <option>Vegetarian</option>
+              <option>Miscellaneous</option>
+            </select>
+            <br>
+            <button type="submit" class="search-btn btn btn-outline-primary fas fa-search" id="search-btn">Chercher</button>
+          </div>
+          <div class="input-group meal-search-box">
+          </div>
+        </div>
+      </div>
+      <div id="meal" class="row meal"></div>
+    </section>
+    <script>const searchBtn = document.getElementById('search-btn');
+    const mealList = document.getElementById('meal');
+    const mealDetailsContent = document.querySelector('.meal-details-content');
+    const recipeCloseBtn = document.getElementById('reipe-close-btn');
+    
+    searchBtn.addEventListener("click", getMealList);
+    
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * Math.floor(max));
+    }
+    
+    function getMealList(){
+        let searchInputTxt = document.getElementById('search-input').value.trim();
+        console.log(searchInputTxt);
+        fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${searchInputTxt}`)
+        .then(response => response.json())
+        .then(data => {
+            let dataMeal = data.meals[getRandomInt(data.meals.length)]
+            console.log(dataMeal)
+            console.log(data.meals.length)
+            let html = "";
+            if (data.meals) {
+                html += `
+                    <div class="container meal-result">
+                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                            <div class="col">
+                                <h1 class="fw-light"> Ta recette 🤩 </h1>
+                                <div class="card shadow-sm" id="meal">
+                                    <img src="${dataMeal.strMealThumb}" alt="Meal Img"/>
+                                    <div class="card-body">
+                                        <p class="card-text meal_item"><strong>${dataMeal.strMeal}</strong></p>
+                                        <p class="card-text meal_item">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-sm btn-outline-secondary">Voir plus</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                `; 
+            };
+            mealList.innerHTML = html;
+        });
+    }
+    </script>
+
+
+
+
 <%= link_to 'Back', challenges_path %>
