@@ -5,6 +5,8 @@
 
 //= require jquery
 //= require bootstrap
+//= require tree .
+//= require turbolinks
 //= require script
 
 import Rails from "@rails/ujs"
