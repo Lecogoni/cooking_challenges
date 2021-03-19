@@ -1,43 +1,47 @@
-<h1>Editing Challenge</h1>
-<p>
-  <%= current_user.username.capitalize %> il ne te reste plus que quelques champs à compléter pour définir ton challenge et inviter tes amis à te rejoindre
-</p>
+<div class="container">
 
-<%= render 'form', challenge: @challenge %>
+  <h1>Editing Challenge</h1>
+  <p>
+    <%= current_user.username.capitalize %> il ne te reste plus que quelques champs à compléter pour définir ton challenge et inviter tes amis à te rejoindre
+  </p>
 
-<hr>
+  <%= render 'form', challenge: @challenge %>
 
-<h3>Invite tes amis à participer</h3>
+  <hr>
 
-<% @guests = @challenge.guests %>
+  <h3>Invite tes amis à participer</h3>
 
-  <% @guests.each do |guest| %>
+  <% @guests = @challenge.guests %>
 
-    <%= form_with(model: guest) do |form| %>
+    <% @guests.each do |guest| %>
 
-      <%= hidden_field_tag(:challenge, @challenge.id) %>
+      <%= form_with(model: guest) do |form| %>
 
-      <div>
-        <%= form.label :username %><br>
-        <%= form.text_field :username %>
-      </div>
+        <%= hidden_field_tag(:challenge, @challenge.id) %>
 
-      <div>
-        <%= form.label :email %><br>
-        <%= form.email_field :email %>
-      </div>
-      
-      <div class="actions">
-        <%= form.submit%>
-      </div>
-      <br>
-      <br>
+        <div>
+          <%= form.label :username %><br>
+          <%= form.text_field :username %>
+        </div>
+
+        <div>
+          <%= form.label :email %><br>
+          <%= form.email_field :email %>
+        </div>
+        
+        <div class="actions">
+          <%= form.submit%>
+        </div>
+        <br>
+        <br>
+
+      <% end %>
 
     <% end %>
 
-  <% end %>
+  <hr>
 
-<hr>
+  <%= link_to 'Show', @challenge %> |
+  <%= link_to 'Back', challenges_path %>
 
-<%= link_to 'Show', @challenge %> |
-<%= link_to 'Back', challenges_path %>
+</div>

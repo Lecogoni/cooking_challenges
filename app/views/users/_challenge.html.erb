@@ -1,0 +1,65 @@
+<div class="mb-5">
+  <h1>Mes Challenges</h1>
+</div>
+
+<div class="row">
+
+  <% @challenges = @user.challenges %>
+  <% @challenges.each do |challenge| %>
+
+    <% @events = challenge.events %>
+  
+    <div class="col-lg-4">
+      <div class="bs-component">
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1"><%= challenge.title.upcase %></h5>
+              <span class="badge bg-dark text-sm-start"><%= challenge.status %></span>
+            </div>
+            <p class="mb-1">Mentionner le theme et ses info</p>
+            <small>autre info si besoin</small>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between mb-2">
+              <h5 class="mb-1">Participant</h5>
+            </div>
+            <% @events.each do |event| %>
+              <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-start">
+
+                  <div class="mr-3">
+                    <% if event.participation == "pending" %>
+                      <span class=""><i class="fa fa-check-circle" style="color:lightgray"></i></span>
+                    <% elsif event.participation == "confirmed" %>
+                      <span class=""><i class="fa fa-check-circle" style="color:indianred"></i></span>
+                    <% else %>
+                      <i class="fas fa-ban"></i>
+                    <% end %>
+                    <!--
+                    <% link_to event.participation, toggle_participation_event_path, method: 'post'%>
+                    -->
+                  </div>
+                  <div>
+                    <%= event.user.username.capitalize %>
+                  </div>
+                </div>
+                <div>
+                  <% if event.user.id == current_user.id || event.role == "créateur" %>
+                    <span class="badge bg-light text-dark"><%= event.role %></span>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+            
+            <hr>
+            <small class="text-muted">Message de </small>
+            <p class="mb-1"><%= challenge.description %></p>
+            
+          </a>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  
+</div>

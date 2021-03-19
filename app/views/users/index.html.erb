@@ -1,76 +1,80 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Users</h1>
+<div class="container">
+
+  <h1>Users</h1>
 
 
-<hr>
-<% if user_signed_in? %>
+  <hr>
+  <% if user_signed_in? %>
+    <p>
+      <%= link_to 'se déconnecter', destroy_user_session_path, method: :delete %> 
+    </p>
+  <% else %>
+    <p>
+      <%= link_to 'se connecter', new_user_session_path %>  
+    </p>
+  <% end %>
+
+  <hr>
+  <%= link_to 'créer un challenge', new_challenge_path, :class => "btn btn-primary btn-lg" %>
+
+  <hr>
+
+
+
   <p>
-    <%= link_to 'se déconnecter', destroy_user_session_path, method: :delete %> 
+    <span><strong>user_signed_in? : </strong><%= user_signed_in? %> </span>
   </p>
-<% else %>
-  <p>
-    <%= link_to 'se connecter', new_user_session_path %>  
-  </p>
-<% end %>
-
-<hr>
-<%= link_to 'créer un challenge', new_challenge_path %>
-
-<hr>
+  <% if user_signed_in? %>
+    <p>
+      <strong>username : </strong><%= current_user.username %><br>
+      <strong>email : </strong><%= current_user.email %><br>
+      <strong>id : </strong><%= current_user.id %><br>
+      <strong>user_session : </strong><%= user_session %> 
+    </p>
+  <% end %>
 
 
 
-<p>
-  <span><strong>user_signed_in? : </strong><%= user_signed_in? %> </span>
-</p>
-<% if user_signed_in? %>
-  <p>
-    <strong>username : </strong><%= current_user.username %><br>
-    <strong>email : </strong><%= current_user.email %><br>
-    <strong>id : </strong><%= current_user.id %><br>
-    <strong>user_session : </strong><%= user_session %> 
-  </p>
-<% end %>
-
-
-
-<table>
-  <thead>
-    <tr>
-      <th>email</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @users.each do |user| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= user.email %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>email</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.email %></td>
+          <td><%= link_to 'Show', user %></td>
+          <td><%= link_to 'Edit', edit_user_path(user) %></td>
+          <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New User', new_user_path %>
+  <br>
 
-<hr>
+  <%= link_to 'New User', new_user_path %>
 
-<p>
-  <%= debug user_signed_in? %>
-</p>
+  <hr>
 
-<% if debug user_signed_in? %>
   <p>
-    <span class="strong">current_user : <%= current_user %> </span>
+    <%= debug user_signed_in? %>
   </p>
-<% end %>
 
-<p>
-  <%= debug session.to_hash %>
-</p>
+  <% if debug user_signed_in? %>
+    <p>
+      <span class="strong">current_user : <%= current_user %> </span>
+    </p>
+  <% end %>
+
+  <p>
+    <%= debug session.to_hash %>
+  </p>
+
+</div>

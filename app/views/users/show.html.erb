@@ -1,44 +1,22 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
 
-<h2>Profil de <%= @user.username %></h2>
-<h3>Tout mes Event</h3>
+  <p id="notice"><%= notice %></p>
 
-<% @all_challenges = @user.events %>
+  
+  
 
-<% @all_challenges.each do |event| %>
-  <p>
-    <strong>challenge : <%= event.challenge.title %></strong><br>
-    <small>role : <%= event.role %> - participation : <%= event.participation %></small>
-  </p>
-<% end %>
+<!-- If User has no challenge -->
+  <% if @user.events.count == 0 %>
+  <%= render 'users/no-challenge' %>
+<!-- If User has challenge -->
+  <% else %>
+    <%= render 'users/challenge' %>
+  <% end %>
 
-<hr>
-
-<h3>Event dont je suis le créateur</h3>
-
-<% @creator_challenges = Event.where(user_id: @user.id, role: "créateur") %>
-
-<% @creator_challenges.each do |event| %>
-  <p>
-    <strong>challenge : <%= event.challenge.title %></strong><br>
-    <small>role : <%= event.role %> - participation : <%= event.participation %></small>
-  </p>
-<% end %>
-
-<hr>
-
-<h3>Event auquel je participe</h3>
-
-<% @participant_challenge = Event.where(user_id: @user.id, role: "participant") %>
-
-<% @participant_challenge.each do |event| %>
-  <p>
-    <strong>challenge : <%= event.challenge.title %></strong><br>
-    <small>role : <%= event.role %> - participation : <%= event.participation %></small> <%= link_to event.participation, toggle_participation_event_path, method: 'post'%>
-  </p>
-<% end %>
+<div>
 
 <hr>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+

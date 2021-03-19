@@ -1,0 +1,10 @@
+<h2>Salut <%= @user.username %></h2>
+
+<p>
+  Bienvenue sur ton espace. Tu ne participe à aucun Challenge.<br>
+  Souhaites tu en créer un ? 
+</p>
+
+<div>
+    <%= link_to 'créer un challenge', new_challenge_path, :class => "btn btn-primary btn-lg" %>
+</div>

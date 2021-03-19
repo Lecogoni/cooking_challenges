@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
 
-  root 'users#index'
+  
+  root 'welcome#index'
 
   resources :events do
     member do
