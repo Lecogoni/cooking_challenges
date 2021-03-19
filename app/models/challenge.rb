@@ -5,13 +5,13 @@ class Challenge < ApplicationRecord
 
   has_many :guests, dependent: :destroy
 
-  validates :number_of_guest, {
+  validates :numb_guest, {
     :presence => true,
     :allow_blank => false,
     :allow_nil => false,
   }
 
-  validates :number_of_guest, numericality: { only_integer: true }
-  validates :number_of_guest, :numericality => {:greater_than_or_equal_to => 1}
+  validates :numb_guest, numericality: { only_integer: true }
+  validates :numb_guest, :numericality => {:greater_than_or_equal_to => 1}
   
 end

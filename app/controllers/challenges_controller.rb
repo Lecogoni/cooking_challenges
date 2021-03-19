@@ -24,7 +24,7 @@ class ChallengesController < ApplicationController
     @challenge = Challenge.new(challenge_params)
   
     # stock the number of guest from params
-    @num_guest = @challenge.number_of_guest
+    @num_guest = @challenge.numb_guest
 
     
     respond_to do |format|
@@ -80,6 +80,6 @@ class ChallengesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def challenge_params
-      params.require(:challenge).permit(:title, :status, :description, :number_of_guest)
+      params.require(:challenge).permit(:title, :status, :description, :numb_guest)
     end
 end
