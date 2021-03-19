@@ -35,7 +35,7 @@ class ChallengesController < ApplicationController
 
         # create the invite_number of Invite with the id of the current challenge
         @num_invited.times do
-          Invite.create(email: "", challenge_id: @challenge.id)
+          Guest.create(email: "", challenge_id: @challenge.id)
         end
 
         format.html { redirect_to edit_challenge_path(@challenge), notice: "Challenge was successfully created." }
