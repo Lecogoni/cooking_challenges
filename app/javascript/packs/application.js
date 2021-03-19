@@ -5,6 +5,7 @@
 
 //= require jquery
 //= require bootstrap
+//= require script
 
 import Rails from "@rails/ujs"
 import * as ActiveStorage from "@rails/activestorage"

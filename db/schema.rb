@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_18_211855) do
+ActiveRecord::Schema.define(version: 2021_03_19_105605) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "challenges", force: :cascade do |t|
     t.string "title", default: ""
-    t.string "statut", default: "pending"
+    t.string "status", default: "pending"
     t.string "description", default: ""
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2021_03_18_211855) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.string "event_statut", default: "unscheduled"
+    t.string "status", default: "unscheduled"
     t.string "role", default: "participant"
     t.bigint "user_id"
     t.bigint "challenge_id"
@@ -34,6 +34,15 @@ ActiveRecord::Schema.define(version: 2021_03_18_211855) do
     t.string "participation", default: "pending"
     t.index ["challenge_id"], name: "index_events_on_challenge_id"
     t.index ["user_id"], name: "index_events_on_user_id"
+  end
+
+  create_table "guests", force: :cascade do |t|
+    t.string "username", default: ""
+    t.string "email"
+    t.bigint "challenge_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["challenge_id"], name: "index_guests_on_challenge_id"
   end
 
   create_table "invites", force: :cascade do |t|
@@ -60,5 +69,6 @@ ActiveRecord::Schema.define(version: 2021_03_18_211855) do
 
   add_foreign_key "events", "challenges"
   add_foreign_key "events", "users"
+  add_foreign_key "guests", "challenges"
   add_foreign_key "invites", "challenges"
 end

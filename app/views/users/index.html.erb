@@ -19,6 +19,8 @@
 
 <hr>
 
+
+
 <p>
   <span><strong>user_signed_in? : </strong><%= user_signed_in? %> </span>
 </p>
@@ -26,7 +28,8 @@
   <p>
     <strong>username : </strong><%= current_user.username %><br>
     <strong>email : </strong><%= current_user.email %><br>
-    <strong>id : </strong><%= current_user.id %> 
+    <strong>id : </strong><%= current_user.id %><br>
+    <strong>user_session : </strong><%= user_session %> 
   </p>
 <% end %>
 

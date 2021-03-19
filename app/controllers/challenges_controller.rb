@@ -35,7 +35,7 @@ class ChallengesController < ApplicationController
 
         # create the invite_number of Invite with the id of the current challenge
         @num_invited.times do
-          Invite.create(email: "", challenge_id: @challenge.id)
+          Guest.create(email: "", challenge_id: @challenge.id)
         end
 
         format.html { redirect_to edit_challenge_path(@challenge), notice: "Challenge was successfully created." }
@@ -80,6 +80,6 @@ class ChallengesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def challenge_params
-      params.require(:challenge).permit(:title, :statut, :description, :invite_number)
+      params.require(:challenge).permit(:title, :status, :description, :invite_number)
     end
 end
