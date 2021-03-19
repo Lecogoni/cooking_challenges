@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   
   resources :guests
   resources :welcome
-  resources :invites
   resources :events
   resources :challenges
 
