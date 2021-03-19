@@ -24,7 +24,7 @@ class ChallengesController < ApplicationController
     @challenge = Challenge.new(challenge_params)
   
     # stock the number of invites from params
-    @num_invited = @challenge.invite_number
+    @num_invited = @challenge.number_of_guest
 
     
     respond_to do |format|
@@ -33,7 +33,7 @@ class ChallengesController < ApplicationController
         # Associate on Event table the new challenge whit the current_user
         @owner_event = Event.create(user_id: current_user.id, challenge_id: @challenge.id, role: "créateur", participation: "confirmed")
 
-        # create the invite_number of Invite with the id of the current challenge
+        # create the number of Guest with the id of the current challenge
         @num_invited.times do
           Guest.create(email: "", challenge_id: @challenge.id)
         end
@@ -80,6 +80,6 @@ class ChallengesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def challenge_params
-      params.require(:challenge).permit(:title, :status, :description, :invite_number)
+      params.require(:challenge).permit(:title, :status, :description, :number_of_guest)
     end
 end
