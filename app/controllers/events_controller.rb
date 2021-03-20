@@ -67,14 +67,21 @@ class EventsController < ApplicationController
     end
   end
   
+  # change event status and create the needed number of survey matching the event
   def toggle_status
-
     
     if @event.status == "unscheduled"
       @event.status = "done"
       @event.save
+
+      @event_survey = Event.where(challenge_id: @event.challenge_id).where.not(user_id: @event.user_id).to_a
+
+      @event_survey.each_with_index do |survey, index|
+        @new_survey = Survey.create(event_id: @event.id, surveyor_id: survey.user_id )
+      end
+
     else
-      @event.participation = "unscheduled"
+      @event.status = "unscheduled"
       @event.save
     end
   end
