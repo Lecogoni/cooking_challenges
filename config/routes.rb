@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :surveys
   resources :guests
   resources :welcome
   resources :events

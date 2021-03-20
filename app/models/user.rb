@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :events, dependent: :destroy
   has_many :challenges, through: :events
+  has_many :surveys, foreign_key: 'surveyor_id', class_name: "Survey"
 
   validates :username, presence: true
 
