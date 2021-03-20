@@ -8,11 +8,15 @@
   <% @challenges.each do |challenge| %>
 
     <% @events = challenge.events %>
+
+    <% @my_event = Event.where(user_id: current_user.id, challenge_id: challenge.id)[0].id %>
     
     <div class="col-lg-4">
       <div class="bs-component">
         <div class="list-group">
-          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+
+        
+          <a href="/events/<%= @my_event %>"  class="list-group-item list-group-item-action flex-column align-items-start active">
             <div class="d-flex w-100 justify-content-between">
               <h5 class="mb-1"><%= challenge.title.upcase %></h5>
               <span class="badge bg-dark text-sm-start"><%= challenge.status %></span>
@@ -20,7 +24,9 @@
             <p class="mb-1">Mentionner le theme et ses info</p>
             <small>autre info si besoin</small>
           </a>
-          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+  
+
+          <a href="/events/<%= @my_event %>" class="list-group-item list-group-item-action flex-column align-items-start">
             <div class="d-flex w-100 justify-content-between mb-2">
               <h5 class="mb-1">Participant</h5>
             </div>
@@ -55,7 +61,6 @@
             <hr>
             <small class="text-muted">Message de </small>
             <p class="mb-1"><%= challenge.description %></p>
-            
           </a>
         </div>
       </div>
