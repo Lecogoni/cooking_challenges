@@ -29,8 +29,12 @@
             <p class="card-text"><%= @event.challenge.description %></p>
           </div>
 
-          <ul class="list-group list-group-flush">
+          <ul class="list-group list-group-flush p-2">
             <li class="list-group-item">ma participation est : <%= @event.participation %></li>
+            <p>
+              le statut de mon événement est : <%= @event.status %>
+            </p>
+            <%= link_to 'event status', toggle_status_event_path, method: 'post'%>
 
             <div class="form-group">
                 <div class="custom-control custom-switch">
@@ -42,7 +46,6 @@
                   <label class="custom-control-label" for="customSwitch2">Disabled switch element</label>
                 </div>
               </div>
-              
           </ul>
 
           <div class="card-body">

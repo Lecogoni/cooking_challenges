@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :events do
     member do
       post :toggle_participation
+      post :toggle_status
     end
   end
 
