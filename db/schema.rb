@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2021_03_20_170207) do
 
   create_table "questions", force: :cascade do |t|
     t.string "label"
-    t.integer "grade"
+    t.integer "grade", default: 0
     t.bigint "survey_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
