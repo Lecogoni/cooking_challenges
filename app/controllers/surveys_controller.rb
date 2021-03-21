@@ -23,6 +23,12 @@ class SurveysController < ApplicationController
   def create
     @survey = Survey.new(survey_params)
 
+
+
+    @sum = @survey.questions.all.sum(:grade)
+
+
+
     respond_to do |format|
       if @survey.save
         format.html { redirect_to @survey, notice: "Survey was successfully created." }

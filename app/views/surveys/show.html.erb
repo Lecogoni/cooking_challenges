@@ -17,7 +17,7 @@
   <% end %>
   
   <div class="mb-3">
-  <% @sum = @survey.questions.all.sum(:grade) %>
+    <% @sum = @survey.questions.all.sum(:grade) %>
     <h5>La note total est de <%= @sum %></h5>
   </div>
 

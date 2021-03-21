@@ -17,12 +17,16 @@
       
     <% end %>
 
-    <p><%= f.submit "Soumettre mon questionnaire" %></p>
+    <p><%= f.submit "Je soumets mon vote" %></p>
 
   <% end %>
 
+  <p>
+    <%= link_to 'Show', @survey %> |
+    <%= link_to 'Back', surveys_path %>
+  </p>
+
+
 </div>
 
-<%= link_to 'Show', @survey %> |
-<%= link_to 'Back', surveys_path %>
 

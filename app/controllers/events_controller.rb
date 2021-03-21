@@ -71,10 +71,10 @@ class EventsController < ApplicationController
   def toggle_status
 
     @questions_list = [
-      "est ce que le plat est conforme au thème, à la recette ?", 
-      "est-ce que c'était bon ?", 
-      "est ce que l'hôte a apporté une touche personnel à la recette ?",
-      "quel note donneriez vous à la présentation ?"
+      "Est ce que le plat est conforme au thème, à la recette ?", 
+      "Est-ce que c'était bon ?", 
+      "Est ce que l'hôte a apporté une touche personnel à la recette ?",
+      "Quel note donneriez vous à la présentation ?"
     ]
 
     
