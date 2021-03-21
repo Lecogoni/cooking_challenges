@@ -69,21 +69,47 @@ class EventsController < ApplicationController
   
   # change event status and create the needed number of survey matching the event
   def toggle_status
+
+    @questions_list = [
+      "est ce que le plat est conforme au thème, à la recette ?", 
+      "est-ce que c'était bon ?", 
+      "est ce que l'hôte a apporté une touche personnel à la recette ?",
+      "quel note donneriez vous à la présentation ?"
+    ]
+
     
     if @event.status == "unscheduled"
       @event.status = "done"
       @event.save
 
+      # défini le nombre de Survey à créer en comptant le nombre de participant mois le participant de l'event actuel
       @event_survey = Event.where(challenge_id: @event.challenge_id).where.not(user_id: @event.user_id).to_a
 
       @event_survey.each_with_index do |survey, index|
         @new_survey = Survey.create(event_id: @event.id, surveyor_id: survey.user_id )
+          @questions_list.each do |question|
+            @new_question = Question.create(survey_id: @new_survey.id, label: question)
+          end
       end
 
     else
       @event.status = "unscheduled"
       @event.save
     end
+  end
+
+
+  def survey_question()
+
+    @questions_list = [
+      "est ce que le plat est conforme au thème, à la recette ?", 
+      "est-ce que c'était bon ?", 
+      "est ce que l'hôte a apporté une touche personnel à la recette ?",
+      "quel note donneriez vous à la présentation ?"
+    ]
+
+    return @questions_list
+    
   end
 
 
