@@ -1,10 +1,27 @@
 <div class="container">
+
   <p id="notice"><%= notice %></p>
 
-  <div class="card">
-    <%= @survey.surveyor.username%> corrige <%= @survey.event.user.username%>
+  <h3>Questionnaire</h3>
+
+  <p class="mt-4">
+    <%= @survey.surveyor.username.capitalize %> note la prestation de <%= @survey.event.user.username.capitalize%>
+  </p>
+
+  <% @questions = @survey.questions %>
+  <% @questions.each do |question| %>
+
+    <div class="card mb-2 p-2 col-6">
+      <p><%= question.label %> <strong><%= question.grade %></strong></p>
+    </div>
+  <% end %>
+  
+  <div class="mb-3">
+  <% @sum = @survey.questions.all.sum(:grade) %>
+    <h5>La note total est de <%= @sum %></h5>
   </div>
 
   <%= link_to 'Edit', edit_survey_path(@survey) %> |
   <%= link_to 'Back', surveys_path %>
+
 </div>

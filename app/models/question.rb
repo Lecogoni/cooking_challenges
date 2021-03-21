@@ -4,7 +4,4 @@ class Question < ApplicationRecord
 
 
 
-
-
-
 end

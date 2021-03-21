@@ -1,6 +1,52 @@
 <h1>Editing Survey</h1>
 
+
+<div class="container">
+
+  <p id="notice"><%= notice %></p>
+
+  <h3>Questionnaire</h3>
+
+  <p class="mt-4">
+    <%= @survey.surveyor.username.capitalize %> l'heure est venue de noter la prestation de <%= @survey.event.user.username.capitalize%>
+  </p>
+
+  <%= form_for @survey do |f| %>
+   
+    <%= f.fields_for :questions do |builder| %>
+      <%= render "question_fields", :f => builder %>
+
+      
+    <% end %>
+
+    <p><%= f.submit "Soumettre mon questionnaire" %></p>
+
+  <% end %>
+
+  <div class="card">
+    
+    <% @sum = @survey.questions.all.sum(:grade) %>
+    Somme des questions / grade = <%= @sum %><br>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<hr>
+
 <%= render 'form', survey: @survey %>
 
 <%= link_to 'Show', @survey %> |
 <%= link_to 'Back', surveys_path %>
+
