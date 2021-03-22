@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: %i[ show edit update destroy toggle_participation toggle_status ]
+  before_action :set_event, only: %i[ show edit update destroy toggle_participation toggle_status abort_status ]
 
   # GET /events or /events.json
   def index
@@ -58,6 +58,7 @@ class EventsController < ApplicationController
 
 
   def toggle_participation
+
     if @event.participation == "confirmed"
       @event.participation = "pending"
       @event.save
@@ -66,6 +67,14 @@ class EventsController < ApplicationController
       @event.save
     end  
     event_status()
+  end
+
+
+  def abort_status
+    if @event.participation == "pending"
+      @event.participation = "abort"
+      @event.save
+    end
   end
   
   # change event status and create the needed number of survey matching the event

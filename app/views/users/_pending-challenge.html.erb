@@ -2,26 +2,18 @@
   <h1>Challenges en attentes de confirmation</h1>
 </div>
       
-<div class="col-lg-12 mb-5">
+<div class="col-lg-6 mb-5">
   <div class="bs-component">
     <ul class="list-group">
       <% @pending_challenges.each do |challenge| %>
       <li class="list-group-item d-flex justify-content-between align-items-center">
-        <%= challenge.challenge.title.upcase %>
-        invité par <%= challenge.user.username.capitalize %>
-        <%= link_to challenge.participation, toggle_participation_event_path, method: 'post', :class => 'badge badge-primary badge-pill'%>
+        <%= challenge.challenge.title.upcase %><br>
+        A RAJOUTER INVITER PAR
+        <%= link_to 'accepter', toggle_participation_event_path(id: challenge.id), method: 'post', :class => 'badge badge-primary badge-pill' %><br>
+        <%= link_to 'décliner', abort_status_event_path(id: challenge.id), method: 'post', :class => 'badge badge-warning badge-pill' %>
       </li>
       <% end %>
     </ul>
   </div>
 </div>
 
-<script>
-  let participationButton = document.getElementsByClassName("badge-primary badge-pill")[0];
-  console.log(participationButton);
-
-  participationButton.addEventListener("click", function(event){ 
-    window.location.reload(true);
-  });
-
-</script>
