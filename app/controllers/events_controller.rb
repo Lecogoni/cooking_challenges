@@ -62,6 +62,9 @@ class EventsController < ApplicationController
     if @event.participation == "confirmed"
       @event.participation = "pending"
       @event.save
+    elsif @event.participation == "abort"
+      @event.participation = "confirmed"
+      @event.save
     else
       @event.participation = "confirmed"
       @event.save
