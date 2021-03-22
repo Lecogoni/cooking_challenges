@@ -1,0 +1,80 @@
+<div class="jumbotron">
+  <div class="container jumbo-container">
+    <div class="d-flex align-content-between flex-column">
+
+        <div class="mb-auto">
+          <h1 class="jumbo-text">COOKING CHALLENGE !</h1>
+        </div>
+
+      <div class="p-2 jumbo-body">
+        <p>Défis tes amis en les invitant</p>
+        <p>à un challenge culinaire</p>
+      </div>
+
+        <div class="">
+          <%= link_to 'CHALLENGE TES AMIS', new_challenge_path, :class => "btn btn-primary btn-lg jumbo-button" %>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="mb-5">
+    <h2 class="text-center">Un Cooking Challenge c'est simple comme une bonne recette</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-4 col-sm-6 portfolio-item">
+      <div class="card h-100">
+        <img class="card-img-top" src="http://placehold.it/700x400" alt="">
+        <div class="card-body">
+          <h4 class="card-title text-center">
+            <a href="#">Créer ton challenge</a>
+          </h4>
+          <p class="card-text text-center">
+            Choisis un thème de challenge<br>
+            Invite tes amis à participer<br>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-sm-6 portfolio-item">
+      <div class="card h-100">
+        <img class="card-img-top" src="http://placehold.it/700x400" alt="">
+        <div class="card-body">
+          <h4 class="card-title text-center">
+            <a href="#">Accède à ton espace</a>
+          </h4>
+          <p class="card-text text-center">
+            Les particpants pourront découvre
+            leur recette, selon le thème que tu as chosis,
+            et planifier un diner
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 col-sm-6 portfolio-item">
+      <div class="card h-100">
+        <img class="card-img-top" <%=image_tag("plate.png")%>> <img src="/app/assets/images/Flower.jpg">
+        <div class="card-body">
+          <h4 class="card-title text-center">
+            <a href="#">Note tes amis</a>
+          </h4>
+          <p class="card-text text-center">
+            Après le festin, place au délibérations.<br>Note la prestations des
+            autres participants et découvre qui remporte le challenge
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid bg-primary p-3">
+  <div class="mb-auto text-center">
+    <h2>a toi de jouer !</h2>
+  </div>
+</div>
