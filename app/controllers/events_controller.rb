@@ -64,8 +64,7 @@ class EventsController < ApplicationController
     else
       @event.participation = "confirmed"
       @event.save
-    end
-
+    end  
     event_status()
   end
   

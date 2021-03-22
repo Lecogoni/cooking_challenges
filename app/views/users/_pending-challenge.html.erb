@@ -9,9 +9,19 @@
       <li class="list-group-item d-flex justify-content-between align-items-center">
         <%= challenge.challenge.title.upcase %>
         invité par <%= challenge.user.username.capitalize %>
-        <span class="badge badge-primary badge-pill"><%= challenge.participation %></span>
+        <%= link_to challenge.participation, toggle_participation_event_path, method: 'post', :class => 'badge badge-primary badge-pill'%>
       </li>
       <% end %>
     </ul>
   </div>
 </div>
+
+<script>
+  let participationButton = document.getElementsByClassName("badge-primary badge-pill")[0];
+  console.log(participationButton);
+
+  participationButton.addEventListener("click", function(event){ 
+    window.location.reload(true);
+  });
+
+</script>
