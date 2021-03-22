@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_22_155402) do
+ActiveRecord::Schema.define(version: 2021_03_22_165511) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,8 @@ ActiveRecord::Schema.define(version: 2021_03_22_155402) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "total_grade", default: 0
+    t.string "status", default: "pending"
+    t.string "comment"
     t.index ["event_id"], name: "index_surveys_on_event_id"
     t.index ["surveyor_id"], name: "index_surveys_on_surveyor_id"
   end
