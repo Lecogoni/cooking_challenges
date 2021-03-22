@@ -6818,6 +6818,14 @@ button.bg-danger:focus {
 .bg-light {
   background-color: #f8f9fa !important;
 }
+.features-icons .features-icons-item {
+  max-width: 20rem;
+}
+
+.features-icons {
+  padding-top: 7rem;
+  padding-bottom: 7rem;
+}
 
 a.bg-light:hover, a.bg-light:focus,
 button.bg-light:hover,
