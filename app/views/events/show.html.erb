@@ -209,8 +209,11 @@
                 </div>
 
                 <div class="col-md-2">
-                  <p>ma note</p>
-                  <%= event.total_event %>
+                  <% if event.surveys.all? { |el| el.status == "pending" } == true %>
+                    <p>note provisoire : <%= event.total_event %></p>
+                  <% else %>
+                    <p>note definitive : <%= event.total_event %></p>
+                  <% end %>
                 </div>
               </div>
 

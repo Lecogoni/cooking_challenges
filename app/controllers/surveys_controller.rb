@@ -41,6 +41,7 @@ class SurveysController < ApplicationController
         # calcul et save le total de tous les questions> grades
         @sum = @survey.questions.all.sum(:grade)
         @survey.total_grade = @sum
+        @survey.status = "done"
         @survey.save
         
         # update le total de l'event, la note global - somme des surveys 
@@ -69,14 +70,6 @@ class SurveysController < ApplicationController
     @total = @event.surveys.all.sum(:total_grade)
     @event.total_event = @total
     @event.save
-
-    puts "##################"
-    puts @event.id
-    puts "##################"
-    puts @total
-    puts @event.total_event
-    puts "##################"
-    puts "##################"
   end
 
   private
