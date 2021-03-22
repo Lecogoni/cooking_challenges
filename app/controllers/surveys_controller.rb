@@ -23,12 +23,6 @@ class SurveysController < ApplicationController
   def create
     @survey = Survey.new(survey_params)
 
-
-
-    @sum = @survey.questions.all.sum(:grade)
-
-
-
     respond_to do |format|
       if @survey.save
         format.html { redirect_to @survey, notice: "Survey was successfully created." }
@@ -44,6 +38,11 @@ class SurveysController < ApplicationController
   def update
     respond_to do |format|
       if @survey.update(survey_params)
+        # calcul et save le total de tous les questions> grades
+        @sum = @survey.questions.all.sum(:grade)
+        @survey.total_grade = @sum
+        @survey.save
+
         format.html { redirect_to @survey, notice: "Survey was successfully updated." }
         format.json { render :show, status: :ok, location: @survey }
       else

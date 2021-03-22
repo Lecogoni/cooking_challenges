@@ -17,8 +17,11 @@
   <% end %>
   
   <div class="mb-3">
-    <% @sum = @survey.questions.all.sum(:grade) %>
-    <h5>La note total est de <%= @sum %></h5>
+    <% if @survey.created_at == @survey.updated_at %>
+      <h5><%= @survey.surveyor.username.capitalize %> n'a pas encore remplie ce questionnaire</h5>
+    <% else %>
+      <h5>La note total est de <%= @survey.total_grade %></h5>
+    <% end %>
   </div>
 
   <%= link_to 'Edit', edit_survey_path(@survey) %> |
