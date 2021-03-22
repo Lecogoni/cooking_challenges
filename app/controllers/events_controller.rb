@@ -153,4 +153,5 @@ class EventsController < ApplicationController
     def event_params
       params.fetch(:event, {})
     end
+    
 end
