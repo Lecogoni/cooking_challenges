@@ -38,12 +38,15 @@
 
               <div class="col-lg-6">
                 <h6 class="card-subtitle text-muted mb-2">ma participation est : <%= @event.participation %></h6>
+                <!-- bouton participation -->
+                <%= link_to 'participation', toggle_participation_event_path, method: 'post'%>
+
               </div>
 
               <div class="col-lg-6">
 
                 <h6 class="card-subtitle text-muted mb-2">le statut de mon événement est : <%= @event.status %></h6>
-
+                <!-- bouton event status -->
                 <%= link_to 'check', toggle_status_event_path, method: 'post'%>
                 
                 <div class="custom-control custom-switch" id="event-status-toggle">

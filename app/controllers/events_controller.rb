@@ -65,6 +65,8 @@ class EventsController < ApplicationController
       @event.participation = "confirmed"
       @event.save
     end
+
+    event_status()
   end
   
   # change event status and create the needed number of survey matching the event
@@ -98,6 +100,34 @@ class EventsController < ApplicationController
     end
   end
 
+
+  # défini le status du challenge selon user.participation
+  def event_status
+   
+    @participant_events = Event.where(challenge_id: @event.challenge_id).where.not(role: "créateur").to_a
+    #@all_event = Event.where(challenge_id: @event.challenge_id).to_a
+    @confirmed_event = Event.where(challenge_id: @event.challenge_id, participation: "confirmed").to_a
+    @this_challenge = @event.challenge
+
+    
+    if @participant_events.all? { |el| el.participation == "pending" } == true
+      @this_challenge.status = "pending"
+      @this_challenge.save
+
+    elsif @participant_events.all? { |el| el.participation == "abort" } == true
+      @this_challenge.status = "abort"
+      @this_challenge.save
+      
+    elsif @confirmed_event.all? { |el| el.status == "done" } == true
+      @this_challenge.status = "finish"
+      @this_challenge.save
+
+    elsif @participant_events.any? { |el| el.participation == "confirmed" } == true
+      @this_challenge.status = "ongoing"
+      @this_challenge.save
+    end
+ 
+  end
 
   def survey_question()
 
