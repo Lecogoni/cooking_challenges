@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     member do
       post :toggle_participation
       post :toggle_status
+      post :abort_status
     end
   end
 

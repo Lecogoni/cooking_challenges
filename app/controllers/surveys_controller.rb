@@ -1,5 +1,5 @@
 class SurveysController < ApplicationController
-  before_action :set_survey, only: %i[ show edit update destroy ]
+  before_action :set_survey, only: %i[ show edit update destroy update_event_total ]
 
   # GET /surveys or /surveys.json
   def index
@@ -41,7 +41,11 @@ class SurveysController < ApplicationController
         # calcul et save le total de tous les questions> grades
         @sum = @survey.questions.all.sum(:grade)
         @survey.total_grade = @sum
+        @survey.status = "done"
         @survey.save
+        
+        # update le total de l'event, la note global - somme des surveys 
+        update_event_total()
 
         format.html { redirect_to @survey, notice: "Survey was successfully updated." }
         format.json { render :show, status: :ok, location: @survey }
@@ -59,6 +63,13 @@ class SurveysController < ApplicationController
       format.html { redirect_to surveys_url, notice: "Survey was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def update_event_total
+    @event = @survey.event
+    @total = @event.surveys.all.sum(:total_grade)
+    @event.total_event = @total
+    @event.save
   end
 
   private

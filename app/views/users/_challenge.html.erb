@@ -39,8 +39,8 @@
                       <span class=""><i class="fa fa-check-circle" style="color:lightgray"></i></span>
                     <% elsif event.participation == "confirmed" %>
                       <span class=""><i class="fa fa-check-circle" style="color:indianred"></i></span>
-                    <% else %>
-                      <i class="fas fa-ban"></i>
+                    <% elsif event.participation == "abort" %>
+                      <span class=""><i class="fa fa-ban" style="color:lightgray"></i></span>
                     <% end %>
                   </div>
                   <div>
