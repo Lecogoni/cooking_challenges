@@ -8,7 +8,20 @@
   <%= render 'users/no-challenge' %>
 <!-- If User has challenge -->
   <% else %>
+
+    <!-- User challenge pending -->
+
+    <% @pending_challenges = Event.where(user_id: current_user.id, participation: "pending") %>
+    <% if @pending_challenges.count != 0%>
+    
+      <%= render 'users/pending-challenge' %>
+      
+    <% end %>
+
+    <!-- User challenge index -->
+
     <%= render 'users/challenge' %>
+
   <% end %>
 
 <div>
@@ -16,4 +29,6 @@
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+
+
 
