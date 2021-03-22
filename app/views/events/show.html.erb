@@ -96,7 +96,11 @@
                             <% end %>
                           </div>
                         </div>
-                        <div class="col-md-3">ma note</div>
+
+                        <div class="col-md-3">
+
+                        </div>
+
                       </div>
                                             
                   <% end %>
@@ -117,6 +121,7 @@
           </div>
 
           <!-- Liste des autres participants -->
+
           <div class="card-body">
             <h5 class="card-subtitle text-muted mb-4">Recap des autres événements du challenge :</h5>
 
@@ -125,9 +130,6 @@
               <div class="row">
 
                 <div class="col-md-2">
-                
-
-                
                   <div class="d-flex justify-content-start">
                     <div class="d-flex justify-content-start mr-2">
                       <div class="mr-3">
@@ -149,11 +151,9 @@
                       <% end %>
                     </div>
                   </div>
-
                 </div>
 
-                <div class="col-md-10">
-
+                <div class="col-md-8">
                   <div class="d-flex justify-content-between">
                     <div class="d-flex justify-content-start">
                       <div class="mr-3">
@@ -202,11 +202,15 @@
                                 <% end %>
                               <% end %>
                           <% end %>
-
                         <% end %>
                       </div>
                     </div>
                   </div>
+                </div>
+
+                <div class="col-md-2">
+                  <p>ma note</p>
+                  <%= event.total_event %>
                 </div>
               </div>
 
