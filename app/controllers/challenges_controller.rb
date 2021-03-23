@@ -34,7 +34,15 @@ class ChallengesController < ApplicationController
       if @challenge.save
 
         @recipies = search_mealdb_category(@meal_category)
+        @recipe = @recipies[rand(0...@recipies.length)]
+        @my_recipe = get_recipe_by(@recipe["idMeal"])
 
+        puts "----------------------------"
+        puts @recipe = @recipies
+        puts "----------------------------"
+        puts @my_recipe
+        puts "----------------------------"
+        puts "----------------------------"
 
         # Associate on Event table the new challenge whit the current_user
         #@owner_event = Event.create(user_id: current_user.id, challenge_id: @challenge.id, role: "créateur", participation: "confirmed")
@@ -86,11 +94,6 @@ class ChallengesController < ApplicationController
       flash[:alert] = 'Pas de recettes trouvées'
       return render action: :index
       @recipe = recepies.first
-
-      puts "---------------------"
-      puts @recipe
-      puts "---------------------"
-
     end
   end
 
@@ -126,8 +129,6 @@ class ChallengesController < ApplicationController
       )
     end
 
-
-    
     
     # fetch the MealDb data
     def request_api(url)
@@ -142,11 +143,17 @@ class ChallengesController < ApplicationController
       @json_data = JSON.parse(response.body)
       @recipies = @json_data['meals']
 
-      puts"#######"
-      puts @recipies
-      puts"#######"
+      if response.status != 200
+        return nil
+      else
+        return @recipies
+      end
+    end
 
-      return nil if response.status != 200
+    def get_recipe_by(id)
+      request_api(
+        "https://themealdb.p.rapidapi.com/lookup.php?i=#{id}"
+      )
     end
 
 end
