@@ -21,31 +21,38 @@ class ChallengesController < ApplicationController
 
   # POST /challenges or /challenges.json
   def create
-    @challenge = Challenge.new(challenge_params)
+    puts "---------------------"
+    #@challenge = Challenge.new(challenge_params)
+    puts "challenge créer"
+    puts "---------------------"
   
     # stock the number of guest from params
     @num_guest = @challenge.numb_guest
+    @meal_category = params[:meal_category]
 
+    puts "---------------------"
+    puts @meal_category
+    puts "---------------------"
     
-    respond_to do |format|
-      if @challenge.save
+    # respond_to do |format|
+    #   if @challenge.save
 
-        # Associate on Event table the new challenge whit the current_user
-        @owner_event = Event.create(user_id: current_user.id, challenge_id: @challenge.id, role: "créateur", participation: "confirmed")
+    #     # Associate on Event table the new challenge whit the current_user
+    #     @owner_event = Event.create(user_id: current_user.id, challenge_id: @challenge.id, role: "créateur", participation: "confirmed")
 
-        # create the number of Guest with the id of the current challenge
-        @num_guest.times do
-          Guest.create(email: "", challenge_id: @challenge.id)
-        end
+    #     # create the number of Guest with the id of the current challenge
+    #     @num_guest.times do
+    #       Guest.create(email: "", challenge_id: @challenge.id)
+    #     end
 
-        format.html { redirect_to edit_challenge_path(@challenge), notice: "Challenge was successfully created." }
-        format.json { render :show, status: :created, location: @challenge }
+    #     format.html { redirect_to edit_challenge_path(@challenge), notice: "Challenge was successfully created." }
+    #     format.json { render :show, status: :created, location: @challenge }
 
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @challenge.errors, status: :unprocessable_entity }
-      end
-    end
+    #   else
+    #     format.html { render :new, status: :unprocessable_entity }
+    #     format.json { render json: @challenge.errors, status: :unprocessable_entity }
+    #   end
+    #end
 
 
   end
@@ -80,6 +87,7 @@ class ChallengesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def challenge_params
-      params.require(:challenge).permit(:title, :status, :description, :numb_guest)
+      params.require(:challenge).permit(:title, :status, :description, :numb_guest, :meal_category)
     end
+
 end
