@@ -24,9 +24,9 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
               <li class="dropdown-item">Salut <%= current_user.username.capitalize %></li>
-              <li class="dropdown-item"><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
+              <li class="dropdown-item"><%= link_to "Se déconnecter", destroy_user_session_path, method: :delete %></li>
               <li><hr class="dropdown-divider"></li>
-              <li class="dropdown-item"><%= link_to "Edit email / password", edit_user_registration_path %></li>
+              <li class="dropdown-item"><%= link_to "Modifier email / mot de passe", edit_user_registration_path %></li>
             </ul>
           </li>
         <% else %>
@@ -35,8 +35,8 @@
               Se connecter
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-              <li class="dropdown-item"><%= link_to "Sign in", new_user_session_path %></li>
-              <li class="dropdown-item"><%= link_to "Sign up", new_user_registration_path %></li>
+              <li class="dropdown-item"><%= link_to "Se connecter", new_user_session_path %></li>
+              <li class="dropdown-item"><%= link_to "S'inscrire", new_user_registration_path %></li>
             </ul>
           </li>
         <% end %>

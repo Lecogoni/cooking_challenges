@@ -56,10 +56,10 @@
 
                   <h6 class="card-subtitle text-muted mb-2">Tu as choisis de ne pas participer</h6>
                   <% if @event.challenge.status == "pending" %>
-                    <p>Le challenge n'a pas encore commencé, vous pouvez encore changé d'avis et valider votre participation</p>
+                    <p>Le challenge n'a pas encore commencé, il n'est pas encore possible de changer d'avis ou valider ta participation</p>
                     <%= link_to 'participer', toggle_participation_event_path, method: 'post', :class => 'badge badge-primary badge-pill' %>
                   <% else %>
-                    <p>Le challenge est <%= @event.challenge.status %>. Ce n'est plus possible d'y participer. Il ne vous reste plus qu'à créer le votre</p>
+                    <p>Le challenge est <%= @event.challenge.status %>. Ce n'est plus possible d'y participer. Il ne vous reste plus qu'à créer le votre !</p>
                     <div>
                       <%= link_to 'créer ton challenge', new_challenge_path, :class => "btn btn-primary btn-lg" %>
                     </div>
@@ -71,7 +71,7 @@
 
                   <% if @event.status == "unscheduled" %>
                     <p>
-                      tu n'as pas encore planifié ton événement.
+                      tu n'as pas encore planifié ton dîner.
                     </p>
                     <p>
                       <%= link_to 'check', toggle_status_event_path, method: 'post'%>
@@ -84,7 +84,7 @@
                     </p>
                   <% elsif @event.status == "done" %>
                     <p>
-                      Félicitation ! tu as réalisé ton challenge. Voyons ce que les autres ont pensé de ta prestation
+                      Félicitation ! Tu as réalisé ton challenge. Voyons ce que les autres ont pensé de ta prestation ...
                     </p>
 
                     <h6 class="card-subtitle text-muted mb-2">Ma notation : </h6>
@@ -131,7 +131,7 @@
           <!-- Liste des autres participants -->
 
           <div class="card-body">
-            <h5 class="card-subtitle text-muted mb-4">Recap des autres événements du challenge :</h5>
+            <h5 class="card-subtitle text-muted mb-4">Recap des autres dîners du challenge :</h5>
 
             <% @this_event = Event.where(challenge_id: @event.challenge.id).where.not(user_id: current_user.id) %>
             <% @this_event.each do |event| %>
@@ -175,19 +175,19 @@
                           </p>
                         <%  elsif event.participation == "confirmed"  %>
                           <% if event.status == "unscheduled" %>
-                            son événement n'est pas encore planifié
+                            son dîner n'est pas encore planifié
                           <% elsif event.status == "scheduled" %>
-                            son événement est programmé
+                            son dîner est programmé
 
                           <% elsif event.status == "done" %>
-                            L'événement de <%= event.user.username.capitalize %> est passé, c'est evalution time<br><br>
+                            Le dîner de <%= event.user.username.capitalize %> est passé, c'est evalution time<br><br>
                             <% @surveys = event.surveys %>
                             
                               <% @currentUser_survey = Survey.where(event_id: event.id, surveyor_id: current_user.id)[0] %>
                               <% if @currentUser_survey.created_at == @currentUser_survey.updated_at %>
                                 <div class="row">
                                   <div class="col-md-9">
-                                    Tu pourras voir la note des autres participants uniquement après avoir compléter ton évalution
+                                    Tu ne pourras voir la note des autres participants qu'après avoir compléter ton évalution.
                                   </div>
                                   <div class="col-md-3">
                                     <%= link_to "noter sa prestation", edit_survey_path(@currentUser_survey) %>

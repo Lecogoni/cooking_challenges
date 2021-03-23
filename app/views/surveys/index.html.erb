@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Surveys</h1>
+<h1>Les questionnaires</h1>
 
 <table>
   <thead>
@@ -12,9 +12,9 @@
   <tbody>
     <% @surveys.each do |survey| %>
       <tr>
-        <td><%= link_to 'Show', survey %></td>
-        <td><%= link_to 'Edit', edit_survey_path(survey) %></td>
-        <td><%= link_to 'Destroy', survey, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Afficher', survey %></td>
+        <td><%= link_to 'Modifier', edit_survey_path(survey) %></td>
+        <td><%= link_to 'Détruire', survey, method: :delete, data: { confirm: 'Es-tu vraiment certain ?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +22,4 @@
 
 <br>
 
-<%= link_to 'New Survey', new_survey_path %>
+<%= link_to 'Nouveau questionnaire', new_survey_path %>
