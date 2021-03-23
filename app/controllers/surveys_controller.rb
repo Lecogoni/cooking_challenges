@@ -25,7 +25,7 @@ class SurveysController < ApplicationController
 
     respond_to do |format|
       if @survey.save
-        format.html { redirect_to @survey, notice: "Survey was successfully created." }
+        format.html { redirect_to @survey, notice: "Création du questionaire." }
         format.json { render :show, status: :created, location: @survey }
       else
         flash.now[:danger] = "Echec :" + @survey.errors.full_messages.join(" ")
@@ -48,7 +48,7 @@ class SurveysController < ApplicationController
         # update le total de l'event, la note global - somme des surveys 
         update_event_total()
 
-        format.html { redirect_to @survey, notice: "Survey was successfully updated." }
+        format.html { redirect_to @survey, notice: "Le questionnaire vient d'être mis à jour." }
         format.json { render :show, status: :ok, location: @survey }
       else
         flash.now[:warning] = "Echec :" + @survey.errors.full_messages.join(" ")
@@ -62,7 +62,7 @@ class SurveysController < ApplicationController
   def destroy
     @survey.destroy
     respond_to do |format|
-      format.html { redirect_to surveys_url, notice: "Survey was successfully destroyed." }
+      format.html { redirect_to surveys_url, notice: "Le questionnaire vient d'être détruit." }
       format.json { head :no_content }
     end
   end
