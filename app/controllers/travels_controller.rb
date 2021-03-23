@@ -15,7 +15,7 @@ class TravelsController < ApplicationController
       flash[:alert] = 'Country not found'
       return render action: :index
       @country = countries.first
-      @weather = find_weather(@country['capital'], @country['alpha2Code'])
+      # @weather = find_weather(@country['capital'], @country['alpha2Code'])
     end
   end
 
@@ -93,32 +93,14 @@ class TravelsController < ApplicationController
       )
 
       @json_data = JSON.parse(response.body)
+      @recipe = @json_data['meals'][0]
+      puts @recipe['strMeal']
 
-      puts "------------------------------------"
-      puts response
-      puts "------------------------------------"
-      puts response.status
-      puts "------------------------------------"
-      puts response.body.class
-      puts "------------------------------------"
-      puts response.body
-      puts "------------------------------------"
-      puts @json_data
-      puts "------------------------------------"
-      puts @json_data.class
-      puts "------------------------------------"
-      puts @json_data[0].class
-          @at = @json_data[0]
-      puts "------------------------------------"
-      puts @at['currencies']
-      puts "------------------------------------"
-      puts 
-      puts "------------------------------------"
       return nil if response.status != 200
     end
     def find_country(name)
       request_api(
-        "https://restcountries-v1.p.rapidapi.com/name/#{URI.encode(name)}"
+        "https://themealdb.p.rapidapi.com/search.php?s=Arrabiata"
       )
     end
 end
