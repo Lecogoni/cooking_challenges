@@ -41,7 +41,7 @@ article{
 }
 .recipe-of-the-day {
   height: 30rem;
-  width: 70rem;
+  width: 46rem;
   position: relative;
   display: block;
 }
@@ -51,8 +51,8 @@ article{
     height: 11rem;
     padding: 25px;
     position: absolute;
-    right: 26rem;
-    top: 15rem;
+    right: 2rem;
+    top: 18rem;
     width: 22rem;
     z-index: 10;
 }

@@ -44,3 +44,4 @@ Things you may want to cover:
 le rouge : #f93f23
 gris clair :#f1f2f2
 gris foncé #292929
+jaune ##ffda08
