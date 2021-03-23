@@ -1,10 +1,27 @@
-<h2>Salut <%= @user.username %></h2>
+<div class="card mb-3 user">
+  <div class="row g-0">
+    <div class="col-md-4 card-img">
+      <%= image_tag "ustensile.jpg", :class => "img-card" %>
+    </div>
+    <div class="col-md-8 card-text">
+      <div class="card-body">
 
-<p>
-  Bienvenue sur ton espace. Tu ne participe à aucun Challenge.<br>
-  Souhaites tu en créer un ? 
-</p>
+        <div class="d-flex align-items-start flex-column bd-highlight mb-3" style="height: 200px;">
+          <div class="p-2 bd-highlight">
+            <h2>Salut <%= @user.username.capitalize %></h2>
+          </div>
+          <div class="p-2 bd-highlight ">
+            <h3 class="card-title red-text mb-4">Bienvenue sur ton espace</h3>
+            <p>Pour l'instant tu ne participes à aucun challenge.<br>Souhaites tu créer ton premier Cooking Challenge ?</p>
+          </div>
+          <div class="mt-auto p-2 bd-highlight">
+            <div>
+              <%= link_to 'créer un challenge', new_challenge_path, :class => "btn btn-primary btn-lg" %>
+            </div>
+          </div>
+        </div>
 
-<div>
-    <%= link_to 'créer un challenge', new_challenge_path, :class => "btn btn-primary btn-lg" %>
+      </div>
+    </div>
+  </div>
 </div>

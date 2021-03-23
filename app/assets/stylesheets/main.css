@@ -1,6 +1,116 @@
 
-.row{
-  margin-bottom: 10px;
-  color: lightgray
+
+
+body{
+  font-family: 'Roboto', sans-serif;
+}
+
+.jumbotron {
+  background-image: url(/assets/welcome.jpg);
+  max-width: 100%;
+  height: auto;
+  background-size: cover;
+  overflow: hidden;
+  border-radius: 0;
+  height: 500px;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  text-shadow: 5px 5px 20px black;
+}
+
+.jumbo-text{
+  font-family: 'Roboto', sans-serif;
+  font-size: 4rem;
+}
+
+.jumbo-body{
+  font-family: 'Roboto', sans-serif;
+  font-size: 2.5em;
+}
+
+.jumbo-button{
+  border: 1px, solid, whitesmoke;
+}
+
+li{
+  list-style: none;
+}
+
+article{
+  height: 100%;
+}
+.recipe-of-the-day {
+  height: 30rem;
+  width: 70rem;
+  position: relative;
+  display: block;
+}
+
+.recipe-of-the-day .content {
+    background-color: #fff;
+    height: 11rem;
+    padding: 25px;
+    position: absolute;
+    right: 26rem;
+    top: 15rem;
+    width: 22rem;
+    z-index: 10;
+}
+
+.recipe-of-the-day .photo-wrap {
+  display: block;
+  position: absolute;
+  height: 15rem;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 5;
+}
+
+.landing-icon{
+  width:30%;
+}
+
+.experience {
+  padding: 40px;
+}
+
+.user{
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0px 14px 50px rgba(34, 35, 58, 0.2);
+  border: none;
+}
+
+.img-user-experience{
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  max-height: 300px;
+  width: auto;
+}
+
+.user-quote{
+  color: #f93f23;
+  font-style: italic;
+}
+
+.red-text{
+  color: #f93f23;
+}
+
+.img-card{
+  max-width: 100%;
+}
+
+.card-img{
+  padding: 10px 20px;
+}
+.card-text{
+  padding: 25px;
+}
+
+
+
+@media screen and (min-width: 200px) and (max-width: 991px) {
 
 }

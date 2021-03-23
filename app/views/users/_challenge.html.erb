@@ -19,7 +19,7 @@
           <a href="/events/<%= @my_event %>"  class="list-group-item list-group-item-action flex-column align-items-start active">
             <div class="d-flex w-100 justify-content-between">
               <h5 class="mb-1"><%= challenge.title.upcase %></h5>
-              <span class="badge bg-dark text-sm-start"><%= challenge.status %></span>
+              <span class="badge bg-light text-sm-start"><%= challenge.status %></span>
             </div>
             <p class="mb-1">Mentionner le theme et ses info</p>
             <small>autre info si besoin</small>
@@ -38,7 +38,7 @@
                     <% if event.participation == "pending" %>
                       <span class=""><i class="fa fa-check-circle" style="color:lightgray"></i></span>
                     <% elsif event.participation == "confirmed" %>
-                      <span class=""><i class="fa fa-check-circle" style="color:indianred"></i></span>
+                      <span class="red-text"><i class="fa fa-check-circle"></i></span>
                     <% elsif event.participation == "abort" %>
                       <span class=""><i class="fa fa-ban" style="color:lightgray"></i></span>
                     <% end %>

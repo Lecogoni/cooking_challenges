@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   resources :users
 
   
-  root 'welcome#index'
+  #root 'welcome#index'
+  root 'pages#home'
 
   resources :events do
     member do

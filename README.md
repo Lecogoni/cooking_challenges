@@ -29,6 +29,7 @@ Things you may want to cover:
 
 # Deployment instructions
 
+- virer les images inutiles
 - supprimer lien inutile des mails d'invitations
 
 - git push heroku master
@@ -39,3 +40,7 @@ Things you may want to cover:
 
 
 # nico info 
+
+le rouge : #f93f23
+gris clair :#f1f2f2
+gris foncé #292929

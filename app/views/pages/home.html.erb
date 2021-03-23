@@ -2,69 +2,77 @@
   <div class="container jumbo-container">
     <div class="d-flex align-content-between flex-column">
 
-        <div class="mb-auto">
-          <h1 class="jumbo-text">COOKING CHALLENGE !</h1>
+        <div class="mb-auto mb-4">
+          <h1 class="jumbo-text">COOKING CHALLENGE</h1>
         </div>
 
-      <div class="p-2 jumbo-body">
-        <p>Défis tes amis en les invitant</p>
-        <p>à un challenge culinaire</p>
+      <div class="p-2 jumbo-body mb-5">
+        <p>Une nouvelle façon de pimenter<br>
+        vos dinêrs entre amis</p>
       </div>
 
         <div class="">
           <%= link_to 'CHALLENGE TES AMIS', new_challenge_path, :class => "btn btn-primary btn-lg jumbo-button" %>
         </div>
     </div>
-  </div>
+  </div>  
 </div>
 
 <div class="container">
 
   <div class="mb-5">
-    <h2 class="text-center">Un Cooking Challenge c'est simple comme une bonne recette</h2>
+    <h2 class="text-center">Un Cooking Challenge c'est simple<br>comme une bonne recette</h2>
   </div>
 
   <div class="row">
-    <div class="col-lg-4 col-sm-6 portfolio-item">
-      <div class="card h-100">
-        <img class="card-img-top" src="http://placehold.it/700x400" alt="">
+    <div class="col-lg-4 col-md-4 col-xs-12">
+      <div>
+        <div  class="mx-auto">
+          <%= image_tag "food.png", :class => "landing-icon mx-auto d-block" %>
+        </div>
+           
         <div class="card-body">
-          <h4 class="card-title text-center">
-            <a href="#">Créer ton challenge</a>
+          <h4 class="card-title text-center red-text">
+            Créer ton challenge
           </h4>
           <p class="card-text text-center">
-            Choisis un thème de challenge<br>
-            Invite tes amis à participer<br>
+            Choisis un thème culinaire et<br>
+            invite tes amis à participer<br>
           </p>
         </div>
       </div>
     </div>
 
-    <div class="col-lg-4 col-sm-6 portfolio-item">
-      <div class="card h-100">
-        <img class="card-img-top" src="http://placehold.it/700x400" alt="">
+    <div class="col-lg-4 col-md-4 col-xs-12">
+      <div>
+        <div class="mx-auto">
+          <%= image_tag "cooking.png", :class => "landing-icon mx-auto d-block" %>
+        </div>
+        
         <div class="card-body">
-          <h4 class="card-title text-center">
-            <a href="#">Accède à ton espace</a>
+          <h4 class="card-title text-center red-text">
+            Accède à ton espace
           </h4>
           <p class="card-text text-center">
-            Les particpants pourront découvre
-            leur recette, selon le thème que tu as chosis,
-            et planifier un diner
+            Chaque invité pourra découvrir
+            sa recette à réaliser, planifier son dîner.
           </p>
         </div>
       </div>
     </div>
 
-    <div class="col-lg-4 col-sm-6 portfolio-item">
-      <div class="card h-100">
-        <img class="card-img-top" <%=image_tag("plate.png")%>> <img src="/app/assets/images/Flower.jpg">
+    <div class="col-lg-4 col-md-4 col-xs-12">
+      <div>
+        <div  class="mx-auto">
+          <%= image_tag "taste.jpeg", :class => "landing-icon mx-auto d-block" %>
+        </div>
+        
         <div class="card-body">
-          <h4 class="card-title text-center">
-            <a href="#">Note tes amis</a>
+          <h4 class="card-title text-center red-text">
+            Note tes amis
           </h4>
           <p class="card-text text-center">
-            Après le festin, place au délibérations.<br>Note la prestations des
+            Après le festin, place aux délibérations.<br>Note la prestations des
             autres participants et découvre qui remporte le challenge
           </p>
         </div>
@@ -73,8 +81,104 @@
   </div>
 </div>
 
-<div class="container-fluid bg-primary p-3">
-  <div class="mb-auto text-center">
-    <h2>a toi de jouer !</h2>
+<div class="container-fluid bg-primary">
+
+  <div class="row experience">
+    <div class="col-lg-7">
+      <div>
+        <div class="recipe-of-the-day">
+          <div class="content">
+            <h3 class="section-title">Cook This Now</h3>
+            <a class="recipe-hed" href="/recipes/food/views/lemony-salmon-and-spiced-chickpeas">Lemony Salmon and Spiced Chickpeas</a>
+            <p class="recipe-dek" >Une nouvelle façon de recevoir, un moyen original de découvrir des recettes, le partage au coeur de l'expérience</p>
+          </div>
+          <div class="photo-wrap">
+
+              <picture class="component-responsive-image">
+                <%= image_tag "home-diner.jpg" %>
+              </picture>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-5 banner">
+      <div class="text-center">
+        <div class="d-flex flex-column">
+          <div class="p-2">
+            <h4 class="text-center">Large choix de thèmes</h4>
+            <p>
+              Tu trouveras un grand choix de thèmes. Les recettes sont accessibles à tous.
+
+            </p>
+          </div>
+          <div class="p-2">
+             <h4 class="text-center">Recettes pour tous</h4>
+            <p>
+              Tu trouveras un grand choix de thèmes. Les recettes sont accessibles à tous.
+              
+            </p>
+          </div>
+          <div class="p-2">
+            <h4 class="text-center">....</h4>
+              <p>
+                Tu trouveras un grand choix de thèmes. Les recettes sont accessibles à tous.
+                
+              </p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
+
+<div class="container mt-5">
+  <div class="row">
+
+    <div class="col-md-6  col-xs-12">
+      <div class="card mb-3 user">
+        <%= image_tag "family-diner.jpg", :class => "img-user-experience" %>
+        <div class="card-body">
+          <h5 class="user-quote">" Special title treatment "</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6  col-xs-12">
+      <div class="card mb-3 user">
+        <%= image_tag "kitchen.jpg", :class => "img-user-experience" %>
+        <div class="card-body">
+          <h5 class="user-quote">" Special title treatment "</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6  col-xs-12">
+      <div class="card mb-3 user">
+        <%= image_tag "friends.jpg", :class => "img-user-experience" %>
+        <div class="card-body">
+          <h5 class="user-quote">" Special title treatment "</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6  col-xs-12">
+      <div class="card mb-3 user">
+
+          <%= image_tag "friend-diner.jpg", :class => "img-user-experience" %>
+ 
+        
+        <div class="card-body">
+          <h5 class="user-quote">" Special title treatment "</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
 </div>
