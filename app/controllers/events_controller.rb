@@ -153,17 +153,6 @@ class EventsController < ApplicationController
     
   end
 
-  #get MealDB user search keyword
-  def search_mealdb
-    recepies = mealdb_url(params[:country])
-    unless recepies
-      flash[:alert] = 'Pas de recettes trouvées'
-      return render action: :index
-      @recipe = recepies.first
-    end
-  end
-
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
@@ -175,37 +164,4 @@ class EventsController < ApplicationController
       params.fetch(:event, {})
     end
     
-    #set MealDB Url with keyword
-    def mealdb_url_keyword(name)
-      request_api(
-        "https://themealdb.p.rapidapi.com/search.php?s=Arrabiata"
-      )
-    end
-    
-    #set MealDB Url with category
-    def mealdb_url_category(category)
-      request_api(
-        "https://themealdb.p.rapidapi.com/search.php?c=list"
-      )
-    end
-    
-    # fetch the MealDb data
-    def request_api(url)
-      response = Excon.get(
-        url,
-        headers: {
-          'X-RapidAPI-Host' => URI.parse(url).host,
-          'X-RapidAPI-Key' => ENV.fetch('RAPIDAPI_API_KEY')
-        }
-      )
-
-      @json_data = JSON.parse(response.body)
-      @recipe = @json_data['meals'][0]
-
-      puts @recipe['strMeal']
-
-      return nil if response.status != 200
-    end
-
-
 end
