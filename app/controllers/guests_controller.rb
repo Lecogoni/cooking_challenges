@@ -39,6 +39,7 @@ class GuestsController < ApplicationController
 
     # get challenge_id for the mentionned guest challenge
     @challenge_id = params[:challenge]
+    @challenge = Challenge.find(@challenge_id)
 
     if @guest.update(guest_params)
       if User.exists?(email: @guest.email)
@@ -48,6 +49,9 @@ class GuestsController < ApplicationController
         # Create an Event link to the mentionned challenge and  user
         @inviting = User.find_by(email: @guest.email)
         @new_event = Event.create(user_id: @inviting.id, challenge_id: @challenge_id )
+
+        # fetch recipe on API and save it
+        fetch_recipe(@challenge.meal_category, @new_event)
 
         UserMailer.invitation_email(user, current_user).deliver_now
       else
@@ -78,6 +82,10 @@ class GuestsController < ApplicationController
 
     # Create an Event link to the mentionned challenge and invinted user
     @new_event = Event.create(user_id: @invinting_user.id, challenge_id: @challenge_id )
+
+    # fetch recipe on API and save it
+    @challenge = Challenge.find(params[:challenge])
+    fetch_recipe(@challenge.meal_category, @new_event)
 
     # generating a devise reset password
     raw, hashed = Devise.token_generator.generate(User, :reset_password_token)

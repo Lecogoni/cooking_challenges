@@ -8,7 +8,7 @@ class CreateRecipes < ActiveRecord::Migration[6.1]
       t.string :Meal
       t.string :DrinkAlternate
       t.string :Category
-
+      t.string :Area
       t.text :Instructions
 
       t.string :MealThumb

@@ -90,7 +90,6 @@ class EventsController < ApplicationController
       "Quel note donneriez vous à la présentation ?"
     ]
 
-    
     if @event.status == "unscheduled"
       @event.status = "done"
       @event.save

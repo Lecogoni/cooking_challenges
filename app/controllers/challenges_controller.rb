@@ -33,24 +33,16 @@ class ChallengesController < ApplicationController
     respond_to do |format|
       if @challenge.save
 
-        @recipies = search_mealdb_category(@meal_category)
-        @recipe = @recipies[rand(0...@recipies.length)]
-        @my_recipe = get_recipe_by(@recipe["idMeal"])
-
-        puts "----------------------------"
-        puts @recipe = @recipies
-        puts "----------------------------"
-        puts @my_recipe
-        puts "----------------------------"
-        puts "----------------------------"
-
         # Associate on Event table the new challenge whit the current_user
-        #@owner_event = Event.create(user_id: current_user.id, challenge_id: @challenge.id, role: "créateur", participation: "confirmed")
+        @owner_event = Event.create(user_id: current_user.id, challenge_id: @challenge.id, role: "créateur", participation: "confirmed")
+
+        # fetch recipe on API and save it
+        fetch_recipe(@meal_category, @owner_event)
 
         # create the number of Guest with the id of the current challenge
-        #@num_guest.times do
-         #Guest.create(email: "", challenge_id: @challenge.id)
-        #end
+        @num_guest.times do
+         Guest.create(email: "", username: "", challenge_id: @challenge.id)
+        end
 
         format.html { redirect_to edit_challenge_path(@challenge), notice: "Challenge was successfully created." }
         format.json { render :show, status: :created, location: @challenge }
@@ -106,54 +98,6 @@ class ChallengesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def challenge_params
       params.require(:challenge).permit(:title, :status, :description, :numb_guest, :meal_category)
-    end
-
-    #set MealDB Url with keyword
-    def mealdb_url_keyword(name)
-      request_api(
-        "https://themealdb.p.rapidapi.com/search.php?s=Arrabiata"
-      )
-    end
-    
-    # ==>set MealDB Url with category
-    def mealdb_url_category(category)
-      request_api(
-        "https://themealdb.p.rapidapi.com/search.php?c=list"
-      )
-    end
-
-    #set MealDB Url with category
-    def search_mealdb_category(category)
-      request_api(
-        "https://themealdb.p.rapidapi.com/filter.php?c=#{category}"
-      )
-    end
-
-    
-    # fetch the MealDb data
-    def request_api(url)
-      response = Excon.get(
-        url,
-        headers: {
-          'X-RapidAPI-Host' => URI.parse(url).host,
-          'X-RapidAPI-Key' => ENV['RAPIDAPI_API_KEY']
-        }
-      )
-
-      @json_data = JSON.parse(response.body)
-      @recipies = @json_data['meals']
-
-      if response.status != 200
-        return nil
-      else
-        return @recipies
-      end
-    end
-
-    def get_recipe_by(id)
-      request_api(
-        "https://themealdb.p.rapidapi.com/lookup.php?i=#{id}"
-      )
     end
 
 end

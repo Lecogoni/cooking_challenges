@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 2021_03_23_201849) do
     t.string "Meal"
     t.string "DrinkAlternate"
     t.string "Category"
+    t.string "Area"
     t.text "Instructions"
     t.string "MealThumb"
     t.string "Tags"
