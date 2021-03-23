@@ -8,6 +8,9 @@ gem "table_print"
 gem 'faker'
 gem 'dotenv-rails'
 gem "sendgrid-ruby", "~> 6.4"
+gem 'excon'
+gem 'dotenv'
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.3'
@@ -60,5 +63,10 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+
+
+
+
 
 
