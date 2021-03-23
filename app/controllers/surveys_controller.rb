@@ -28,6 +28,7 @@ class SurveysController < ApplicationController
         format.html { redirect_to @survey, notice: "Survey was successfully created." }
         format.json { render :show, status: :created, location: @survey }
       else
+        flash.now[:danger] = "Echec :" + @survey.errors.full_messages.join(" ")
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @survey.errors, status: :unprocessable_entity }
       end
@@ -50,6 +51,7 @@ class SurveysController < ApplicationController
         format.html { redirect_to @survey, notice: "Survey was successfully updated." }
         format.json { render :show, status: :ok, location: @survey }
       else
+        flash.now[:warning] = "Echec :" + @survey.errors.full_messages.join(" ")
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @survey.errors, status: :unprocessable_entity }
       end

@@ -28,6 +28,7 @@ class QuestionsController < ApplicationController
         format.html { redirect_to @question, notice: "Question was successfully created." }
         format.json { render :show, status: :created, location: @question }
       else
+        flash.now[:danger] = "Echec :" + @question.errors.full_messages.join(" ")
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @question.errors, status: :unprocessable_entity }
       end
@@ -41,6 +42,7 @@ class QuestionsController < ApplicationController
         format.html { redirect_to @question, notice: "Question was successfully updated." }
         format.json { render :show, status: :ok, location: @question }
       else
+        flash.now[:warning] = "Echec :" + @question.errors.full_messages.join(" ")
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @question.errors, status: :unprocessable_entity }
       end

@@ -28,6 +28,7 @@ class GuestsController < ApplicationController
         format.html { redirect_to @guest, notice: "Guest was successfully created." }
         format.json { render :show, status: :created, location: @guest }
       else
+        flash.now[:warning] = "Echec :" + @guest.errors.full_messages.join(" ")
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @guest.errors, status: :unprocessable_entity }
       end

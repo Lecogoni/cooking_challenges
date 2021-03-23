@@ -42,6 +42,7 @@ class ChallengesController < ApplicationController
         format.json { render :show, status: :created, location: @challenge }
 
       else
+        flash.now[:danger] = "Echec :" + @challenge.errors.full_messages.join(" ")
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @challenge.errors, status: :unprocessable_entity }
       end
@@ -57,6 +58,7 @@ class ChallengesController < ApplicationController
         format.html { redirect_to @challenge, notice: "Challenge was successfully updated." }
         format.json { render :show, status: :ok, location: @challenge }
       else
+        flash.now[:warning] = "Echec :" + @challenge.errors.full_messages.join(" ")
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @challenge.errors, status: :unprocessable_entity }
       end

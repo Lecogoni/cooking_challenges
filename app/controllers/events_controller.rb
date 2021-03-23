@@ -28,6 +28,7 @@ class EventsController < ApplicationController
         format.html { redirect_to @event, notice: "Event was successfully created." }
         format.json { render :show, status: :created, location: @event }
       else
+        flash.now[:danger] = "Echec :" + @event.errors.full_messages.join(" ")
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
@@ -41,6 +42,7 @@ class EventsController < ApplicationController
         format.html { redirect_to @event, notice: "Event was successfully updated." }
         format.json { render :show, status: :ok, location: @event }
       else
+        flash.now[:warning] = "Echec :" + @event.errors.full_messages.join(" ")
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
