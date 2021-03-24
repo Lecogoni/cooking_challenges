@@ -24,15 +24,18 @@
 
   <div>
     <%= form.label :numb_guest %><br>
-    <%= form.text_field :numb_guest %>
+    <%= form.number_field :numb_guest, in: 1..20, step: 1%>
+
   </div>
 
 
   <div>
     <%= form.label :meal_category %><br>
-    <%= form.text_field :meal_category %>
+    <%= form.select :meal_category, ["Breakfast", "Starter", "Dessert", "Seafood", "Beef", "Chicken", "Lamb", "Pork", "Pasta", "Vegan" ,"Vegetarian"] %>
   </div>
-
+  
+ 
+  
   <div class="actions">
     <%= form.submit %>
   </div>
