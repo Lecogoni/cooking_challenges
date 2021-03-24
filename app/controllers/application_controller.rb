@@ -15,6 +15,13 @@ class ApplicationController < ActionController::Base
     @my_recipe = get_recipe_by(@recipe["idMeal"]) # fetch recipe details with the id
     save_recipe(@my_recipe, event) 
   end
+  
+  def fetch_recipe_from_area(meal_area, event)
+    @recipies_area = search_mealdb_area(meal_area) # fetch array of recipes by search area
+    @recipe_area = @recipies_area[rand(0...@recipies_area.length)] # Get one random recipe in the array
+    @my_recipe_area = get_recipe_by(@recipe_area["idMeal"]) # fetch recipe details with the id
+    save_recipe(@my_recipe_area, event) 
+  end
 
   #set MealDB Url with keyword (Recipe)
   def mealdb_url_keyword(name)
