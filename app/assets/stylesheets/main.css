@@ -70,6 +70,10 @@ article{
 .landing-icon{
   width:30%;
 }
+.spoon{
+  width:100px;
+  height: auto;
+}
 
 .experience {
   padding: 40px;
@@ -96,6 +100,9 @@ article{
 
 .red-text{
   color: #f93f23;
+}
+.gray-text{
+  color: #292929;
 }
 
 .img-card{

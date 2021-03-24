@@ -1,47 +1,76 @@
 <div class="container">
 
-  <h1>Editing Challenge</h1>
-  <p>
-    <%= current_user.username.capitalize %> il ne te reste plus que quelques champs à compléter pour définir ton challenge et inviter tes amis à te rejoindre
-  </p>
+  <div class="d-flex flex-column align-items-center">
+    <div class="d-flex flex-column align-items-center mb-4">
+      <div>
+        <h1>finalise ton Challenge</h1>
+      </div>
+        <p class="red-text text-center">
+          <%= current_user.username.capitalize %> il ne te reste plus que à inviter tes amis à te rejoindre ton challenge et ajouter un petit mot !
+        </p>
+    </div>
+    
+    <div class="card align-items-center pl-5 pr-5 pt-2 pb-2 mb-4" style="width: 60%;">
+      <div>
+        <h2><%= @challenge.title %></h2>
+      </div>
+      <div>
+        <p class="text-center">
+          <%= @challenge.numb_guest %> invité(s)<br>
+          tu as choisis la catégorie : <%= @challenge.meal_category %>
+        </p>
+      </div>
+    </div>
 
-  <%= render 'form', challenge: @challenge %>
-
-  <hr>
-
-  <h3>Invite tes amis à participer</h3>
-
+    <div>
+      <h3>Invite tes amis à participer</h3>
+    </div>
+  </div>
+  
   <% @guests = @challenge.guests %>
 
+    <div class="p-5">
     <% @guests.each do |guest| %>
 
       <%= form_with(model: guest) do |form| %>
 
         <%= hidden_field_tag(:challenge, @challenge.id) %>
 
-        <div>
-          <%= form.label :username %><br>
-          <%= form.text_field :username %>
+        <div class="row d-flex justify-content-center">
+
+          <div class="form-group mr-4">
+            <%= form.label :username, class: "col-md-4 control-label" %> <%= form.text_field :username, class: "form-control" %>
+          </div>
+
+          <div class="form-group mr-4">
+            <%= form.label :email %> <%= form.email_field :email, class: "form-control"  %>
+          </div>
+          
+          <div class="actions pt-4">
+            <%= form.submit "inviter", class: "btn btn-outline-primary"%>
+          </div>
+
         </div>
 
-        <div>
-          <%= form.label :email %><br>
-          <%= form.email_field :email %>
-        </div>
-        
-        <div class="actions">
-          <%= form.submit%>
-        </div>
-        <br>
-        <br>
 
       <% end %>
-
     <% end %>
 
-  <hr>
+    <div class="row d-flex justify-content-center">
+      <% if @guests.all? { |guest| guest.created_at != guest.updated_at  } == true %>
+        BOUTON A CREER
+      <% else %>
+        <p class="red-text text-center">envoie l'ensemble des invitations pour valider ton challenge</p>
+      <% end %>
+    </div>
+    <div class="row d-flex justify-content-center">
+    RAJOUTER UN BOUTON DESTROY
+    </div>
 
-  <%= link_to 'Show', @challenge %> |
-  <%= link_to 'Back', challenges_path %>
+    <div class="mb-5 mt-3">
+      <%= image_tag "fork-spoon.png", :class => "spoon mx-auto d-block" %>
+    </div>
+
+  </div>
 
 </div>
