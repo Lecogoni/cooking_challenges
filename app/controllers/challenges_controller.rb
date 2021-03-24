@@ -29,19 +29,26 @@ class ChallengesController < ApplicationController
 
     # stock the meal category
     @meal_category = @challenge.meal_category
+    
+    # stock the meal area
     @meal_area = @challenge.meal_area
   
+  
+
+
     respond_to do |format|
       if @challenge.save
 
         # Associate on Event table the new challenge whit the current_user
         @owner_event = Event.create(user_id: current_user.id, challenge_id: @challenge.id, role: "créateur", participation: "confirmed")
 
-        # fetch recipe on API and save it
-        fetch_recipe(@meal_category, @owner_event)
+        # fetch recipe from area or from category on API and save it according to user choice
+        if @meal_category == nil || @meal_category == ""
+          fetch_recipe_from_area(@meal_area, @owner_event)
+        elsif @meal_area == nil || @meal_area == ""
+          fetch_recipe(@meal_category, @owner_event)
+        end
 
-        # fetch recipe from area on API and save it
-        fetch_recipe_from_area(@meal_area, @owner_event)
 
         # create the number of Guest with the id of the current challenge
         @num_guest.times do
