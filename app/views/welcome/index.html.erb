@@ -13,7 +13,11 @@
       </div>
 
         <div class="">
-          <%= link_to 'CHALLENGE TES AMIS', new_challenge_path, :class => "btn btn-primary btn-lg jumbo-button" %>
+          <% if user_signed_in? %>
+            <%= link_to 'CHALLENGE TES AMIS', new_challenge_path, :class => "btn btn-primary btn-lg jumbo-button" %>
+          <% else %>
+            <%= link_to 'CHALLENGE TES AMIS', new_user_session_path, :class => "btn btn-primary btn-lg jumbo-button" %>
+          <% end %>
         </div>
     </div>
   </div>  
@@ -133,7 +137,6 @@
             <h4 class="text-center">....</h4>
               <p class="white-text">
                 Tu trouveras un grand choix de thèmes. Les recettes sont accessibles à tous.
-                
               </p>
           </div>
         </div>

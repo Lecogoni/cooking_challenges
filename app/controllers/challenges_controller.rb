@@ -41,10 +41,10 @@ class ChallengesController < ApplicationController
 
         # create the number of Guest with the id of the current challenge
         @num_guest.times do
-         Guest.create(email: "", username: "", challenge_id: @challenge.id)
+        Guest.create(email: "", username: "", challenge_id: @challenge.id)
         end
         
-        format.html { redirect_to edit_challenge_path(@challenge), notice: "Bravo ! Tu viens de créer ton challenge !" }
+        format.html { redirect_to edit_challenge_path(@challenge), notice: "Plus que quelques clic et ton challenge sera validé !" }
         format.json { render :show, status: :created, location: @challenge }
 
       else
@@ -53,7 +53,6 @@ class ChallengesController < ApplicationController
         format.json { render json: @challenge.errors, status: :unprocessable_entity }
       end
     end
-
 
   end
 
