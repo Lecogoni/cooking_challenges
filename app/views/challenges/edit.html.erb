@@ -1,6 +1,6 @@
 <div class="container">
 
-  <h1>Editing Challenge</h1>
+  <h1>Modifier le challenge</h1>
   <p>
     <%= current_user.username.capitalize %> il ne te reste plus que quelques champs à compléter pour définir ton challenge et inviter tes amis à te rejoindre
   </p>
@@ -20,7 +20,7 @@
         <%= hidden_field_tag(:challenge, @challenge.id) %>
 
         <div>
-          <%= form.label :username %><br>
+          <%= form.label :nom %><br>
           <%= form.text_field :username %>
         </div>
 
@@ -41,7 +41,7 @@
 
   <hr>
 
-  <%= link_to 'Show', @challenge %> |
-  <%= link_to 'Back', challenges_path %>
+  <%= link_to 'Afficher', @challenge %> |
+  <%= link_to 'Retour', challenges_path %>
 
 </div>

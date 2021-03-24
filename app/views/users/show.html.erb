@@ -1,8 +1,5 @@
 <div class="container mb-4">
 
-  <p id="notice"><%= notice %></p>
-
-
 <!-- If User has no challenge -->
   <% if @user.events.count == 0 %>
   <%= render 'users/no-challenge' %>

@@ -37,8 +37,8 @@ class ChallengesController < ApplicationController
         @num_guest.times do
           Guest.create(email: "", challenge_id: @challenge.id)
         end
-        
-        format.html { redirect_to edit_challenge_path(@challenge), notice: "Bravo ! Tu viens de créer ton challenge !" }
+        flash[:success] =  "Bravo ! Tu viens de créer ton challenge !"
+        format.html { redirect_to edit_challenge_path(@challenge) }
         format.json { render :show, status: :created, location: @challenge }
 
       else
@@ -69,7 +69,8 @@ class ChallengesController < ApplicationController
   def destroy
     @challenge.destroy
     respond_to do |format|
-      format.html { redirect_to challenges_url, notice: "Bon bein là, le challenge, bein... il a fait un grand saut dans le vide..." }
+      flash[:danger] = "Bon bein là, le challenge, bein... il a fait un grand saut dans le vide..."
+      format.html { redirect_to challenges_url }
       format.json { head :no_content }
     end
   end

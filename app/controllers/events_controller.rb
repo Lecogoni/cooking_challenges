@@ -25,7 +25,8 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: "Le diner a été créé." }
+        flash[:success] = "Le diner a été créé."
+        format.html { redirect_to @event }
         format.json { render :show, status: :created, location: @event }
       else
         flash.now[:danger] = "Echec :" + @event.errors.full_messages.join(" ")
@@ -39,7 +40,8 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: "Le dîner vient d'être modifié." }
+        flash[:success] = "Le dîner vient d'être modifié."
+        format.html { redirect_to @event }
         format.json { render :show, status: :ok, location: @event }
       else
         flash.now[:warning] = "Echec :" + @event.errors.full_messages.join(" ")
@@ -53,7 +55,8 @@ class EventsController < ApplicationController
   def destroy
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url, notice: "Le dîner vient d'être détruit." }
+      flash[:danger] = "Le dîner vient d'être détruit."
+      format.html { redirect_to events_url }
       format.json { head :no_content }
     end
   end
@@ -64,9 +67,12 @@ class EventsController < ApplicationController
     if @event.participation == "confirmed"
       @event.participation = "pending"
       @event.save
+     
     elsif @event.participation == "abort"
       @event.participation = "confirmed"
       @event.save
+     
+
     else
       @event.participation = "confirmed"
       @event.save
@@ -96,8 +102,8 @@ class EventsController < ApplicationController
     if @event.status == "unscheduled"
       @event.status = "done"
       @event.save
-
-      # défini le nombre de Survey à créer en comptant le nombre de participant mois le participant de l'event actuel
+      flash.now[:success] = "Le dîner vient de se terminer. Alors c'était bon? A vos questionnaires"
+      # défini le nombre de Survey à créer en comptant le nombre de participant moins le créateur participant de l'event actuel
       @event_survey = Event.where(challenge_id: @event.challenge_id).where.not(user_id: @event.user_id).to_a
 
       @event_survey.each_with_index do |survey, index|
