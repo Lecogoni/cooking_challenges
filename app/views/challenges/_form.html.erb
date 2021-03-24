@@ -1,3 +1,5 @@
+
+
 <%= form_with(model: challenge) do |form| %>
   <% if challenge.errors.any? %>
     <div id="error_explanation">
@@ -28,15 +30,14 @@
 
   </div>
 
-
   <div>
     <%= form.label :meal_category %><br>
-    <%= form.select :meal_category, ["Breakfast", "Starter", "Dessert", "Seafood", "Beef", "Chicken", "Lamb", "Pork", "Pasta", "Vegan" ,"Vegetarian"] %>
+    <%= form.select :meal_category, [ "Choisir", "Breakfast", "Starter", "Dessert", "Seafood", "Beef", "Chicken", "Lamb", "Pork", "Pasta", "Vegan" ,"Vegetarian"], selected: "Choisir" %>
   </div>
   
   <div>
     <%= form.label :meal_area %><br>
-    <%= form.select :meal_area, ["American", "British", "Canadian", "Chinese", "Dutch", "Egyptian", "French", "Greek", "Indian", "Italian", "Japanese", "Mexican", "Turkish"] %>
+    <%= form.select :meal_area, ["Choisir", "American", "British", "Canadian", "Chinese", "Dutch", "Egyptian", "French", "Greek", "Indian", "Italian", "Japanese", "Mexican", "Turkish"], selected: "Choisir"%>
   </div>
   
  
