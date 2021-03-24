@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :recipes
   resources :questions
   resources :surveys
   resources :guests
@@ -11,8 +12,7 @@ Rails.application.routes.draw do
   resources :users
 
   
-  #root 'welcome#index'
-  root 'pages#home'
+  root 'welcome#index'
 
   resources :events do
     member do

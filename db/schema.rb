@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_22_165511) do
+ActiveRecord::Schema.define(version: 2021_03_23_201849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2021_03_22_165511) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "numb_guest"
+    t.string "meal_category"
   end
 
   create_table "events", force: :cascade do |t|
@@ -53,6 +54,65 @@ ActiveRecord::Schema.define(version: 2021_03_22_165511) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["survey_id"], name: "index_questions_on_survey_id"
+  end
+
+  create_table "recipes", force: :cascade do |t|
+    t.bigint "event_id"
+    t.string "idMeal"
+    t.string "Meal"
+    t.string "DrinkAlternate"
+    t.string "Category"
+    t.string "Area"
+    t.text "Instructions"
+    t.string "MealThumb"
+    t.string "Tags"
+    t.string "Youtube"
+    t.string "Ingredient1"
+    t.string "Ingredient2"
+    t.string "Ingredient3"
+    t.string "Ingredient4"
+    t.string "Ingredient5"
+    t.string "Ingredient6"
+    t.string "Ingredient7"
+    t.string "Ingredient8"
+    t.string "Ingredient9"
+    t.string "Ingredient10"
+    t.string "Ingredient11"
+    t.string "Ingredient12"
+    t.string "Ingredient13"
+    t.string "Ingredient14"
+    t.string "Ingredient15"
+    t.string "Ingredient16"
+    t.string "Ingredient17"
+    t.string "Ingredient18"
+    t.string "Ingredient19"
+    t.string "Ingredient20"
+    t.string "Measure1"
+    t.string "Measure2"
+    t.string "Measure3"
+    t.string "Measure4"
+    t.string "Measure5"
+    t.string "Measure6"
+    t.string "Measure7"
+    t.string "Measure8"
+    t.string "Measure9"
+    t.string "Measure10"
+    t.string "Measure11"
+    t.string "Measure12"
+    t.string "Measure13"
+    t.string "Measure14"
+    t.string "Measure15"
+    t.string "Measure16"
+    t.string "Measure17"
+    t.string "Measure18"
+    t.string "Measure19"
+    t.string "Measure20"
+    t.string "Source"
+    t.string "ImageSource"
+    t.string "CreativeCommonsConfirmed"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["event_id"], name: "index_recipes_on_event_id"
   end
 
   create_table "surveys", force: :cascade do |t|

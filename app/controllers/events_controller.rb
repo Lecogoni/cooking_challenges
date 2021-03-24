@@ -98,7 +98,6 @@ class EventsController < ApplicationController
       "Quel note donneriez vous à la présentation ?"
     ]
 
-    
     if @event.status == "unscheduled"
       @event.status = "done"
       @event.save
@@ -160,7 +159,6 @@ class EventsController < ApplicationController
     return @questions_list
     
   end
-
 
   private
     # Use callbacks to share common setup or constraints between actions.

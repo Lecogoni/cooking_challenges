@@ -21,21 +21,27 @@ class ChallengesController < ApplicationController
 
   # POST /challenges or /challenges.json
   def create
+
     @challenge = Challenge.new(challenge_params)
   
     # stock the number of guest from params
     @num_guest = @challenge.numb_guest
 
-    
+    # stock the meal category
+    @meal_category = @challenge.meal_category
+  
     respond_to do |format|
       if @challenge.save
 
         # Associate on Event table the new challenge whit the current_user
         @owner_event = Event.create(user_id: current_user.id, challenge_id: @challenge.id, role: "créateur", participation: "confirmed")
 
+        # fetch recipe on API and save it
+        fetch_recipe(@meal_category, @owner_event)
+
         # create the number of Guest with the id of the current challenge
         @num_guest.times do
-          Guest.create(email: "", challenge_id: @challenge.id)
+         Guest.create(email: "", username: "", challenge_id: @challenge.id)
         end
         flash[:success] =  "Bravo ! Tu viens de créer ton challenge !"
         format.html { redirect_to edit_challenge_path(@challenge) }
@@ -75,6 +81,17 @@ class ChallengesController < ApplicationController
     end
   end
 
+
+  #get MealDB user search keyword
+  def search_mealdb
+    recepies = mealdb_url(params[:meal_category])
+    unless recepies
+      flash[:alert] = 'Pas de recettes trouvées'
+      return render action: :index
+      @recipe = recepies.first
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_challenge
@@ -83,6 +100,7 @@ class ChallengesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def challenge_params
-      params.require(:challenge).permit(:title, :status, :description, :numb_guest)
+      params.require(:challenge).permit(:title, :status, :description, :numb_guest, :meal_category)
     end
+
 end

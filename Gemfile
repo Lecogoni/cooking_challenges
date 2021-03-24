@@ -8,6 +8,7 @@ gem "table_print"
 gem 'faker'
 gem 'dotenv-rails'
 gem "sendgrid-ruby", "~> 6.4"
+gem 'excon'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.3'

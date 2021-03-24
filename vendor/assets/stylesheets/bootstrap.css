@@ -2856,14 +2856,14 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-primary {
-  color: #eb6864;
-  border-color: #eb6864;
+  color: #f93f23;
+  border-color: #f93f23;
 }
 
 .btn-outline-primary:hover {
   color: #fff;
-  background-color: #eb6864;
-  border-color: #eb6864;
+  background-color: #f93f23;
+  border-color: #f93f23;
 }
 
 .btn-outline-primary:focus, .btn-outline-primary.focus {

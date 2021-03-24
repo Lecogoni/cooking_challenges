@@ -1,7 +1,7 @@
 <%= form_with(model: challenge) do |form| %>
   <% if challenge.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(challenge.errors.count, "error") %> a empêché de sauvegarder ce challenge :</h2>
+      <h2><%= pluralize(challenge.errors.count, "error") %> prohibited this challenge from being saved:</h2>
 
       <ul>
         <% challenge.errors.each do |error| %>
@@ -13,7 +13,7 @@
 
 
  <div>
-    <%= form.label :titre %><br>
+    <%= form.label :title %><br>
     <%= form.text_field :title %>
   </div>
 
@@ -23,7 +23,7 @@
   </div>
 
   <div>
-    <%= form.label :nombre_de_participants %><br>
+    <%= form.label :numb_guest %><br>
     <%= form.text_field :numb_guest %>
   </div>
 

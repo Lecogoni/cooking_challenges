@@ -21,8 +21,8 @@
               <h5 class="mb-1"><%= challenge.title.upcase %></h5>
               <span class="badge bg-light text-sm-start"><%= challenge.status %></span>
             </div>
-            <p class="mb-1">Mentionner le theme et ses info</p>
-            <small>Autre info si besoin</small>
+
+            <p class="mb-1">Category du challenge : <span class="gray-text"><%= challenge.meal_category %></span></p>
           </a>
   
 
@@ -56,7 +56,7 @@
             <% end %>
             
             <hr>
-            <small class="text-muted">Message de </small>
+            <small class="text-muted">Message du créateur :</small>
             <p class="mb-1"><%= challenge.description %></p>
           </a>
         </div>
