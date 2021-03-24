@@ -47,6 +47,11 @@ ActiveRecord::Schema.define(version: 2021_03_23_201849) do
     t.index ["challenge_id"], name: "index_guests_on_challenge_id"
   end
 
+  create_table "meals", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "questions", force: :cascade do |t|
     t.string "label"
     t.integer "grade", default: 0
@@ -125,6 +130,19 @@ ActiveRecord::Schema.define(version: 2021_03_23_201849) do
     t.string "comment"
     t.index ["event_id"], name: "index_surveys_on_event_id"
     t.index ["surveyor_id"], name: "index_surveys_on_surveyor_id"
+  end
+
+  create_table "tests", force: :cascade do |t|
+    t.string "label"
+    t.string "mail"
+    t.string "titre"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "travels", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
