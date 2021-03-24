@@ -103,6 +103,13 @@ article{
   width: auto;
 }
 
+
+.recipe-picture{
+  max-width: 15em;
+  height: auto;
+  border-radius: 5px;
+}
+
 .user-quote{
   color: #f93f23;
   font-style: italic;
@@ -130,6 +137,18 @@ article{
   padding: 25px;
 }
 
+.recipe-ingredient ul li{
+  color: #292929;
+  font-size: 0.8em;
+  list-style-image:url();
+  line-height: 1.8em;
+
+}
+
+.recipe-instruction{
+  color: #292929;
+  font-size: 0.9em;
+}
 
 
 @media screen and (min-width: 200px) and (max-width: 991px) {
