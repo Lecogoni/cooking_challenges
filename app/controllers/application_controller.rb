@@ -16,10 +16,17 @@ class ApplicationController < ActionController::Base
     save_recipe(@my_recipe, event) 
   end
 
-  #set MealDB Url with keyword
+  #set MealDB Url with keyword (Recipe)
   def mealdb_url_keyword(name)
     request_api(
       "https://themealdb.p.rapidapi.com/search.php?s=Arrabiata"
+    )
+  end
+
+  #set MealDB Url with keyword (Area)
+  def mealdb_area_url_keyword(name)
+    request_api(
+      "https://themealdb.p.rapidapi.com/filter.php?a=Canadian"
     )
   end
   
@@ -30,10 +37,24 @@ class ApplicationController < ActionController::Base
     )
   end
 
+  # ==>set MealDB Url with area
+  def mealdb_url_area(area)
+    request_api(
+      "https://themealdb.p.rapidapi.com/list.php?a=list"
+    )
+  end
+
   #set MealDB Url with category
   def search_mealdb_category(category)
     request_api(
       "https://themealdb.p.rapidapi.com/filter.php?c=#{category}"
+    )
+  end
+
+  #set MealDB Url with area
+  def search_mealdb_area(area)
+    request_api(
+      "https://themealdb.p.rapidapi.com/filter.php?a=#{area}"
     )
   end
 
