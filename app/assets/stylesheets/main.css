@@ -6,7 +6,7 @@ body{
 }
 
 .jumbotron {
-  background-image: url(/assets/welcome.jpg);
+  background-image: url(/assets/images/welcome.jpg);
   max-width: 100%;
   height: auto;
   background-size: cover;
