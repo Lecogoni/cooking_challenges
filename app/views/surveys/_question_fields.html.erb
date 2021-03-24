@@ -2,8 +2,31 @@
 
   <%= f.text_field :label, class: 'form-control', readonly: true %><br>
 
-  <%= f.text_field :grade %><br>
+  <div class="d-flex justify-content-around">
+    <div>
+      <%= f.radio_button :grade, 1, class: 'mr-3' %>
+      <%= f.label :grade, 1 %>
+    </div>
 
-  <hr>
+    <div>
+      <%= f.radio_button :grade, 2, class: 'mr-3' %>
+      <%= f.label :grade, 2 %>
+    </div>
+
+    <div>
+      <%= f.radio_button :grade, 3, class: 'mr-3' %>
+      <%= f.label :grade, 3 %>
+    </div>
+
+    <div>
+      <%= f.radio_button :grade, 4, class: 'mr-3' %>
+      <%= f.label :grade, 4 %>
+    </div>
+
+    <div>
+      <%= f.radio_button :grade, 5, class: 'mr-3' %>
+      <%= f.label :grade, 5 %>
+    </div>
+  </div>
 
 </p>

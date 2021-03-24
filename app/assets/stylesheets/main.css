@@ -80,6 +80,11 @@ article{
   width: auto;
 }
 
+.survey-icon{
+  max-height:90px;
+  width: auto;
+}
+
 .experience {
   padding: 40px;
 }

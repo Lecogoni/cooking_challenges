@@ -3,29 +3,56 @@
 
   <p id="notice"><%= notice %></p>
 
-  <h3>Questionnaire</h3>
+  <div class="row">
+    <div class="col-md-1">
+      <%= image_tag "survey.png", class: 'survey-icon' %>
+    </div>
+    <div class="col-md-11">
+      <div class="p-2">
+        <h3>Questionnaire</h3>
+        <p class="mt-4">
+          <h5><%= @survey.surveyor.username.capitalize %> l'heure est venue de noter la prestation de <%= @survey.event.user.username.capitalize%></h5>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div>
+    <p class="red-text ml-2">
+      <small>La graduation va de 1, la plus basse, mauvaise note à 5 la plus haute, la meilleure note.</small>
+    </p>
+  </div>
+
+  <div class="row">
+    <div class="col-md-7">
+
+      <%= form_for @survey do |f| %>
+    
+        <%= f.fields_for :questions do |builder| %>
+          <%= render "question_fields", :f => builder %>
+
+        <% end %>
+
+        <p>
+          Tu peux aussi laisser un commentaire, un remerciement à <%= @survey.event.user.username.capitalize%>. Cela ne rapporte pas de points mais c'est toujours sympa.
+        </p>
+        <%= f.text_area :comment, class: 'form-control'%><br>
+
+        <div class="d-flex flex-row justify-content-around">
+          <div class="p-2"><%= link_to 'Show', @survey %></div>
+          <div class="p-2"><%= link_to 'Back', surveys_path %></div>
+          <div class="p-2"><%= f.submit "Je soumets mon vote", class: 'btn btn-outline-primary' %></div>
+        </div>
+
+        <p></p>
+
+      <% end %>
   
-  <p class="mt-4">
-    <h5><%= @survey.surveyor.username.capitalize %> l'heure est venue de noter la prestation de <%= @survey.event.user.username.capitalize%></h5>
-  </p>
+    </div>
+    <div class="col-md-5"> Espace pour montrer la recette
+    </div>
 
-  <%= form_for @survey do |f| %>
-   
-    <%= f.fields_for :questions do |builder| %>
-      <%= render "question_fields", :f => builder %>
-
-      
-    <% end %>
-
-    <p><%= f.submit "Je soumets mon vote" %></p>
-
-  <% end %>
-
-  <p>
-    <%= link_to 'Show', @survey %> |
-    <%= link_to 'Back', surveys_path %>
-  </p>
-
+  </div>
+  
 
 </div>
 
