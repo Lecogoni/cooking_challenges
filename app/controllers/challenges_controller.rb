@@ -29,6 +29,7 @@ class ChallengesController < ApplicationController
 
     # stock the meal category
     @meal_category = @challenge.meal_category
+    @meal_area = @challenge.meal_area
   
     respond_to do |format|
       if @challenge.save
@@ -38,6 +39,9 @@ class ChallengesController < ApplicationController
 
         # fetch recipe on API and save it
         fetch_recipe(@meal_category, @owner_event)
+
+        # fetch recipe from area on API and save it
+        fetch_recipe_from_area(@meal_area, @owner_event)
 
         # create the number of Guest with the id of the current challenge
         @num_guest.times do
@@ -91,6 +95,15 @@ class ChallengesController < ApplicationController
     end
   end
 
+  def search_mealdb_from_area
+    recepies = mealdb_url(params[:meal_area])
+    unless recepies
+      flash[:alert] = 'Pas de recettes trouvées'
+      return render action: :index
+      @recipe = recepies.first
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_challenge
@@ -99,7 +112,7 @@ class ChallengesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def challenge_params
-      params.require(:challenge).permit(:title, :status, :description, :numb_guest, :meal_category)
+      params.require(:challenge).permit(:title, :status, :description, :numb_guest, :meal_category, :meal_area)
     end
 
 end
