@@ -18,9 +18,9 @@ class ApplicationController < ActionController::Base
   
   def fetch_recipe_from_area(meal_area, event)
     @recipies_area = search_mealdb_area(meal_area) # fetch array of recipes by search area
-    @recipe_area = @recipies_area[rand(0...@recipies_area.length)] # Get one random recipe in the array
-    @my_recipe_area = get_recipe_by(@recipe_area["idMeal"]) # fetch recipe details with the id
-    save_recipe(@my_recipe_area, event) 
+    @recipe = @recipies_area[rand(0...@recipies_area.length)] # Get one random recipe in the array
+    @my_recipe = get_recipe_by(@recipe["idMeal"]) # fetch recipe details with the id
+    save_recipe(@my_recipe, event) 
   end
 
   #set MealDB Url with keyword (Recipe)
@@ -83,6 +83,32 @@ class ApplicationController < ActionController::Base
       return nil
     else
       return @recipies
+    end
+  end
+
+  def get_recipe_by(id)
+    request_api(
+      "https://themealdb.p.rapidapi.com/lookup.php?i=#{id}"
+    )
+  end
+
+  # fetch the MealDb data from area
+  def request_api_from_area(url)
+    response = Excon.get(
+      url,
+      headers: {
+        'X-RapidAPI-Host' => URI.parse(url).host,
+        'X-RapidAPI-Key' => ENV['RAPIDAPI_API_KEY']
+      }
+    )
+
+    @json_data = JSON.parse(response.body)
+    @recipies_area = @json_data['meals']
+
+    if response.status != 200
+      return nil
+    else
+      return @recipies_area
     end
   end
 
