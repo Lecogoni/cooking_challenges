@@ -6,16 +6,16 @@
   <hr>
   <% if user_signed_in? %>
     <p>
-      <%= link_to 'se déconnecter', destroy_user_session_path, method: :delete %> 
+      <%= link_to 'Se déconnecter', destroy_user_session_path, method: :delete %> 
     </p>
   <% else %>
     <p>
-      <%= link_to 'se connecter', new_user_session_path %>  
+      <%= link_to 'Se connecter', new_user_session_path %>  
     </p>
   <% end %>
 
   <hr>
-  <%= link_to 'créer un challenge', new_challenge_path, :class => "btn btn-primary btn-lg" %>
+  <%= link_to 'Créer un challenge', new_challenge_path, :class => "btn btn-primary btn-lg" %>
 
   <hr>
 

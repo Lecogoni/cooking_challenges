@@ -25,7 +25,8 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
-        format.html { redirect_to @question, notice: "Création de la question." }
+        flash[:success] = "Création de la question."
+        format.html { redirect_to @question }
         format.json { render :show, status: :created, location: @question }
       else
         flash.now[:danger] = "Echec :" + @question.errors.full_messages.join(" ")
@@ -39,7 +40,8 @@ class QuestionsController < ApplicationController
   def update
     respond_to do |format|
       if @question.update(question_params)
-        format.html { redirect_to @question, notice: "La question vient d'être modifiée." }
+        flash[:success] = "La question vient d'être modifiée."
+        format.html { redirect_to @question }
         format.json { render :show, status: :ok, location: @question }
       else
         flash.now[:warning] = "Echec :" + @question.errors.full_messages.join(" ")
@@ -53,7 +55,8 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
     respond_to do |format|
-      format.html { redirect_to questions_url, notice: "La question vient d'être détruite." }
+      flash[:success] = "La question vient d'être détruite."
+      format.html { redirect_to questions_url }
       format.json { head :no_content }
     end
   end

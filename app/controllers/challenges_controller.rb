@@ -74,7 +74,12 @@ class ChallengesController < ApplicationController
   def destroy
     @challenge.destroy
     respond_to do |format|
+<<<<<<< HEAD
       format.html { redirect_to user_path(current_user.id), notice: "Dommage, ton challenge n'est pas validé. tu pourras toujours un recréer un !!" }
+=======
+      flash[:danger] = "Bon bein là, le challenge, bein... il a fait un grand saut dans le vide..."
+      format.html { redirect_to challenges_url }
+>>>>>>> development
       format.json { head :no_content }
     end
   end
