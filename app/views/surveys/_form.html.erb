@@ -1,7 +1,7 @@
 <%= form_with(model: survey) do |form| %>
   <% if survey.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(survey.errors.count, "error") %> prohibited this survey from being saved:</h2>
+      <h2><%= pluralize(survey.errors.count, "error") %> a empêché l'enregistrement de ce questionnaire :</h2>
 
       <ul>
         <% survey.errors.each do |error| %>

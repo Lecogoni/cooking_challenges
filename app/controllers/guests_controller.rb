@@ -25,9 +25,10 @@ class GuestsController < ApplicationController
 
     respond_to do |format|
       if @guest.save
-        format.html { redirect_to @guest, notice: "Guest was successfully created." }
+        format.html { redirect_to @guest, notice: "Création d'un invité." }
         format.json { render :show, status: :created, location: @guest }
       else
+        flash.now[:warning] = "Echec :" + @guest.errors.full_messages.join(" ")
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @guest.errors, status: :unprocessable_entity }
       end
@@ -68,7 +69,7 @@ class GuestsController < ApplicationController
   def destroy
     @guest.destroy
     respond_to do |format|
-      format.html { redirect_to guests_url, notice: "Guest was successfully destroyed." }
+      format.html { redirect_to guests_url, notice: "L'invité a été détruit avec succès. (cf traduction ggogle du message généré automatiquement par rails... Il n'y aurait pas un peu de sadisme là dedans ?" }
       format.json { head :no_content }
     end
   end

@@ -2,7 +2,7 @@
 
 <div class="container">
 
-  <h1>Users</h1>
+  <h1>Les utilisateurs</h1>
 
 
   <hr>
@@ -49,9 +49,9 @@
       <% @users.each do |user| %>
         <tr>
           <td><%= user.email %></td>
-          <td><%= link_to 'Show', user %></td>
-          <td><%= link_to 'Edit', edit_user_path(user) %></td>
-          <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Afficher', user %></td>
+          <td><%= link_to 'Modifier', edit_user_path(user) %></td>
+          <td><%= link_to 'Détruire', user, method: :delete, data: { confirm: 'Es-tu vraiment certain ?' } %></td>
         </tr>
       <% end %>
     </tbody>
@@ -59,7 +59,7 @@
 
   <br>
 
-  <%= link_to 'New User', new_user_path %>
+  <%= link_to 'Nouvelle utilisateur', new_user_path %>
 
   <hr>
 

@@ -43,11 +43,12 @@ class ChallengesController < ApplicationController
         @num_guest.times do
          Guest.create(email: "", username: "", challenge_id: @challenge.id)
         end
-
-        format.html { redirect_to edit_challenge_path(@challenge), notice: "Challenge was successfully created." }
+        
+        format.html { redirect_to edit_challenge_path(@challenge), notice: "Bravo ! Tu viens de créer ton challenge !" }
         format.json { render :show, status: :created, location: @challenge }
 
       else
+        flash.now[:danger] = "Echec :" + @challenge.errors.full_messages.join(" ")
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @challenge.errors, status: :unprocessable_entity }
       end
@@ -60,9 +61,10 @@ class ChallengesController < ApplicationController
   def update
     respond_to do |format|
       if @challenge.update(challenge_params)
-        format.html { redirect_to @challenge, notice: "Challenge was successfully updated." }
+        format.html { redirect_to @challenge, notice: "Ok, le challenge vient d'être modifié." }
         format.json { render :show, status: :ok, location: @challenge }
       else
+        flash.now[:warning] = "Echec :" + @challenge.errors.full_messages.join(" ")
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @challenge.errors, status: :unprocessable_entity }
       end
@@ -73,7 +75,7 @@ class ChallengesController < ApplicationController
   def destroy
     @challenge.destroy
     respond_to do |format|
-      format.html { redirect_to challenges_url, notice: "Challenge was successfully destroyed." }
+      format.html { redirect_to challenges_url, notice: "Bon bein là, le challenge, bein... il a fait un grand saut dans le vide..." }
       format.json { head :no_content }
     end
   end

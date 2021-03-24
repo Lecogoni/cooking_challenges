@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Guests</h1>
+<h1>Les invités</h1>
 
 <table>
   <thead>
@@ -12,9 +12,9 @@
   <tbody>
     <% @guests.each do |guest| %>
       <tr>
-        <td><%= link_to 'Show', guest %></td>
-        <td><%= link_to 'Edit', edit_guest_path(guest) %></td>
-        <td><%= link_to 'Destroy', guest, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Afficher', guest %></td>
+        <td><%= link_to 'Modifier', edit_guest_path(guest) %></td>
+        <td><%= link_to 'Détruire', guest, method: :delete, data: { confirm: 'Es-tu vraiment certain ?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,4 +22,4 @@
 
 <br>
 
-<%= link_to 'New Guest', new_guest_path %>
+<%= link_to 'Nouvel invité', new_guest_path %>
