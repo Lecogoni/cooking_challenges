@@ -75,6 +75,11 @@ article{
   height: auto;
 }
 
+.step-icon{
+  max-height:60px;
+  width: auto;
+}
+
 .experience {
   padding: 40px;
 }
@@ -103,6 +108,10 @@ article{
 }
 .gray-text{
   color: #292929;
+}
+
+.white-text{
+  color: #fff;
 }
 
 .img-card{
