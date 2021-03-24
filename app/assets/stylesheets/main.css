@@ -107,7 +107,7 @@ article{
 .recipe-picture{
   max-width: 15em;
   height: auto;
-  border-radius: 5px;
+
 }
 
 .user-quote{
@@ -178,13 +178,14 @@ article{
   }
 }
 .accordion-button:not(.collapsed) {
-  color: #0c63e4;
-  background-color: #e7f1ff;
+  color: #292929;
+  background-color: #f93f23;
   box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.125);
 }
 .accordion-button:not(.collapsed)::after {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%230c63e4'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
   transform: rotate(-180deg);
+  color: #292929;
 }
 .accordion-button::after {
   flex-shrink: 0;
@@ -196,7 +197,13 @@ article{
   background-repeat: no-repeat;
   background-size: 1.25rem;
   transition: transform 0.2s ease-in-out;
+  
 }
+
+.accordion-button:not(.collapsed)::after {
+
+}
+
 @media (prefers-reduced-motion: reduce) {
   .accordion-button::after {
     transition: none;
@@ -216,31 +223,34 @@ article{
   margin-bottom: 0;
 }
 
+/* accordion inside*/
 .accordion-item {
   margin-bottom: -1px;
   background-color: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  
 }
 .accordion-item:first-of-type {
-  border-top-right-radius: 0.25rem;
-  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0rem;
+  border-top-left-radius: 0rem;
 }
 .accordion-item:first-of-type .accordion-button {
-  border-top-right-radius: calc(0.25rem - 1px);
-  border-top-left-radius: calc(0.25rem - 1px);
+  border-top-right-radius: calc(0rem - 1px);
+  border-top-left-radius: calc(0rem - 1px);
 }
 .accordion-item:last-of-type {
   margin-bottom: 0;
-  border-bottom-left-radius: 0.25rem;
-  border-bottom-right-radius: 0.25rem;
+  border-bottom-left-radius: 0rem;
+  border-bottom-right-radius: 0rem;
 }
 .accordion-item:last-of-type .accordion-button.collapsed {
   border-bottom-left-radius: calc(0.25rem - 1px);
   border-bottom-right-radius: calc(0.25rem - 1px);
 }
 .accordion-item:last-of-type .accordion-collapse {
-  border-bottom-left-radius: 0.25rem;
-  border-bottom-right-radius: 0.25rem;
+  border-bottom-left-radius: 0rem;
+  border-bottom-right-radius: 0rem;
 }
 
 .accordion-body {
