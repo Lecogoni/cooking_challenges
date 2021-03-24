@@ -1,8 +1,5 @@
   <!-- Liste des autres participants -->
-
   <div class="">
-    <h5 class="card-subtitle text-muted mb-4">Recap des autres dîners du challenge :</h5>
-
     <% @this_event = Event.where(challenge_id: @event.challenge.id).where.not(user_id: current_user.id) %>
     <% @this_event.each do |event| %>
       <div class="row">

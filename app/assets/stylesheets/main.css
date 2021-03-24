@@ -103,6 +103,9 @@ article{
   width: auto;
 }
 
+.header-event{
+  padding-bottom: 0px;
+}
 
 .recipe-picture{
   max-width: 15em;

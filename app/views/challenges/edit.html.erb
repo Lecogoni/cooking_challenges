@@ -1,5 +1,4 @@
-<div class="container">
-
+<div class="container mt-5">
   <div class="d-flex flex-column align-items-center">
     <div class="d-flex flex-column align-items-center mb-4">
       <div>
@@ -57,14 +56,15 @@
     <% end %>
 
     <div class="row d-flex justify-content-center">
-      <% if @guests.all? { |guest| guest.created_at != guest.updated_at  } == true %>
-        BOUTON A CREER
+      <% if @guests.all?{ |guest| guest.created_at != guest.updated_at  } == true %>
+        <%= link_to 'Valider mon challenge', new_user_session_path, :class => "btn btn-outline-primary btn-lg" %>
       <% else %>
         <p class="red-text text-center">envoie l'ensemble des invitations pour valider ton challenge</p>
       <% end %>
     </div>
-    <div class="row d-flex justify-content-center">
-    RAJOUTER UN BOUTON DESTROY
+    <div class="row d-flex justify-content-center mt-3">
+      
+      <%= link_to 'Annuler', @challenge, method: :delete, :class => "btn btn-outline-secondary btn-sm", data: { confirm: 'Es tu certain de vouloir supprimer ce challenge ?' } %>
     </div>
 
     <div class="mb-5 mt-3">
