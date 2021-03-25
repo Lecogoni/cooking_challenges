@@ -119,25 +119,26 @@
             <div>
               <%= image_tag "choose-icon.png", :class => "step-icon mx-auto d-block" %>
             </div>
-            <h4 class="text-center">Large choix de thèmes</h4>
+            <h4 class="text-center">Sélectionne un thème</h4>
             <p class="white-text">
-              Tu trouveras un grand choix de thèmes. Les recettes sont accessibles à tous.
+              C'est toi qui choisis. La catégorie ou le pays que tu sélectionnera définie les recettes attribuées aux participants
             </p>
           </div>
           <div class="p-2">
             <div>
               <%= image_tag "recipe.png", :class => "step-icon mx-auto d-block" %>
             </div>
-             <h4 class="text-center">Recettes pour tous</h4>
+             <h4 class="text-center">Tous en cuisine</h4>
             <p class="white-text">
-              Tu trouveras un grand choix de recettes. Pas besoin d'être un chef étoilé pour réussir, mais on est certains que nos recettes te permettront de t'améliorer
+              Les recettes sont bien documentées. Liste des ingrédients, instructions, lien vidéo... et le site te donne tous les outils pour suivre le challenge, noter tes amis ... Il ne reste plus qu'à allumer le four ! 
             </p>
           </div>
           <div class="p-2">
-            <h4 class="text-center">....</h4>
-              <p class="white-text">
-                Tu trouveras un grand choix de thèmes. Les recettes sont accessibles à tous.
-              </p>
+            <% if user_signed_in? %>
+              <%= link_to 'CHALLENGE TES AMIS', new_challenge_path, :class => "btn btn-outline-light btn-lg" %>
+            <% else %>
+              <%= link_to 'CHALLENGE TES AMIS', new_user_session_path, :class => "btn btn-outline-light btn-lg" %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -162,8 +163,8 @@
       <div class="card mb-3 user">
         <%= image_tag "kitchen.jpg", :class => "img-user-experience" %>
         <div class="card-body">
-          <h5 class="user-quote">" Avant c'était toujours moi qui cuisinait ! maintenant Paul se prend au jeu, il a même mis un tablier "</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <h5 class="user-quote">" Maintenant Paul cuisine, il a même acheté un tablier "</h5>
+          <p class="user-expe">Avant c'était toujours moi qui cuisinait ! On ne peux pas dire que la cuisine était sa pièce favorite. Depuis que l'on organise régulièrement des challenges avec d'autres couples, Paul met les petits plats dans les grands.</p>
         </div>
       </div>
     </div>
@@ -196,3 +197,19 @@
 
 </div>
 
+<div class="container-fluid bg-primary p-5">
+  <div class="container">
+    <div class="d-flex justify-content-center">
+      <div class="pt-2 mr-2">
+        <h5 class="white-text">Alors tu es plutôt challenge Pasta ou Cuisine Allemande</h5>
+      </div>
+      <div class="ml-2">
+        <% if user_signed_in? %>
+          <%= link_to 'A TOI DE JOUER', new_challenge_path, :class => "btn btn-outline-light" %>
+        <% else %>
+          <%= link_to 'A TOI DE JOUER', new_user_session_path, :class => "btn btn-outline-light" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
