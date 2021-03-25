@@ -48,6 +48,7 @@ class SurveysController < ApplicationController
         
         # update le total de l'event, la note global - somme des surveys 
         update_event_total()
+        event_status(@survey.event)
         flash[:success] = "Le questionnaire vient d'être mis à jour."
         format.html { redirect_to events_path(id: @survey.event_id) } 
         format.json { render :show, status: :ok, location: @survey }
