@@ -6,7 +6,7 @@ body{
 }
 
 .jumbotron {
-  background-image: url(cooking-challenge.jpg);
+  background-image: url(/assets/cooking-challenge.jpg);
   max-width: 100%;
   height: auto;
   background-size: cover;
