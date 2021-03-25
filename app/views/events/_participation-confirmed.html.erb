@@ -1,0 +1,68 @@
+<% if @event.status == "unscheduled" %>
+  <p>
+    tu n'as pas encore planifié ton dîner.
+  </p>
+  <p>
+    <%= link_to 'check', toggle_status_event_path, method: 'post'%>
+  </p>
+  <p>
+    <div class="custom-control custom-switch" id="event-status-toggle">
+      <input type="checkbox" class="custom-control-input" id="customSwitch1" checked>
+      <label class="custom-control-label" for="customSwitch1">Toggle this switch element</label>
+    </div>
+  </p>
+<% elsif @event.status == "done" %>
+  <p>
+    Félicitation ! Tu as réalisé ton challenge. Voyons ce que les autres ont pensé de ta prestation ...
+  </p>
+
+  <h6 class="card-subtitle text-muted mb-2">Ma notation : </h6>
+  
+    <div class="row">
+      <div class="col-md-10">
+ 
+          <% @event_surveys = @event.surveys %>
+          <% @other_surveys = Survey.where(event_id: @event.id).where.not(surveyor_id: current_user.id) %>
+          <% @other_surveys.each do |survey| %>
+              <% if survey.status == "pending" %>
+                <div><span class="red-text"><%= survey.surveyor.username.capitalize %></span> ne t'as pas encore noté</div>
+              <% elsif survey.status == "done" %>
+                <div>
+                  <div class=""><span class="red-text"><%= survey.surveyor.username.capitalize %></span> t'as donné la note de <span class="red-text"> <%= survey.total_grade %></span></div>
+                  <div class="ml-3 mb-2">
+                    <% if survey.comment == nil || survey.comment == "" %><span class="gray-text text-muted font-italic">pas de commentaires</span></li>
+                    <% else %><span class="text-muted red-text">Son commentaires : </span><span class="gray-text text-muted font-italic">survey.comment</span>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+
+          <% end %>
+
+      </div>
+
+      <div class="col-md-2">
+        <% @other_surveys = Survey.where(event_id: @event.id).where.not(surveyor_id: current_user.id) %>
+        <% if @other_surveys.count == 0 %>
+          <div class="gray-text text-center">
+           
+          </div>
+        <% elsif @other_surveys.all? { |el| el.status == "pending" } == true %>
+          <div class="gray-text text-center">
+            
+          </div>
+
+        <% elsif @other_surveys.any? { |el| el.status == "pending" } == true %>
+          <div class="gray-text text-center">
+            Ma note provisoire : <%= @event.total_event %>
+          </div>
+
+        <% elsif @other_surveys.all? { |el| el.status == "done" } == true %>
+          <div class="green-text text-center">
+            mon Score final est <%= @event.total_event %>
+          </div>
+        <% end %>
+      </div>
+
+    </div>                     
+  <% end %>

@@ -71,7 +71,6 @@ class EventsController < ApplicationController
     elsif @event.participation == "abort"
       @event.participation = "confirmed"
       @event.save
-     
 
     else
       @event.participation = "confirmed"
@@ -87,6 +86,7 @@ class EventsController < ApplicationController
       @event.role = "décliné"
       @event.save
     end
+    event_status()
   end
   
   # change event status and create the needed number of survey matching the event

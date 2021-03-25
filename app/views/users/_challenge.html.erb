@@ -10,8 +10,11 @@
   <div class="row">
 
     <% @challenges = @user.challenges %>
+
     <% @challenges.each do |challenge| %>
 
+   
+    
       <% @events = challenge.events %>
 
       <% @my_event = Event.where(user_id: current_user.id, challenge_id: challenge.id)[0].id %>
@@ -19,15 +22,21 @@
       <div class="col-lg-4">
         <div class="bs-component">
           <div class="list-group mb-3">
-
-          
             <a href="/events/<%= @my_event %>"  class="list-group-item list-group-item-action flex-column align-items-start active">
               <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1"><%= challenge.title.upcase %></h5>
-                <span class="badge bg-light text-sm-start"><%= challenge.status %></span>
+                <h5 class="mb-1 gray-text"><%= challenge.title %></h5>
+                <% if challenge.status == "ongoing" %>
+                  <span class="badge bg-light text-sm-start green-text Regular shadow">EN COURS</span>
+                <% elsif challenge.status == "pending" %>
+                  <span class="badge bg-light text-sm-start Small shadow">en attente</span>
+                <% elsif challenge.status == "abort" %>
+                  <span class="badge bg-warning text-sm-start gray-text">annulé</span>
+                <% elsif challenge.status == "finish" %>
+                  <span class="badge bg-light text-sm-start Small shadow">terminé</span>
+                <% end %>
               </div>
 
-              <p class="mb-1">Category du challenge : <span class="gray-text"><%= challenge.meal_category %></span></p>
+              <p class="mb-1"><span class="small">Category du challenge : </span><span class="gray-text"><%= challenge.meal_category %></span></p>
             </a>
     
 
@@ -68,7 +77,7 @@
               
               <hr>
               <small class="text-muted">Message du créateur :</small>
-              <p class="mb-1"><%= challenge.description %></p>
+              <p class="font-weight-light"><%= challenge.description %></p>
             </a>
           </div>
         </div>
@@ -77,3 +86,4 @@
     
   </div>
 </div>
+

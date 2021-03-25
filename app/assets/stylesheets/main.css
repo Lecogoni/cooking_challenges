@@ -147,6 +147,11 @@ article{
   color: #fff;
 }
 
+.green-text{
+  color: rgb(7, 186, 28);
+}
+
+
 .img-card{
   max-width: 100%;
 }
@@ -169,6 +174,20 @@ article{
 .recipe-instruction{
   color: #292929;
   font-size: 0.9em;
+}
+
+
+#ul-grade{
+  padding: 5px;
+  margin: 0;
+}
+
+.score{
+  color: #292929;
+  font-size: 0.8em;
+  letter-spacing: 0.2em;
+  font-weight: 800;
+  line-height: 1em;
 }
 
 

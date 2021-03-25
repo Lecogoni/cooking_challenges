@@ -12,19 +12,48 @@
           <!---header-->
           <div class="card-header d-flex w-100 justify-content-between">
             <h2 class="mb-1 text-muted"><%= @event.challenge.title.upcase %></h2>
-            <span class="badge bg-danger text-sm-start"><%= @event.challenge.status %></span>
+            <div>
+              <% if @event.challenge.status == "ongoing" %>
+                <h3><span class="badge bg-light text-sm-start green-text Regular shadow">EN COURS</span></h3>
+              <% elsif @event.challenge.status == "pending" %>
+                <h3><span class="badge bg-light text-sm-start Small shadow">en attente</span></h3>
+              <% elsif @event.challenge.status == "abort" %>
+                <h3><span class="badge bg-warning text-sm-start gray-text">annulé</span></h3>
+              <% elsif @event.challenge.status == "finish" %>
+                <h3><span class="badge bg-light text-sm-start Small shadow">terminé</span></h3>
+              <% end %>
+            </div>
           </div>
           <!---Info challenge-->
           <div class="card-body header-event">
-            <h5 class="card-title mb-4">Category du challenge : <span class="red-text"><%= @event.challenge.meal_category %></span></h5>
-            <h6 class="card-subtitle text-muted">message du créateur :</h6>
-            <p class="pt-2"><%= @event.challenge.description %></p>
+            <div class="d-flex justify-content-between">
+              <div>
+                <h5 class="card-title mb-4">Category du challenge : <span class="red-text"><%= @event.challenge.meal_category %></span></h5>
+                <h6 class="card-subtitle text-muted">message du créateur :</h6>
+                <p class="pt-2"><%= @event.challenge.description %></p>
+              </div>
+              <div>
+                <% @all_events = Event.where(challenge_id: @event.challenge_id).order(total_event: :desc) %>
+                <% if @event.challenge.status == "ongoing" %>
+                  <div>
+                    <table class="table-sm mb-2">
+                      <% @all_events.each do |event| %>
+                        <tr class="score">
+                          <td style="width:100px"><%= event.user.username.capitalize %></td>
+                          <td><%= event.total_event %></td>
+                        </tr>
+                      <% end %>
+                    </table>
+                  </div>
+                 
+                <% elsif @event.challenge.status == "done" %>
+                  <%= @all_events = Event.where(challenge_id: @event.challenge_id).order(total_event: :desc).first %>
+                <% end %> 
+              </div>
+              
+            </div>
           </div>
 
-          <div>
-            <% if @event.status == "done" %>
-            <% end %> 
-          </div>
           <!---Accordion display-->
           <div>
             <%= render 'accordion', event: @event %>
@@ -48,7 +77,17 @@
             <a href="/events/<%= session.id %>" class="list-group-item list-group-item-action">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1"><%= session.challenge.title %></h5>
-                <span class="badge bg-dark text-sm-start"><%= session.challenge.status %></span>
+                <div>
+                  <% if session.challenge.status == "ongoing" %>
+                    <span class="badge bg-light text-sm-start green-text Regular shadow">EN COURS</span>
+                  <% elsif session.challenge.status == "pending" %>
+                    <span class="badge bg-light text-sm-start Small shadow">en attente</span>
+                  <% elsif session.challenge.status == "abort" %>
+                    <span class="badge bg-warning text-sm-start gray-text">annulé</span>
+                  <% elsif session.challenge.status == "finish" %>
+                    <span class="badge bg-light text-sm-start Small shadow">terminé</span>
+                  <% end %>
+                </div>
               </div>
               <div></div>
             </a>

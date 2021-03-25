@@ -2,7 +2,23 @@
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingOne">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        <h5>Ma participation </h5>
+        <!-- accordion PARTICIPATION line -->
+        <div class="d-flex justify-content-between">
+          <div  class="mr-3">
+            <h5>Ma participation </h5>
+          </div>
+        </div>
+        <div>
+          <% if event.role == "créateur" %>
+            <span class="badge bg-light text-dark"><%= event.role %></span>
+          <% elsif event.role == "participant" &&  event.participation == "pending" %>
+            <span class="badge bg-light font-italic">en attente</span>
+          <% elsif event.role == "participant" &&  event.participation == "confirmed" %>
+            <span class="badge bg-light green-text">confirmée</span>
+          <% elsif event.role == "décliné" %>
+            <span class="badge bg-warning text-dark"><%= event.role %></span>
+          <% end %>
+        </div>
       </button>
     </h2>
     <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
@@ -16,7 +32,9 @@
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingTwo">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-        <h5>Etat du challenge </h5>
+        <div>
+          <h5>Etat du challenge </h5>
+        </div>
       </button>
     </h2>
     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
