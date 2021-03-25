@@ -43,11 +43,11 @@ class ChallengesController < ApplicationController
         @owner_event = Event.create(user_id: current_user.id, challenge_id: @challenge.id, role: "créateur", participation: "confirmed")
 
         # fetch recipe from area or from category on API and save it according to user choice
-        if @meal_category == nil || @meal_category == ""
-          fetch_recipe_from_area(@meal_area, @owner_event)
-        elsif @meal_area == nil || @meal_area == ""
-          fetch_recipe(@meal_category, @owner_event)
-        end
+        # if @meal_category == nil || @meal_category == ""
+        #   fetch_recipe_from_area(@meal_area, @owner_event)
+        # elsif @meal_area == nil || @meal_area == ""
+        #   fetch_recipe(@meal_category, @owner_event)
+        # end
 
 
         # create the number of Guest with the id of the current challenge
