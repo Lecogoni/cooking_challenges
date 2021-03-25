@@ -48,7 +48,7 @@
                  
                 <% elsif @event.challenge.status == "finish" %>
                   <%= @all_events = Event.where(challenge_id: @event.challenge_id).order(total_event: :desc).count%>
-                  <%= @all_events %>
+                  Victoire de 
                 <% end %> 
               </div>
               
