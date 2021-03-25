@@ -6,8 +6,7 @@ body{
 }
 
 .jumbotron {
-
-  background: url(https://herokuapp.com/assets/jumbo.jpg);
+  background-image: url(jumbo.jpg);
   background-size: cover;
   max-width: 100%;
   height: auto;
