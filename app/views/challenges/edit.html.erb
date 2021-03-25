@@ -27,17 +27,20 @@
       <h3 class="text-center">Invite tes amis à participer</h3>
       <h6 class="text-center">Choisis un thème (catégorie ou pays) pour ton challenge</h6>
       <%= form_with(model: @challenge) do |form| %>
-        <div class="text-center">
-          <%= form.label :meal_category %><br>
-          <%= form.select :meal_category, [ "", "Breakfast", "Starter", "Dessert", "Seafood", "Beef", "Chicken", "Lamb", "Pork", "Pasta", "Vegan" ,"Vegetarian"], selected: "" %>
-        </div>
-        <div class="text-center">
-          <%= form.label :meal_area %><br>
-          <%= form.select :meal_area, ["", "American", "British", "Canadian", "Chinese", "Dutch", "Egyptian", "French", "Greek", "Indian", "Italian", "Japanese", "Mexican", "Turkish"], selected: ""%>
-        </div>
-        <div class="actions text-center">
-          <%= form.submit %>
-        </div>
+        <% if @challenge.theme_choice == "Categorie"  %>
+          <div class="text-center">
+            <%= form.label :meal_category %><br>
+            <%= form.select :meal_category, [ "", "Breakfast", "Starter", "Dessert", "Seafood", "Beef", "Chicken", "Lamb", "Pork", "Pasta", "Vegan" ,"Vegetarian"], selected: "" %>
+          </div>
+        <% else %>
+          <div class="text-center">
+            <%= form.label :meal_area %><br>
+            <%= form.select :meal_area, ["", "American", "British", "Canadian", "Chinese", "Dutch", "Egyptian", "French", "Greek", "Indian", "Italian", "Japanese", "Mexican", "Turkish"], selected: ""%>
+            </div>
+        <% end %>
+            <div class="actions text-center">
+              <%= form.submit %>
+            </div>
       <% end %>
     </div>
   </div>
