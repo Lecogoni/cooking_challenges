@@ -1,0 +1,98 @@
+  <!-- Liste des autres participants -->
+  <div class="">
+    <% @this_event = Event.where(challenge_id: @event.challenge.id).where.not(user_id: current_user.id) %>
+    <% @this_event.each do |event| %>
+      <div class="row">
+        <div class="col-md-2">
+          <div class="d-flex justify-content-start">
+            <div class="d-flex justify-content-start mr-2">
+              <div class="mr-3">
+                <% if event.participation == "pending" %>
+                  <span class=""><i class="fa fa-check-circle" style="color:lightgray"></i></span>
+                <% elsif event.participation == "confirmed" %>
+                  <span class=""><i class="fa fa-check-circle" style="color:indianred"></i></span>
+                <% else %>
+                  <i class="fas fa-ban"></i>
+                <% end %>
+              </div>
+              <div>
+                <%= event.user.username.capitalize %>
+              </div>
+            </div>
+            <div>
+              <% if event.user.id == current_user.id || event.role == "créateur" %>
+                <span class="badge bg-light text-dark"><%= event.role %></span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-8">
+          <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-start">
+              <div class="mr-3">
+                <% if event.participation == "pending" %>
+                  <p>
+                    n'a pas encore confirmé sa participation
+                  </p>
+                <% elsif event.participation == "abord" %>
+                  <p>
+                    a décliné le challenge
+                  </p>
+                <%  elsif event.participation == "confirmed"  %>
+                
+                  <% if event.status == "unscheduled" %>
+                    son dîner n'est pas encore planifié
+                  <% elsif event.status == "scheduled" %>
+                    son dîner est programmé
+
+                  <% elsif event.status == "done" %>
+                    Le dîner de <%= event.user.username.capitalize %> est passé, c'est evalution time<br><br>
+                    <% @surveys = event.surveys %>
+                    
+                      <% @currentUser_survey = Survey.where(event_id: event.id, surveyor_id: current_user.id)[0] %>
+                      <% if @currentUser_survey.created_at == @currentUser_survey.updated_at %>
+                        <div class="row">
+                          <div class="col-md-9">
+                            Tu ne pourras voir la note des autres participants qu'après avoir compléter ton évalution.
+                          </div>
+                          <div class="col-md-3">
+                            <%= link_to "noter sa prestation", edit_survey_path(@currentUser_survey) %>
+                            
+                          </div>
+                        </div> 
+                      <% else %>
+                        <% @surveys.each do |survey| %>
+
+                          <ul>
+                            <% if survey.created_at != survey.updated_at %>
+                              <% if current_user.id == survey.surveyor_id %>
+                                <li>tu as donnée la note de : <%= survey.total_grade %></li>
+                              <% else %>
+                                <li><%= survey.surveyor.username %> a donnée la note de : <%= survey.total_grade %></li>
+                              <% end %>
+                            <% else %>
+                              <li><%= survey.surveyor.username %> n'a pas encore noté</li>
+                            <% end %>
+                          </ul>
+
+                        <% end %>
+                      <% end %>
+
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-2">
+          <% if event.surveys.all? { |el| el.status == "pending" } == true %>
+            <p>note provisoire : <%= event.total_event %></p>
+          <% else %>
+            <p>note definitive : <%= event.total_event %></p>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>

@@ -1,8 +1,9 @@
+<%= devise_error_messages! %>
+
 <div class="container">
-  <h2>Edit <%= resource_name.to_s.humanize %></h2>
+  <h2>Modifier <%= resource_name.to_s.humanize %></h2>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <%= devise_error_messages! %>
     <div class="field">
       <%= f.label :email %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -13,8 +14,8 @@
     <% end %>
 
     <div class="field">
-      <%= f.label :password %> <i>(à laisser vide si tu ne veux pas le changer)</i><br />
-      <%= f.password_field :password, autocomplete: "new-password" %>
+      <%= f.label :mot_de_passe %> <i>(à laisser vide si tu ne veux pas le changer)</i><br />
+      <%= f.password_field :password, autocomplete: "nouveau-mot-de-passe" %>
       <% if @minimum_password_length %>
         <br />
         <em><%= @minimum_password_length %> charactères minimum</em>
@@ -22,13 +23,13 @@
     </div>
 
     <div class="field">
-      <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      <%= f.label :confirmation_de_mot_de_passe %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "nouveau-mot-de-passe" %>
     </div>
 
     <div class="field">
-      <%= f.label :current_password %> <i>(nous avons besoin de ton mot de passe actuel pour confirmer tes changements)</i><br />
-      <%= f.password_field :current_password, autocomplete: "current-password" %>
+      <%= f.label :mot_de_passe_actuel%> <i>(nous avons besoin de ton mot de passe actuel pour confirmer tes changements)</i><br />
+      <%= f.password_field :current_password, autocomplete: "mot-de-passe-actuel" %>
     </div>
 
     <div class="actions">
@@ -36,9 +37,9 @@
     </div>
   <% end %>
 
-  <h3>Cancel my account</h3>
+  <h3>Supprimer mon compte</h3>
 
-  <p>Unhappy? <%= button_to "Annuler mon compte", registration_path(resource_name), data: { confirm: "Es-tu vraiment certain ?" }, method: :delete %></p>
+  <p>Mécontent ? <%= button_to "Annuler mon compte", registration_path(resource_name), data: { confirm: "Es-tu vraiment certain ?" }, method: :delete %></p>
 
   <%= link_to "REtour", :back %>
 </div>

@@ -13,7 +13,11 @@
       </div>
 
         <div class="">
-          <%= link_to 'CHALLENGE TES AMIS', new_challenge_path, :class => "btn btn-primary btn-lg jumbo-button" %>
+          <% if user_signed_in? %>
+            <%= link_to 'CHALLENGE TES AMIS', new_challenge_path, :class => "btn btn-primary btn-lg jumbo-button" %>
+          <% else %>
+            <%= link_to 'CHALLENGE TES AMIS', new_user_session_path, :class => "btn btn-primary btn-lg jumbo-button" %>
+          <% end %>
         </div>
     </div>
   </div>  
@@ -38,8 +42,8 @@
             Crée ton challenge
           </h4>
           <p class="card-text text-center">
-            Choisis un thème culinaire <br>
-            parmis des dizaines<br>
+            Choisis un thème culinaire<br>
+            et invite tes amis à participer<br>
           </p>
         </div>
       </div>
@@ -53,7 +57,7 @@
         
         <div class="card-body">
           <h4 class="card-title text-center red-text">
-            invite tes amis
+            Accède à ton espace
           </h4>
           <p class="card-text text-center">
             Chaque invité pourra découvrir
@@ -66,12 +70,12 @@
     <div class="col-lg-4 col-md-4 col-xs-12">
       <div>
         <div  class="mx-auto">
-          <%= image_tag "taste.jpg", :class => "landing-icon mx-auto d-block" %>
+          <%= image_tag "taste.jpg", :class => "landing-icon2 mx-auto d-block" %>
         </div>
         
         <div class="card-body">
           <h4 class="card-title text-center red-text">
-            et montre c'est qui le chef !
+            C'est qui le chef !
           </h4>
           <p class="card-text text-center">
             Note la prestations des
@@ -92,8 +96,8 @@
       <div>
         <div class="recipe-of-the-day">
           <div class="content">
-            <h3 class="section-title">Cook This Now ⏲</h3>
-            <a class="recipe-hed" href="/recipes/food/views/lemony-salmon-and-spiced-chickpeas">Lemony Salmon and Spiced Chickpeas</a>
+            <h3 class="section-title">A toi de jouer !</h3>
+            <a class="recipe-hed" href="/recipes/food/views/lemony-salmon-and-spiced-chickpeas">un challenge Pasta ça vous tente</a>
             <p class="recipe-dek" >Une lichette de savoir recevoir, un zest d'originalité et le partage au coeur de l'expérience</p>
           </div>
           <div class="photo-wrap">
@@ -115,26 +119,26 @@
             <div>
               <%= image_tag "choose-icon.png", :class => "step-icon mx-auto d-block" %>
             </div>
-            <h4 class="text-center">Large choix de thèmes</h4>
+            <h4 class="text-center">Sélectionne un thème</h4>
             <p class="white-text">
-              Tu trouveras un grand choix de thèmes. Les recettes sont accessibles à tous.
+              C'est toi qui choisis. La catégorie ou le pays que tu sélectionnera définie les recettes attribuées aux participants
             </p>
           </div>
           <div class="p-2">
             <div>
               <%= image_tag "recipe.png", :class => "step-icon mx-auto d-block" %>
             </div>
-             <h4 class="text-center">Recettes pour tous</h4>
+             <h4 class="text-center">Tous en cuisine</h4>
             <p class="white-text">
-              Tu trouveras un grand choix de recettes. Pas besoin d'être un chef étoilé pour réussir, mais on est certains que nos recettes te permettront de t'améliorer
+              Les recettes sont bien documentées. Liste des ingrédients, instructions, lien vidéo... et le site te donne tous les outils pour suivre le challenge, noter tes amis ... Il ne reste plus qu'à allumer le four ! 
             </p>
           </div>
           <div class="p-2">
-            <h4 class="text-center">....</h4>
-              <p class="white-text">
-                Tu trouveras un grand choix de thèmes. Les recettes sont accessibles à tous.
-                
-              </p>
+            <% if user_signed_in? %>
+              <%= link_to 'CHALLENGE TES AMIS', new_challenge_path, :class => "btn btn-outline-light btn-lg" %>
+            <% else %>
+              <%= link_to 'CHALLENGE TES AMIS', new_user_session_path, :class => "btn btn-outline-light btn-lg" %>
+            <% end %>
           </div>
         </div>
       </div>
@@ -159,8 +163,8 @@
       <div class="card mb-3 user">
         <%= image_tag "kitchen.jpg", :class => "img-user-experience" %>
         <div class="card-body">
-          <h5 class="user-quote">" Avant c'était toujours moi qui cuisinait ! maintenant Paul se prend au jeu, il a même mis un tablier "</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <h5 class="user-quote">" Maintenant Paul cuisine, il a même acheté un tablier "</h5>
+          <p class="user-expe">Avant c'était toujours moi qui cuisinait ! On ne peux pas dire que la cuisine était sa pièce favorite. Depuis que l'on organise régulièrement des challenges avec d'autres couples, Paul met les petits plats dans les grands.</p>
         </div>
       </div>
     </div>
@@ -193,89 +197,19 @@
 
 </div>
 
-
-</div>
-    <section class="py-5 text-center container">
-    <h1 class="fw-light">Une petite faim ? 🍔 </h1>
-    <p class="lead text-muted">Choisis ta catégorie dans la liste</p>
-    <div class="row py-lg-5">
-        <div class="col-lg-6 col-md-8 mx-auto">
-          <div class="form-group">
-            <select class="form-control search-content" id="search-input">
-              <option selected>Choisis...</option>
-              <option>Breakfast</option>
-              <option>Starter</option>
-              <option>Dessert</option>
-              <option>Seafood</option>
-              <option>Beef</option>
-              <option>Chicken</option>
-              <option>Lamb</option>
-              <option>Pork</option>
-              <option>Pasta</option>
-              <option>Vegan</option>
-              <option>Vegetarian</option>
-              <option>Miscellaneous</option>
-            </select>
-            <br>
-            <button type="submit" class="search-btn btn btn-outline-primary fas fa-search" id="search-btn">Chercher</button>
-          </div>
-          <div class="input-group meal-search-box">
-          </div>
-        </div>
+<div class="container-fluid bg-primary p-5">
+  <div class="container">
+    <div class="d-flex justify-content-center">
+      <div class="pt-2 mr-2">
+        <h5 class="white-text">Alors tu es plutôt challenge Pasta ou Cuisine Allemande</h5>
       </div>
-      <div id="meal" class="row meal"></div>
-    </section>
-    <script>const searchBtn = document.getElementById('search-btn');
-    const mealList = document.getElementById('meal');
-    const mealDetailsContent = document.querySelector('.meal-details-content');
-    const recipeCloseBtn = document.getElementById('reipe-close-btn');
-    
-    searchBtn.addEventListener("click", getMealList);
-    
-    function getRandomInt(max) {
-        return Math.floor(Math.random() * Math.floor(max));
-    }
-    
-    function getMealList(){
-        let searchInputTxt = document.getElementById('search-input').value.trim();
-        console.log(searchInputTxt);
-        fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${searchInputTxt}`)
-        .then(response => response.json())
-        .then(data => {
-            let dataMeal = data.meals[getRandomInt(data.meals.length)]
-            console.log(dataMeal)
-            console.log(data.meals.length)
-            let html = "";
-            if (data.meals) {
-                html += `
-                    <div class="container meal-result">
-                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                            <div class="col">
-                                <h1 class="fw-light"> Ta recette 🤩 </h1>
-                                <div class="card shadow-sm" id="meal">
-                                    <img src="${dataMeal.strMealThumb}" alt="Meal Img"/>
-                                    <div class="card-body">
-                                        <p class="card-text meal_item"><strong>${dataMeal.strMeal}</strong></p>
-                                        <p class="card-text meal_item">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-sm btn-outline-secondary">Voir plus</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> 
-                    </div>
-                `; 
-            };
-            mealList.innerHTML = html;
-        });
-    }
-    </script>
-
-
-
-
-<%= link_to 'Back', challenges_path %>
-
+      <div class="ml-2">
+        <% if user_signed_in? %>
+          <%= link_to 'A TOI DE JOUER', new_challenge_path, :class => "btn btn-outline-light" %>
+        <% else %>
+          <%= link_to 'A TOI DE JOUER', new_user_session_path, :class => "btn btn-outline-light" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

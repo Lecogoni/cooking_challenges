@@ -32,6 +32,7 @@ Things you may want to cover:
 - virer les images inutiles
 - supprimer lien inutile des mails d'invitations
 
+- RAILS_ENV=production rake assets:precompile
 - git push heroku master
 - heroku run rake db:migrate
 
@@ -44,4 +45,4 @@ Things you may want to cover:
 le rouge : #f93f23
 gris clair :#f1f2f2
 gris foncé #292929
-jaune ##ffda08
+jaune #ffda08

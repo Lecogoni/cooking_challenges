@@ -1,8 +1,14 @@
 <div class="mb-5">
-  <h1>Mes Challenges</h1>
+   <div class="d-flex justify-content-center">
+    <div>
+      <h1>Mes Challenges</h1>
+    </div>
+  </div>
+  
 </div>
 
 <div class="row">
+
 
   <% @challenges = @user.challenges %>
   <% @challenges.each do |challenge| %>
@@ -21,6 +27,7 @@
               <h5 class="mb-1"><%= challenge.title.upcase %></h5>
               <span class="badge bg-light text-sm-start"><%= challenge.status %></span>
             </div>
+
             <p class="mb-1">Category du challenge : <span class="gray-text"><%= challenge.meal_category %></span></p>
           </a>
   

@@ -25,7 +25,8 @@ class SurveysController < ApplicationController
 
     respond_to do |format|
       if @survey.save
-        format.html { redirect_to @survey, notice: "Création du questionaire." }
+        flash.now[:success] = "Création du questionaire."
+        format.html { redirect_to @survey}
         format.json { render :show, status: :created, location: @survey }
       else
         flash.now[:danger] = "Echec :" + @survey.errors.full_messages.join(" ")
@@ -47,8 +48,8 @@ class SurveysController < ApplicationController
         
         # update le total de l'event, la note global - somme des surveys 
         update_event_total()
-
-        format.html { redirect_to @survey, notice: "Le questionnaire vient d'être mis à jour." }
+        flash[:success] = "Le questionnaire vient d'être mis à jour."
+        format.html { redirect_to @survey }
         format.json { render :show, status: :ok, location: @survey }
       else
         flash.now[:warning] = "Echec :" + @survey.errors.full_messages.join(" ")

@@ -52,10 +52,10 @@ class ChallengesController < ApplicationController
 
         # create the number of Guest with the id of the current challenge
         @num_guest.times do
-         Guest.create(email: "", username: "", challenge_id: @challenge.id)
+        Guest.create(email: "", username: "", challenge_id: @challenge.id)
         end
         
-        format.html { redirect_to edit_challenge_path(@challenge), notice: "Bravo ! Tu viens de créer ton challenge !" }
+        format.html { redirect_to edit_challenge_path(@challenge), notice: "Plus que quelques clic et ton challenge sera validé !" }
         format.json { render :show, status: :created, location: @challenge }
 
 
@@ -65,7 +65,6 @@ class ChallengesController < ApplicationController
         format.json { render json: @challenge.errors, status: :unprocessable_entity }
       end
     end
-
 
   end
 
@@ -87,7 +86,7 @@ class ChallengesController < ApplicationController
   def destroy
     @challenge.destroy
     respond_to do |format|
-      format.html { redirect_to challenges_url, notice: "Bon bein là, le challenge, bein... il a fait un grand saut dans le vide..." }
+      format.html { redirect_to user_path(current_user.id), notice: "Dommage, ton challenge n'est pas validé. tu pourras toujours un recréer un !!" }
       format.json { head :no_content }
     end
   end

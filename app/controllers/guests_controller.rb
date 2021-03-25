@@ -25,7 +25,8 @@ class GuestsController < ApplicationController
 
     respond_to do |format|
       if @guest.save
-        format.html { redirect_to @guest, notice: "Création d'un invité." }
+        flash[:notice] = "Création d'un invité."
+        format.html { redirect_to @guest }
         format.json { render :show, status: :created, location: @guest }
       else
         flash.now[:warning] = "Echec :" + @guest.errors.full_messages.join(" ")
@@ -37,6 +38,8 @@ class GuestsController < ApplicationController
 
   # PATCH/PUT /guests/1 or /guests/1.json
   def update
+
+    @this_challenge = @guest.challenge.theme
 
     # get challenge_id for the mentionned guest challenge
     @challenge_id = params[:challenge]
@@ -60,11 +63,11 @@ class GuestsController < ApplicationController
 
         UserMailer.invitation_email(user, current_user).deliver_now
       else
-        flash.now[:notice] = 'invitation envoyé!'
+        flash.now[:notice] = 'Invitation envoyé !'
         transfer_guest_to_user()
       end
     else
-      flash.now[:alert] = 'Error !'
+      flash.now[:alert] = 'Erreur !'
     end
 
   end
@@ -73,7 +76,8 @@ class GuestsController < ApplicationController
   def destroy
     @guest.destroy
     respond_to do |format|
-      format.html { redirect_to guests_url, notice: "L'invité a été détruit avec succès. (cf traduction ggogle du message généré automatiquement par rails... Il n'y aurait pas un peu de sadisme là dedans ?" }
+      flash[:success] = "L'invité a été détruit avec succès. (cf traduction google du message généré automatiquement par rails... Il n'y aurait pas un peu de sadisme là dedans ?"
+      format.html { redirect_to guests_url }
       format.json { head :no_content }
     end
   end

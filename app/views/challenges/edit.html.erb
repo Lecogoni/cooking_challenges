@@ -1,5 +1,4 @@
-<div class="container">
-
+<div class="container mt-5">
   <div class="d-flex flex-column align-items-center">
     <div class="d-flex flex-column align-items-center mb-4">
       <div>
@@ -20,6 +19,7 @@
         </p>       
       </div>
     </div>
+
 
     <div>
       <h3 class="text-center">Choisis un(e) <%= @challenge.theme_choice %> pour ton challenge</h3>
@@ -58,14 +58,15 @@
 
         <%= hidden_field_tag(:challenge, @challenge.id) %>
 
+
         <div class="row d-flex justify-content-center">
 
           <div class="form-group mr-4">
-            <%= form.label :username, class: "col-md-4 control-label" %> <%= form.text_field :username, class: "form-control" %>
+            <%= form.label :username, class: "col-md-4 control-label" %> <%= form.text_field :username, required: true, class: "form-control" %>
           </div>
 
           <div class="form-group mr-4">
-            <%= form.label :email %> <%= form.email_field :email, class: "form-control"  %>
+            <%= form.label :email %> <%= form.email_field :email, required: true, class: "form-control"  %>
           </div>
           
           <div class="actions pt-4">
@@ -85,14 +86,15 @@
         <br><a href="#" class="btn btn-secondary btn-lg disabled" role="button" aria-disabled="true">valider</a>
       <% end %>
     </div>
-    <div class="row d-flex justify-content-center">
-    <br>
-    RAJOUTER UN BOUTON DESTROY
+    <div class="row d-flex justify-content-center mt-3">
+      
+      <%= link_to 'Annuler', @challenge, method: :delete, :class => "btn btn-outline-secondary btn-sm", data: { confirm: 'Es tu certain de vouloir supprimer ce challenge ?' } %>
     </div>
 
     <div class="mb-5 mt-3">
       <%= image_tag "fork-spoon.png", :class => "spoon mx-auto d-block" %>
     </div>
+
 
   </div>
 

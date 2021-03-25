@@ -1,232 +1,43 @@
 <div class="container">
-
   <p id="notice"><%= notice %></p>
-
   <div class="row">
-  
-<!--- Challenge info-->
     <% if Event.where(user_id: current_user.id).where.not(challenge_id: @event.challenge.id).count == 0 %>
     <div class="col-lg-12">
     <% else %>
     <div class="col-lg-8">
     <% end %>
+<!--- Challenge info-->
       <div class="bs-component">
         <div class="card mb-3">
-
+          <!---header-->
           <div class="card-header d-flex w-100 justify-content-between">
             <h2 class="mb-1 text-muted"><%= @event.challenge.title.upcase %></h2>
             <span class="badge bg-danger text-sm-start"><%= @event.challenge.status %></span>
           </div>
-
-          <div class="card-body">
+          <!---Info challenge-->
+          <div class="card-body header-event">
             <h5 class="card-title mb-4">Category du challenge : <span class="red-text"><%= @event.challenge.meal_category %></span></h5>
             <h6 class="card-subtitle text-muted">message du créateur :</h6>
-            <p class="p-3"><%= @event.challenge.description %></p>
-          </div>
-          <hr>
-
-          <!-- info du current_user à propos du challenge -->
-          <div class="card-body">
-
-            <h5 class="card-subtitle text-muted mb-4">Ma participation</h5>
-            <div class="row">
-
-              <div class="col-lg-12">
-                
-                <!-- status pending -->
-                <% if @event.participation == "pending" %>
-
-                  <h6 class="card-subtitle text-muted mb-2">ma participation est : <%= @event.participation %></h6>
-                  <%= link_to 'accepter', toggle_participation_event_path, method: 'post', :class => 'badge badge-primary badge-pill' %><br>
-                  <%= link_to 'décliner', abort_status_event_path, method: 'post', :class => 'badge badge-warning badge-pill' %>
-                  
-                <!-- status abort -->
-                <% elsif @event.participation == "abort" %>
-
-                  <h6 class="card-subtitle text-muted mb-2">Tu as choisis de ne pas participer</h6>
-                  <% if @event.challenge.status == "pending" %>
-                    <p>Le challenge n'a pas encore commencé, il n'est pas encore possible de changer d'avis ou valider ta participation</p>
-                    <%= link_to 'participer', toggle_participation_event_path, method: 'post', :class => 'badge badge-primary badge-pill' %>
-                  <% else %>
-                    <p>Le challenge est <%= @event.challenge.status %>. Ce n'est plus possible d'y participer. Il ne vous reste plus qu'à créer le votre !</p>
-                    <div>
-                      <%= link_to 'créer ton challenge', new_challenge_path, :class => "btn btn-primary btn-lg" %>
-                    </div>
-                  <% end %>
-
-                <!-- status abort -->
-                <% elsif @event.participation == "confirmed" %>
-                  <h6 class="card-subtitle text-muted mb-2">Ta participation est confirmée</h6>
-
-                  <% if @event.status == "unscheduled" %>
-                    <p>
-                      tu n'as pas encore planifié ton dîner.
-                    </p>
-                    <p>
-                      <%= link_to 'check', toggle_status_event_path, method: 'post'%>
-                    </p>
-                    <p>
-                      <div class="custom-control custom-switch" id="event-status-toggle">
-                        <input type="checkbox" class="custom-control-input" id="customSwitch1" checked>
-                        <label class="custom-control-label" for="customSwitch1">Toggle this switch element</label>
-                      </div>
-                    </p>
-                  <% elsif @event.status == "done" %>
-                    <p>
-                      Félicitation ! Tu as réalisé ton challenge. Voyons ce que les autres ont pensé de ta prestation ...
-                    </p>
-
-                    <h6 class="card-subtitle text-muted mb-2">Ma notation : </h6>
-                    
-                      <div class="row">
-                        <div class="col-md-10">
-                          <div class="row">
-                            <% @event_surveys = @event.surveys %>
-                            <% @event_surveys.each do |survey| %>
-                              <div class="col-md-4"><%= survey.surveyor.username.capitalize %></div>
-                              <div class="col-md-4"><%= survey.total_grade %></div>
-                              <div class="col-md-4">commentaire</div>
-                            <% end %>
-                          </div>
-                        </div>
-
-                        <div class="col-md-2">
-                          <% if @event.surveys.all? { |el| el.status == "pending" } == true %>
-                            ma note provisoire est <%= @event.total_event %>
-                          <% else %>
-                            mon score final est <%= @event.total_event %>
-                          <% end %>
-                        </div>
-
-                      </div>
-                                            
-                  <% end %>
-
-
-                <% end %>
-               
-              </div>
-              
-            </div>
-            <!-- -->
-            <div>
-              <% if @event.status == "done" %>
-              
-              <% end %> 
-            </div>
-
+            <p class="pt-2"><%= @event.challenge.description %></p>
           </div>
 
-          <!-- Liste des autres participants -->
-
-          <div class="card-body">
-            <h5 class="card-subtitle text-muted mb-4">Recap des autres dîners du challenge :</h5>
-
-            <% @this_event = Event.where(challenge_id: @event.challenge.id).where.not(user_id: current_user.id) %>
-            <% @this_event.each do |event| %>
-              <div class="row">
-
-                <div class="col-md-2">
-                  <div class="d-flex justify-content-start">
-                    <div class="d-flex justify-content-start mr-2">
-                      <div class="mr-3">
-                        <% if event.participation == "pending" %>
-                          <span class=""><i class="fa fa-check-circle" style="color:lightgray"></i></span>
-                        <% elsif event.participation == "confirmed" %>
-                          <span class=""><i class="fa fa-check-circle" style="color:indianred"></i></span>
-                        <% else %>
-                          <i class="fas fa-ban"></i>
-                        <% end %>
-                      </div>
-                      <div>
-                        <%= event.user.username.capitalize %>
-                      </div>
-                    </div>
-                    <div>
-                      <% if event.user.id == current_user.id || event.role == "créateur" %>
-                        <span class="badge bg-light text-dark"><%= event.role %></span>
-                      <% end %>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-8">
-                  <div class="d-flex justify-content-between">
-                    <div class="d-flex justify-content-start">
-                      <div class="mr-3">
-                        <% if event.participation == "pending" %>
-                          <p>
-                            n'a pas encore confirmé sa participation
-                          </p>
-                        <% elsif event.participation == "abord" %>
-                          <p>
-                            a décliné le challenge
-                          </p>
-                        <%  elsif event.participation == "confirmed"  %>
-                          <% if event.status == "unscheduled" %>
-                            son dîner n'est pas encore planifié
-                          <% elsif event.status == "scheduled" %>
-                            son dîner est programmé
-
-                          <% elsif event.status == "done" %>
-                            Le dîner de <%= event.user.username.capitalize %> est passé, c'est evalution time<br><br>
-                            <% @surveys = event.surveys %>
-                            
-                              <% @currentUser_survey = Survey.where(event_id: event.id, surveyor_id: current_user.id)[0] %>
-                              <% if @currentUser_survey.created_at == @currentUser_survey.updated_at %>
-                                <div class="row">
-                                  <div class="col-md-9">
-                                    Tu ne pourras voir la note des autres participants qu'après avoir compléter ton évalution.
-                                  </div>
-                                  <div class="col-md-3">
-                                    <%= link_to "noter sa prestation", edit_survey_path(@currentUser_survey) %>
-                                    
-                                  </div>
-                                </div> 
-                              <% else %>
-                                <% @surveys.each do |survey| %>
-                                  <ul>
-                                    <% if survey.created_at != survey.updated_at %>
-                                      <% if current_user.id == survey.surveyor_id %>
-                                        <li>tu as donnée la note de : <%= survey.total_grade %></li>
-                                      <% else %>
-                                        <li><%= survey.surveyor.username %> a donnée la note de : <%= survey.total_grade %></li>
-                                      <% end %>
-                                    <% else %>
-                                      <li><%= survey.surveyor.username %> n'a pas encore noté</li>
-                                    <% end %>
-                                  </ul>
-                                <% end %>
-                              <% end %>
-                          <% end %>
-                        <% end %>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-2">
-                  <% if event.surveys.all? { |el| el.status == "pending" } == true %>
-                    <p>note provisoire : <%= event.total_event %></p>
-                  <% else %>
-                    <p>note definitive : <%= event.total_event %></p>
-                  <% end %>
-                </div>
-              </div>
-
-              <hr>
-
-            <% end %>
+          <div>
+            <% if @event.status == "done" %>
+            <% end %> 
           </div>
+          <!---Accordion display-->
+          <div>
+            <%= render 'accordion', event: @event %>
+          </div>
+
           <!-- Card Footer -->
           <div class="card-footer text-muted">
             <p></p>
           </div>
+
         </div>
       </div>
     </div>
-
-
 
 <!--Other current_user challenge-->
     <div class="col-lg-4">
@@ -246,6 +57,7 @@
       </div>
     </div>
 
+          
   </div>
-
 </div>
+

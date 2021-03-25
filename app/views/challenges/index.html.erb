@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Challenges</h1>
+<h1>Les challenges</h1>
 
 <table>
   <thead>
@@ -15,9 +15,9 @@
     <% @challenges.each do |challenge| %>
       <tr>
         <td><%= challenge.title %></td>
-        <td><%= link_to 'Show', challenge %></td>
-        <td><%= link_to 'Edit', edit_challenge_path(challenge) %></td>
-        <td><%= link_to 'Destroy', challenge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Afficher', challenge %></td>
+        <td><%= link_to 'Modifier', edit_challenge_path(challenge) %></td>
+        <td><%= link_to 'Détruire', challenge, method: :delete, data: { confirm: 'Es-tu vraiment certain ?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -25,4 +25,4 @@
 
 <br>
 
-<%= link_to 'New Challenge', new_challenge_path %>
+<%= link_to 'Nouveau challenge', new_challenge_path %>

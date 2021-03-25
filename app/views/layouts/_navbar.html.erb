@@ -1,5 +1,5 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary fixed-top">
-  <div class="container-fluid">
+  <div class="container">
 
     <div><%= link_to "Cooking Challenge", root_path, :class => "navbar-brand" %></div>
 
@@ -9,10 +9,6 @@
     <div class="collapse navbar-collapse" id="navbarScroll">
       <ul class="navbar-nav ml-auto">
         
-        <li class="nav-item"><%= link_to "WIP", users_path, :class => "nav-link" %></li>
-
-        <li class="nav-item"><%= link_to "theme/kit", welcome_index_path, :class => "nav-link" %></li>
-
         <% if user_signed_in? %>
           <li class="nav-item"><%= link_to "Mon Espace", user_path(current_user), :class => "nav-link" %></li>
         <% end %>
@@ -40,11 +36,6 @@
             </ul>
           </li>
         <% end %>
-
-        <li class="nav-item">
-            <a class="nav-link" href="https://bootswatch.com/journal/">site web du Kit</a>
-        </li>
-
       </ul>
    
     </div>

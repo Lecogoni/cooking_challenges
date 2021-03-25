@@ -2,7 +2,6 @@ class Guest < ApplicationRecord
 
   belongs_to :challenge
   
-  validates :username, length: { in: 3..20 }, on: :update
-
+  validates_presence_of :username, on: :update
   
 end
