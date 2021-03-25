@@ -58,6 +58,7 @@ class ChallengesController < ApplicationController
         format.html { redirect_to edit_challenge_path(@challenge), notice: "Bravo ! Tu viens de créer ton challenge !" }
         format.json { render :show, status: :created, location: @challenge }
 
+
       else
         flash.now[:danger] = "Echec :" + @challenge.errors.full_messages.join(" ")
         format.html { render :new, status: :unprocessable_entity }
