@@ -17,4 +17,3 @@ import "channels"
 Rails.start()
 ActiveStorage.start()
 
-
