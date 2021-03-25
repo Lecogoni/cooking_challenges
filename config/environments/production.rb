@@ -7,6 +7,9 @@ Rails.application.configure do
   config.cache_classes = true
 
 
+  config.serve_static_assets = true
+  config.assets.compile = true
+
   # Sendgrid heroku configuration
   config.action_mailer.default_url_options = {:host => ENV['HOST_DEFAULT_URL'], 
     only_path: true }

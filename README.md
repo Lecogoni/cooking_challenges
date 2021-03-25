@@ -32,6 +32,7 @@ Things you may want to cover:
 - virer les images inutiles
 - supprimer lien inutile des mails d'invitations
 
+- RAILS_ENV=production rake assets:precompile
 - git push heroku master
 - heroku run rake db:migrate
 
