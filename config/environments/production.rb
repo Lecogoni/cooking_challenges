@@ -11,6 +11,8 @@ Rails.application.configure do
   config.assets.compile = true
   config.assets.digest = true
 
+  config.BASE_URL = 'https://herokuapp.com/'
+
   # Sendgrid heroku configuration
   config.action_mailer.default_url_options = {:host => ENV['HOST_DEFAULT_URL'], 
     only_path: true }
