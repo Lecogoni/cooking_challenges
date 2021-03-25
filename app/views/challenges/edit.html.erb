@@ -80,9 +80,8 @@
 
     <div class="row d-flex justify-content-center">
       <% if @guests.all? { |guest| guest.created_at != guest.updated_at  } == true %>
-        <button type="button" class="btn btn-success btn-lg">Valider</button>
+        BOUTON A CREER
       <% else %>
-        <button type="button" class="btn btn-secondary btn-lg" disabled>Valider</button>
         <p class="red-text text-center">envoie l'ensemble des invitations pour valider ton challenge</p>
       <% end %>
     </div>
