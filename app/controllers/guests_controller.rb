@@ -96,16 +96,16 @@ class GuestsController < ApplicationController
     # fetch_recipe(@challenge.meal_category, @new_event)
     if @challenge.meal_category == nil || @challenge.meal_category == ""
       fetch_recipe_from_area(@challenge.meal_area, @new_event)
-      puts "-------------------------------------------------------------"
+      puts "-----------------------------------------------------------------------------------------------------------"
       puts @challenge.meal_area
       puts @my_recipe
-      puts "-------------------------------------------------------------"
+      puts "----------------------------------------------------------------------------------------------------------------------------------"
     elsif @challenge.meal_area == nil || @challenge.meal_area == ""
      fetch_recipe(@challenge.meal_category, @new_event)
-     puts "-------------------------------------------------------------"
+     puts "----------------------------------------------------------------------------------------------------------------------------------"
      puts @challenge.meal_category
      puts @my_recipe
-     puts "-------------------------------------------------------------"
+     puts "-------------------------------------------------------------------------------------------------------------------------------------------------------"
     end
     # generating a devise reset password
     raw, hashed = Devise.token_generator.generate(User, :reset_password_token)
