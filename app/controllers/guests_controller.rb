@@ -54,6 +54,13 @@ class GuestsController < ApplicationController
         # fetch recipe on API and save it
         fetch_recipe(@challenge.meal_category, @new_event)
 
+        # fetch recipe from area or from category on API and save it according to user choice
+        # if @meal_category == nil || @meal_category == ""
+        #   fetch_recipe_from_area(@meal_area, @owner_event)
+        # elsif @meal_area == nil || @meal_area == ""
+        #   fetch_recipe(@meal_category, @owner_event)
+        # end
+
         UserMailer.invitation_email(user, current_user).deliver_now
       else
         flash.now[:notice] = 'invitation envoyé!'

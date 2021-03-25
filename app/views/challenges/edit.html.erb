@@ -16,16 +16,13 @@
       </div>
       <div>
         <p class="text-center">
-          <%= @challenge.numb_guest %> invité(s)<br>
-          Tu as choisis la catégorie : <%= @challenge.meal_category %><br>
-          Tu as choisis la : <%= @challenge.meal_area %>
-        </p>
+          <%= @challenge.numb_guest %> invité(s)
+        </p>       
       </div>
     </div>
 
     <div>
-      <h3 class="text-center">Invite tes amis à participer</h3>
-      <h6 class="text-center">Choisis un thème (catégorie ou pays) pour ton challenge</h6>
+      <h3 class="text-center">Choisis un(e) <%= @challenge.theme_choice %> pour ton challenge</h3>
       <%= form_with(model: @challenge) do |form| %>
         <% if @challenge.theme_choice == "Categorie"  %>
           <div class="text-center">
@@ -39,12 +36,19 @@
             </div>
         <% end %>
             <div class="actions text-center">
-              <%= form.submit %>
+            <br/><%= form.submit %>
             </div>
       <% end %>
     </div>
   </div>
+
+  <div>
+    <p class="text-center"><br/>Tu as choisis : <%= @challenge.meal_category %></p>
+  </div>
   
+  <div>
+    <h3 class="text-center">Invite tes amis à participer</h3>
+  </div>
   <% @guests = @challenge.guests %>
 
     <div class="p-5">
