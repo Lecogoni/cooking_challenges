@@ -114,7 +114,14 @@ article{
 .recipe-picture{
   max-width: 15em;
   height: auto;
+}
 
+.login-img{
+  max-width: 24em;
+  height: auto;
+  padding-right: 30px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
 }
 
 .user-quote{
