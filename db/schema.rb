@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_25_204206) do
+ActiveRecord::Schema.define(version: 2021_03_24_214956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2021_03_25_204206) do
   end
 
   create_table "guests", force: :cascade do |t|
-    t.string "username"
+    t.string "username", default: ""
     t.string "email"
     t.bigint "challenge_id"
     t.datetime "created_at", precision: 6, null: false
@@ -125,7 +125,6 @@ ActiveRecord::Schema.define(version: 2021_03_25_204206) do
     t.integer "total_grade", default: 0
     t.string "status", default: "pending"
     t.string "comment"
-    t.string "challenge_id"
     t.index ["event_id"], name: "index_surveys_on_event_id"
     t.index ["surveyor_id"], name: "index_surveys_on_surveyor_id"
   end
