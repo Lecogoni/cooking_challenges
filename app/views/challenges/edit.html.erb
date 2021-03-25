@@ -25,6 +25,20 @@
 
     <div>
       <h3>Invite tes amis à participer</h3>
+      <h6 class="text-center">Invite tes amis à participer</h6>
+      <%= form_with(model: @challenge) do |form| %>
+        <div class="text-center">
+          <%= form.label :meal_category %><br>
+          <%= form.select :meal_category, [ "", "Breakfast", "Starter", "Dessert", "Seafood", "Beef", "Chicken", "Lamb", "Pork", "Pasta", "Vegan" ,"Vegetarian"], selected: "" %>
+        </div>
+        <div class="text-center">
+          <%= form.label :meal_area %><br>
+          <%= form.select :meal_area, ["", "American", "British", "Canadian", "Chinese", "Dutch", "Egyptian", "French", "Greek", "Indian", "Italian", "Japanese", "Mexican", "Turkish"], selected: ""%>
+        </div>
+        <div class="actions text-center">
+          <%= form.submit %>
+        </div>
+      <% end %>
     </div>
   </div>
   

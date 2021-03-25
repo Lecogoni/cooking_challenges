@@ -40,18 +40,6 @@
       <%= form.label :theme_choice, "area" %>
     </div>
   </div>
-
-  <div>
-    <%= form.label :meal_category %><br>
-    <%= form.select :meal_category, [ "", "Breakfast", "Starter", "Dessert", "Seafood", "Beef", "Chicken", "Lamb", "Pork", "Pasta", "Vegan" ,"Vegetarian"], selected: "" %>
-  </div>
-  
-  <div>
-    <%= form.label :meal_area %><br>
-    <%= form.select :meal_area, ["", "American", "British", "Canadian", "Chinese", "Dutch", "Egyptian", "French", "Greek", "Indian", "Italian", "Japanese", "Mexican", "Turkish"], selected: ""%>
-  </div>
-  
- 
   
   <div class="actions">
     <%= form.submit %>
