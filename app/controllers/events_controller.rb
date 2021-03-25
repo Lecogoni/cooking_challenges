@@ -84,6 +84,7 @@ class EventsController < ApplicationController
   def abort_status
     if @event.participation == "pending"
       @event.participation = "abort"
+      @event.role = "décliné"
       @event.save
     end
   end

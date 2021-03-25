@@ -39,8 +39,6 @@ class GuestsController < ApplicationController
   # PATCH/PUT /guests/1 or /guests/1.json
   def update
 
-    @this_challenge = @guest.challenge.theme
-
     # get challenge_id for the mentionned guest challenge
     @challenge_id = params[:challenge]
     @challenge = Challenge.find(@challenge_id)

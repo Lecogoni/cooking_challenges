@@ -1,73 +1,79 @@
-<div class="mb-5">
-   <div class="d-flex justify-content-center">
-    <div>
-      <h1>Mes Challenges</h1>
-    </div>
-  </div>
-  
-</div>
-
-<div class="row">
-
-
-  <% @challenges = @user.challenges %>
-  <% @challenges.each do |challenge| %>
-
-    <% @events = challenge.events %>
-
-    <% @my_event = Event.where(user_id: current_user.id, challenge_id: challenge.id)[0].id %>
-    
-    <div class="col-lg-4">
-      <div class="bs-component">
-        <div class="list-group">
-
-        
-          <a href="/events/<%= @my_event %>"  class="list-group-item list-group-item-action flex-column align-items-start active">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1"><%= challenge.title.upcase %></h5>
-              <span class="badge bg-light text-sm-start"><%= challenge.status %></span>
-            </div>
-
-            <p class="mb-1">Category du challenge : <span class="gray-text"><%= challenge.meal_category %></span></p>
-          </a>
-  
-
-          <a href="/events/<%= @my_event %>" class="list-group-item list-group-item-action flex-column align-items-start">
-            <div class="d-flex w-100 justify-content-between mb-2">
-              <h5 class="mb-1">Participant(s)</h5>
-            </div>
-            <% @events.each do |event| %>
-              <div class="d-flex justify-content-between">
-                <div class="d-flex justify-content-start">
-
-                  <div class="mr-3">
-                    <% if event.participation == "pending" %>
-                      <span class=""><i class="fa fa-check-circle" style="color:lightgray"></i></span>
-                    <% elsif event.participation == "confirmed" %>
-                      <span class="red-text"><i class="fa fa-check-circle"></i></span>
-                    <% elsif event.participation == "abort" %>
-                      <span class=""><i class="fa fa-ban" style="color:lightgray"></i></span>
-                    <% end %>
-                  </div>
-                  <div>
-                    <%= event.user.username.capitalize %>
-                  </div>
-                </div>
-                <div>
-                  <% if event.user.id == current_user.id || event.role == "créateur" %>
-                    <span class="badge bg-light text-dark"><%= event.role %></span>
-                  <% end %>
-                </div>
-              </div>
-            <% end %>
-            
-            <hr>
-            <small class="text-muted">Message du créateur :</small>
-            <p class="mb-1"><%= challenge.description %></p>
-          </a>
-        </div>
+<div class="container mb-3">
+  <div class="mb-5">
+    <div class="d-flex justify-content-center">
+      <div>
+        <h1>Mes Challenges</h1>
       </div>
     </div>
-  <% end %>
-  
+  </div>
+
+  <div class="row">
+
+    <% @challenges = @user.challenges %>
+    <% @challenges.each do |challenge| %>
+
+      <% @events = challenge.events %>
+
+      <% @my_event = Event.where(user_id: current_user.id, challenge_id: challenge.id)[0].id %>
+      
+      <div class="col-lg-4">
+        <div class="bs-component">
+          <div class="list-group mb-3">
+
+          
+            <a href="/events/<%= @my_event %>"  class="list-group-item list-group-item-action flex-column align-items-start active">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1"><%= challenge.title.upcase %></h5>
+                <span class="badge bg-light text-sm-start"><%= challenge.status %></span>
+              </div>
+
+              <p class="mb-1">Category du challenge : <span class="gray-text"><%= challenge.meal_category %></span></p>
+            </a>
+    
+
+            <a href="/events/<%= @my_event %>" class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between mb-2">
+                <h5 class="mb-1">Participant(s)</h5>
+              </div>
+              <% @events.each do |event| %>
+                <div class="d-flex justify-content-between">
+                  <div class="d-flex justify-content-start">
+
+                    <div class="mr-3">
+                      <% if event.participation == "pending" %>
+                        <span class=""><i class="fa fa-check-circle" style="color:lightgray"></i></span>
+                      <% elsif event.participation == "confirmed" %>
+                        <span class="red-text"><i class="fa fa-check-circle"></i></span>
+                      <% elsif event.participation == "abort" %>
+                        <span class=""><i class="fa fa-ban" style="color:lightgray"></i></span>
+                      <% end %>
+                    </div>
+                    <div>
+                      <%= event.user.username.capitalize %>
+                    </div>
+                  </div>
+                  <div>
+                    <% if event.role == "créateur" %>
+                      <span class="badge bg-light text-dark"><%= event.role %></span>
+                    <% elsif event.role == "participant" &&  event.participation == "pending" %>
+                      <span class="text-muted small font-weight-light font-italic">en attente</span>
+                    <% elsif event.role == "participant" &&  event.participation == "confirmed" %>
+                      <span class="badge bg-light text-dark"><%= event.role %></span>
+                    <% elsif event.role == "décliné" %>
+                      <span class="badge bg-warning text-dark"><%= event.role %></span>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+              
+              <hr>
+              <small class="text-muted">Message du créateur :</small>
+              <p class="mb-1"><%= challenge.description %></p>
+            </a>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    
+  </div>
 </div>
