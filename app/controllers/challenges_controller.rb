@@ -72,7 +72,7 @@ class ChallengesController < ApplicationController
   def update
     respond_to do |format|
       if @challenge.update(challenge_params)
-        format.html { redirect_to @challenge, notice: "Ok, le challenge vient d'être modifié." }
+        format.html { redirect_to edit_challenge_path, notice: "Ok, le challenge vient d'être modifié." }
         format.json { render :show, status: :ok, location: @challenge }
       else
         flash.now[:warning] = "Echec :" + @challenge.errors.full_messages.join(" ")
