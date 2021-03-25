@@ -1,12 +1,21 @@
 
-<%  @event %>
+<% @event %>
 
 <div class="">
-  <div class="pl-3">
-    <h3><%=  @event.recipe.meal %></h3>
-    <div class="">
-      <p>categorie : <span class="red-text"><%=  @event.recipe.category %></span>  - origine : <span class="red-text"><%=  @event.recipe.area %></span> - tags : <span class="red-text"><%= @event.recipe.tags %></span> 
-      </p>
+  <div class="d-flex justify-content-between">
+    <div class="pl-3">
+      <h3><%=  @event.recipe.meal %></h3>
+      <div class="">
+        <p>categorie : <span class="red-text"><%=  @event.recipe.category %></span>  - origine : <span class="red-text"><%=  @event.recipe.area %></span> - tags : <span class="red-text"><%= @event.recipe.tags %></span> 
+        </p>
+      </div>
+    </div>
+    <div class="mr-3">
+      <% if @event.recipe.youtube != "" %>
+        <a href="<%= @event.recipe.youtube %>" target="_blank">
+        <img alt="youtube" class="youtube-link" mouseover="branchen_personalber_mo.png" src="/assets/008-youtube.svg">
+        </a>
+      <% end%>
     </div>
   </div>
 
@@ -107,7 +116,6 @@
     <div class="col-12">
       <div class="recipe-instruction">
         <p><span class="red-text">instructions :</span> <%=  @event.recipe.instructions %></p>
-        <p>youtube : <%=  @event.recipe.youtube %></p>
       </div>
     </div>
     

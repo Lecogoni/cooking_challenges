@@ -23,7 +23,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-7">
+    <div class="col-md-6">
 
       <%= form_for @survey do |f| %>
     
@@ -48,7 +48,8 @@
       <% end %>
   
     </div>
-    <div class="col-md-5"> Espace pour montrer la recette
+    <div class="col-md-6">
+      <%= render 'survey-recipe', survey: @survey %>
     </div>
 
   </div>

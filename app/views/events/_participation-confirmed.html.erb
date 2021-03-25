@@ -19,7 +19,7 @@
   <h6 class="card-subtitle text-muted mb-2">Ma notation : </h6>
   
     <div class="row">
-      <div class="col-md-10">
+      <div class="col-md-9">
  
           <% @event_surveys = @event.surveys %>
           <% @other_surveys = Survey.where(event_id: @event.id).where.not(surveyor_id: current_user.id) %>
@@ -31,7 +31,7 @@
                   <div class=""><span class="red-text"><%= survey.surveyor.username.capitalize %></span> t'as donné la note de <span class="red-text"> <%= survey.total_grade %></span></div>
                   <div class="ml-3 mb-2">
                     <% if survey.comment == nil || survey.comment == "" %><span class="gray-text text-muted font-italic">pas de commentaires</span></li>
-                    <% else %><span class="text-muted red-text">Son commentaires : </span><span class="gray-text text-muted font-italic">survey.comment</span>
+                    <% else %><span class="text-muted red-text">Son commentaire : </span><span class="gray-text text-muted font-italic"><%= survey.comment %></span>
                     <% end %>
                   </div>
                 </div>
@@ -41,7 +41,7 @@
 
       </div>
 
-      <div class="col-md-2">
+      <div class="col-md-3">
         <% @other_surveys = Survey.where(event_id: @event.id).where.not(surveyor_id: current_user.id) %>
         <% if @other_surveys.count == 0 %>
           <div class="gray-text text-center">

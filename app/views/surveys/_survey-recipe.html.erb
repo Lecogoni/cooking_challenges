@@ -1,0 +1,110 @@
+<% @survey %>
+<% @event = @survey.event %>
+
+<div class="">
+  <div class="pl-3">
+    <div class="d-flex justify-content-between">
+      <div>
+        <div>
+          <h3><%=  @event.recipe.meal %></h3>
+        </div>
+        <div class="">
+          <p>categorie : <span class="red-text"><%=  @event.recipe.category %></span>  - origine : <span class="red-text"><%=  @event.recipe.area %></span> - tags : <span class="red-text"><%= @event.recipe.tags %></span> 
+          </p>
+        </div>
+      </div>
+      <div class="mr-3">
+        <% if @event.recipe.youtube != "" %>
+          <a href="<%= @event.recipe.youtube %>" target="_blank">
+          <img alt="youtube" class="youtube-link" mouseover="branchen_personalber_mo.png" src="/assets/008-youtube.svg">
+          </a>
+        <% end%>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex flex-column">
+    <div class="col-12">
+      <div class="recipe-instruction">
+        <p  class="text-justify"><img src="<%=  @event.recipe.mealThumb %>" alt="<%=  @event.recipe.meal %>" class="recipe-pic">
+          <span class="red-text">instructions :</span>
+          <%=  @event.recipe.instructions %>
+        </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <div class="recipe-ingredient">
+          <ul>
+            <% if @event.recipe.ingredient1  != "" %>
+              <li><%=  @event.recipe.ingredient1 %> : <%=  @event.recipe.measure1 %></li>
+            <% end %>
+            <% if @event.recipe.ingredient2  != "" %>
+              <li><%=  @event.recipe.ingredient2 %> : <%=  @event.recipe.measure2 %></li>
+            <% end %>
+            <% if @event.recipe.ingredient3  != "" %>
+              <li><%=  @event.recipe.ingredient3 %> : <%=  @event.recipe.measure3 %></li>
+            <% end %>
+            <% if @event.recipe.ingredient4  != "" %>
+              <li><%=  @event.recipe.ingredient4 %> : <%=  @event.recipe.measure4 %></li>
+            <% end %>
+            <% if @event.recipe.ingredient5  != "" %>
+              <li><%=  @event.recipe.ingredient5 %> : <%=  @event.recipe.measure5 %></li>
+            <% end %>
+            <% if @event.recipe.ingredient6  != "" %>
+              <li><%=  @event.recipe.ingredient6 %> : <%=  @event.recipe.measure6 %></li>
+            <% end %>
+            <% if @event.recipe.ingredient7  != "" %>
+              <li><%=  @event.recipe.ingredient7 %> : <%=  @event.recipe.measure7 %></li>
+            <% end %>
+            <% if @event.recipe.ingredient8  != "" %>
+              <li><%=  @event.recipe.ingredient8 %> : <%=  @event.recipe.measure8 %></li>
+            <% end %>
+            <% if @event.recipe.ingredient9  != "" %>
+              <li><%=  @event.recipe.ingredient9 %> : <%=  @event.recipe.measure9 %></li>
+            <% end %>
+            <% if @event.recipe.ingredient10  != "" %>
+              <li><%=  @event.recipe.ingredient10 %> : <%=  @event.recipe.measure10 %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="recipe-ingredient">
+          <ul>
+            <% if @event.recipe.ingredient11  != "" %>
+              <li><%=  @event.recipe.ingredient11 %> : <%=  @event.recipe.measure11 %></li>
+            <% end %>
+            <% if @event.recipe.ingredient12  != "" %>
+              <li><%=  @event.recipe.ingredient12 %> : <%=  @event.recipe.measure12 %></li>
+            <% end %>
+            <% if @event.recipe.ingredient13  != "" %>
+              <li><%=  @event.recipe.ingredient13 %> : <%=  @event.recipe.measure13 %></li>
+            <% end %>
+            <% if @event.recipe.ingredient14  != "" %>
+              <li><%=  @event.recipe.ingredient14 %> : <%=  @event.recipe.measure14 %></li>
+            <% end %>
+            <% if @event.recipe.ingredient15  != "" %>
+              <li><%=  @event.recipe.ingredient15 %> : <%=  @event.recipe.measure15 %></li>
+            <% end %>
+            <% if @event.recipe.ingredient16  != "" %>
+              <li><%=  @event.recipe.ingredient16 %> : <%=  @event.recipe.measure16 %></li>
+            <% end %>
+            <% if @event.recipe.ingredient17  != "" %>
+              <li><%=  @event.recipe.ingredient17 %> : <%=  @event.recipe.measure17 %></li>
+            <% end %>
+            <% if @event.recipe.ingredient18  != "" %>
+              <li><%=  @event.recipe.ingredient18 %> : <%=  @event.recipe.measure18 %></li>
+            <% end %>
+            <% if @event.recipe.ingredient19  != "" %>
+              <li><%=  @event.recipe.ingredient19 %> : <%=  @event.recipe.measure19 %></li>
+            <% end %>
+            <% if @event.recipe.ingredient20  != "" %>
+              <li><%=  @event.recipe.ingredient20 %> : <%=  @event.recipe.measure20 %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>

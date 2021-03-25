@@ -240,6 +240,25 @@ article{
   
 }
 
+.recipe-pic{
+  float: left;
+  max-width: 10em;
+  height: auto;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+.youtube-link{
+  max-width: 2em;
+  height: auto;
+}
+
+.youtube-link:hover{
+  fill: #f93f23;
+}
+
+
+
 .accordion-button:not(.collapsed)::after {
 
 }

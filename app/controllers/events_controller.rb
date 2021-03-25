@@ -107,7 +107,7 @@ class EventsController < ApplicationController
       @event_survey = Event.where(challenge_id: @event.challenge_id).where.not(user_id: @event.user_id).to_a
 
       @event_survey.each_with_index do |survey, index|
-        @new_survey = Survey.create(event_id: @event.id, surveyor_id: survey.user_id )
+        @new_survey = Survey.create(event_id: @event.id, surveyor_id: survey.user_id, challenge_id: @event.challenge_id )
           @questions_list.each do |question|
             @new_question = Question.create(survey_id: @new_survey.id, label: question)
           end

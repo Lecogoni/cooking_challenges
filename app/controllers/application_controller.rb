@@ -130,88 +130,26 @@ class ApplicationController < ActionController::Base
 
     @all_events = Event.where(challenge_id: event.challenge_id)
     @participant_events = Event.where(challenge_id: event.challenge_id).where.not(role: "créateur")
-    @all_surveys = []
-    
-    @all_events.each do |event|
-      @surveys = event.surveys
-      @surveys.each do |suv|
-        @all_surveys << Survey.where(event_id: suv.id)
-      end
-    end
-    
+    @all_surveys = Survey.where(challenge_id: event.challenge_id)
     @this_challenge = @event.challenge
 
-    #@all_event = Event.where(challenge_id: @event.challenge_id).to_a
-    #@confirmed_event = Event.where(challenge_id: @event.challenge_id, participation: "confirmed").to_a
-    
-    
-    puts "---------------------"
-    @all_events.each do |ev|
-      puts "   -#{ev.class}"
-    end
-    puts "---------------------"
-   # puts all_surveys_done?(@all_surveys)
-    puts "---------------------"
-    @all_surveys.each do |survey|
-      puts "------------#{survey.class}"
-    end
-    puts "---------------------"
-    puts @all_events.all? { |ev| ev.status == "done" }
-    puts "---------------------"
-    puts @all_surveys.all? { |ev| ev.status == "done" }
-    puts "---------------------"
-    puts @all_events.class
-    puts "---------------------"
-    puts @all_surveys
-    puts "---------------------"
-    @all_surveys.each do |survey|
-      puts "   -#{survey.class}"
-    end
-    puts "---------------------"
-
-    
     if @participant_events.all? { |ev| ev.participation == "pending" } == true
       @this_challenge.status = "pending"
       @this_challenge.save
-
-      puts "-----------------"
-      puts "pending"
-      puts "-----------------"
       
     elsif @participant_events.all? { |ev| ev.participation == "abort" } == true
       @this_challenge.status = "abort"
       @this_challenge.save
-      
-      puts "-----------------"
-      puts "abort"
-      puts "-----------------"
 
-    elsif @all_events.all? { |ev| ev.status == "done" } == true 
-      #&& @all_surveys.all? { |su| su.status == "done" } == true
+    elsif @all_events.all? { |ev| ev.status == "done" } == true && @all_surveys.all? { |su| su.status == "done" } == true
       @this_challenge.status = "finish"
       @this_challenge.save
-      
-      puts "-----------------"
-      puts "finish"
-      puts "-----------------"
       
     elsif @participant_events.any? { |ev| ev.participation == "confirmed" } == true
       @this_challenge.status = "ongoing"
       @this_challenge.save
-
-      puts "-----------------"
-      puts "ongoing"
-      puts "-----------------"
     end
   
-  end
-
-  def all_surveys_done?(surveys)
-    @done = true
-    surveys.each do |survey|
-      @done = false if survey.status == "pending"
-    end
-    return @done
   end
 
   protected

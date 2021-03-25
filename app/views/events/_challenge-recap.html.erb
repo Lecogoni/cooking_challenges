@@ -3,7 +3,7 @@
   <% @this_event = Event.where(challenge_id: @event.challenge.id).where.not(user_id: current_user.id) %>
   <% @this_event.each do |event| %>
     <div class="row">
-      <div class="col-md-9">
+      <div class="col-md-8">
         <div class="d-flex justify-content-between">
           <div class="d-flex justify-content-start mb-4">
             <div class="mr-2">
@@ -68,7 +68,7 @@
       </div>
 
 
-      <div class="col-md-3">
+      <div class="col-md-4">
         <% if event.surveys.any? { |el| el.status == "pending" } == true %>
           <div class="gray-text text-center">
             Note provisoire : <%= event.total_event %>
