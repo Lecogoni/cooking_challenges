@@ -3,14 +3,9 @@
     tu n'as pas encore planifié ton dîner.
   </p>
   <p>
-    <%= link_to 'check', toggle_status_event_path, method: 'post'%>
+    <%= link_to 'VALIDER MON DINER', toggle_status_event_path, method: 'post', :class => 'btn btn-outline-primary'%>
   </p>
-  <p>
-    <div class="custom-control custom-switch" id="event-status-toggle">
-      <input type="checkbox" class="custom-control-input" id="customSwitch1" checked>
-      <label class="custom-control-label" for="customSwitch1">Toggle this switch element</label>
-    </div>
-  </p>
+
 <% elsif @event.status == "done" %>
   <p>
     Félicitation ! Tu as réalisé ton challenge. Voyons ce que les autres ont pensé de ta prestation ...
