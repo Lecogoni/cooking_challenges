@@ -129,6 +129,12 @@ class EventsController < ApplicationController
       @event.status = "unscheduled"
       @event.save
     end
+
+    respond_to do |format|
+      format.html  { redirect_to event_path(@event.id) }
+      format.js { render event_path(@event.id) }
+    end
+
   end
 
 
