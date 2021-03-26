@@ -33,14 +33,10 @@ class ChallengesController < ApplicationController
     # stock the meal area
     @meal_area = @challenge.meal_area
   
-  
-
-
     respond_to do |format|
       if @challenge.save
 
-        # Associate on Event table the new challenge whit the current_user
-        @owner_event = Event.create(user_id: current_user.id, challenge_id: @challenge.id, role: "créateur", participation: "confirmed")
+        
 
         # fetch recipe from area or from category on API and save it according to user choice
         # if @meal_category == nil || @meal_category == ""
@@ -70,8 +66,33 @@ class ChallengesController < ApplicationController
 
   # PATCH/PUT /challenges/1 or /challenges/1.json
   def update
+
     respond_to do |format|
       if @challenge.update(challenge_params)
+
+        if Event.where(user_id: current_user.id, challenge_id: @challenge.id, role: "créateur", participation: "confirmed").count == 0
+          # Associate on Event table the new challenge whit the current_user
+          @owner_event = Event.create(user_id: current_user.id, challenge_id: @challenge.id, role: "créateur", participation: "confirmed")
+
+          # call to associate a recipe
+          if @challenge.meal_category == nil || @challenge.meal_category == ""
+            fetch_recipe_from_area(@challenge.meal_area, @owner_event)
+          elsif @challenge.meal_area == nil || @challenge.meal_area == ""
+           fetch_recipe(@challenge.meal_category, @owner_event)
+          end
+        else
+          @creator = Event.where(user_id: current_user.id, challenge_id: @challenge.id, role: "créateur", participation: "confirmed").first
+          @creator.destroy
+
+          @owner_event = Event.create(user_id: current_user.id, challenge_id: @challenge.id, role: "créateur", participation: "confirmed")
+          # call to associate a recipe
+          if @challenge.meal_category == nil || @challenge.meal_category == ""
+            fetch_recipe_from_area(@challenge.meal_area, @owner_event)
+          elsif @challenge.meal_area == nil || @challenge.meal_area == ""
+           fetch_recipe(@challenge.meal_category, @owner_event)
+          end
+        end
+    
         format.html { redirect_to edit_challenge_path, notice: "Ok, le challenge vient d'être modifié." }
         format.json { render :show, status: :ok, location: @challenge }
       else
