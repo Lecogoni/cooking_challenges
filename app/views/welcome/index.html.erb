@@ -109,6 +109,7 @@
                 <%= image_tag "home-diner.jpg" %>
               </picture>
 
+
           </div>
         </div>
       </div>
@@ -121,7 +122,9 @@
           <div class="p-2">
             <div>
               <%= image_tag "choose-icon.png", :class => "step-icon mx-auto d-block" %>
+              <br>
             </div>
+            
             <h4 class="text-center">Sélectionne un thème</h4>
             <p class="white-text">
               C'est toi qui choisis. La catégorie ou le pays que tu sélectionnera définie les recettes attribuées aux participants
@@ -129,7 +132,9 @@
           </div>
           <div class="p-2">
             <div>
+              <br>
               <%= image_tag "recipe.png", :class => "step-icon mx-auto d-block" %>
+              <br>
             </div>
              <h4 class="text-center">Tous en cuisine</h4>
             <p class="white-text">
@@ -137,6 +142,7 @@
             </p>
           </div>
           <div class="p-2">
+          <br>
             <% if user_signed_in? %>
               <%= link_to 'CHALLENGE TES AMIS', new_challenge_path, :class => "btn btn-outline-light btn-lg" %>
             <% else %>
@@ -147,7 +153,7 @@
       </div>
     </div>
   </div>
-  <br><br>
+  <br>
 </div>
 
 <div class="container mt-5">
