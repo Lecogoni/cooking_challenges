@@ -77,6 +77,15 @@ class EventsController < ApplicationController
       @event.save
     end  
     event_status(@event)
+
+    respond_to do |format|
+      format.html do 
+        #code en cas de requête classique 
+      end
+    
+      format.js do
+        #code en cas de requête AJAX
+      end
   end
 
 
