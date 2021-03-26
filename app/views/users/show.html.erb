@@ -18,13 +18,14 @@
         </div>
       <% end %>
 
+
       <% if @pending_challenges.count != 0%>
       <div class="col-8">
-        <%= render 'users/challenge' %>
+        <%= render 'users/challenge', confirmed_events: @confirmed_events %>
       </div>
       <% else%>
       <div class="col-12">
-        <%= render 'users/challenge' %>
+        <%= render 'users/challenge', confirmed_events: @confirmed_events %>
       </div>
       <% end %>
     </div>
@@ -36,3 +37,13 @@
 
 
 
+<% if @user.events.count != 0 %>
+<div class="container">
+  <div class="p-5 d-flex justify-content-center">
+    <div>
+      <%= link_to 'créer un nouveau challenge', new_challenge_path, :class => "btn btn-primary btn-lg" %>
+    </div>
+  </div>
+
+</div>
+<% end %>
