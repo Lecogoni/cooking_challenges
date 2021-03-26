@@ -37,6 +37,17 @@ body{
   border: 1px, solid, whitesmoke;
 }
 
+#navicon:before{ 
+  background-image: url(cooking-logo.png);
+  background-size: 80px 30px;
+  display: inline-block;
+  width: 80px; 
+  height: 30px;
+  content:"";
+  left:-20px;
+  top:0px;
+}
+
 li{
   list-style: none;
 }
