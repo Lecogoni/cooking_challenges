@@ -26,13 +26,13 @@
           </div>
           <!---Info challenge-->
           <div class="card-body header-event">
-            <div class="d-flex justify-content-between">
-              <div>
+            <div class="row">
+              <div class="col-5">
                 <h5 class="card-title mb-4">Category du challenge : <span class="red-text"><%= @event.challenge.meal_category %></span></h5>
                 <h6 class="card-subtitle text-muted">message du créateur :</h6>
                 <p class="pt-2"><%= @event.challenge.description %></p>
               </div>
-              <div>
+              <div class="col-7">
                 <% @all_events = Event.where(challenge_id: @event.challenge_id).order(total_event: :desc) %>
                 <% if @event.challenge.status == "ongoing" %>
                   <div>
@@ -47,8 +47,17 @@
                   </div>
                  
                 <% elsif @event.challenge.status == "finish" %>
-                  <%= @all_events = Event.where(challenge_id: @event.challenge_id).order(total_event: :desc).count%>
-                  Victoire de 
+                  <% @all_events = Event.where(challenge_id: @event.challenge_id).count %>
+                  <div class="row">
+                    <div class="col-3">
+                      <%= image_tag "chief.png", :class => "winner-pic" %>
+                    </div>
+                    <div class="col-9">
+                      <% @event_winner = Event.where(challenge_id: @event.challenge.id).order("total_event DESC").first %>
+                      <h5 class="card-title"><span class="red-text"><%= @event_winner.user.username %></span></h5>
+                      <h6>vainqueur avec une note de <%= Event.where(challenge_id: @event.challenge.id).maximum("total_event") %></h6>
+                    </div>
+                  </div>
                 <% end %> 
               </div>
               

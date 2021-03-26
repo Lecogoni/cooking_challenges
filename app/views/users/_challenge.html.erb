@@ -36,13 +36,13 @@
                 <% end %>
               </div>
 
-              <p class="mb-1"><span class="small">Category du challenge : </span><span class="gray-text"><%= challenge.meal_category %></span></p>
+              <p class="mb-1"><span class="small">Thème : </span><span class="gray-text"><%= challenge.meal_category %></span></p>
             </a>
     
 
             <a href="/events/<%= @my_event %>" class="list-group-item list-group-item-action flex-column align-items-start">
               <div class="d-flex w-100 justify-content-between mb-2">
-                <h5 class="mb-1">Participant(s)</h5>
+                <h6 class="mb-1">Participants</h6>
               </div>
               <% @events.each do |event| %>
                 <div class="d-flex justify-content-between">
@@ -60,6 +60,11 @@
                     <div>
                       <%= event.user.username.capitalize %>
                     </div>
+                  </div>
+                  <div>
+                    <% if challenge.status == "finish" && event == Event.where(challenge_id: challenge.id).order("total_event DESC").first %>
+                      <%= image_tag "chief.png", :class => "winner-logo" %>
+                    <% end %>
                   </div>
                   <div>
                     <% if event.role == "créateur" %>

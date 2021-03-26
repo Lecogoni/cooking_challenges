@@ -72,6 +72,14 @@ article{
   width:30%;
 }
 
+.winner-pic{
+  max-width:100%;
+}
+.winner-logo{
+  max-width:22px;
+  height: auto;
+}
+
 .landing-icon2{
   width:27%;
 }
