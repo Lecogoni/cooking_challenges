@@ -68,6 +68,11 @@ class GuestsController < ApplicationController
       flash.now[:alert] = 'Erreur !'
     end
 
+    respond_to do |format|
+      format.html  { redirect_to edit_challenge_path(@challenge.id) }
+      format.js { render edit_challenge_path(@challenge.id) }
+    end
+
   end
 
   # DELETE /guests/1 or /guests/1.json

@@ -36,14 +36,8 @@
     </div>
     
     <%= render 'form-update', challenge: @challenge %>
-
-    <% if (@challenge.meal_area == "" || @challenge.meal_area == nil) &&  (@challenge.meal_category == "" || @challenge.meal_category == nil) %>
-    <% else%>
-      <%= render 'form-invite', challenge: @challenge %>
-    <% end%>
     
-
-    
+    <%= render 'form-invite', challenge: @challenge %>
 
   </div>
 </div>

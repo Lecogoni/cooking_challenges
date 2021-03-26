@@ -22,7 +22,13 @@ Rails.application.routes.draw do
     end
   end
 
-  
+  resources :challenges do
+    member do
+      get :upd
+      post :upd
+      put :upd
+    end
+  end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

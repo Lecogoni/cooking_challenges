@@ -1,5 +1,6 @@
 class ChallengesController < ApplicationController
   before_action :set_challenge, only: %i[ show edit update destroy ]
+  before_action :set_chal, only: %i[ upd ]
 
   # GET /challenges or /challenges.json
   def index
@@ -105,6 +106,20 @@ class ChallengesController < ApplicationController
     end
   end
 
+  def upd
+
+    respond_to do |format|
+      if @challenge.update(chal_params)
+        flash[:success] = "Des modifications ont été apportées aux informations concernant l'utilisateur et ça c'est plutôt bien passé."
+        format.html { redirect_to upd_challenge_path(@challenge), notice: "Dernière étape" }
+        format.json { render :show, status: :ok, location: @challenge }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end  
+  end
+
   # DELETE /challenges/1 or /challenges/1.json
   def destroy
     @challenge.destroy
@@ -140,9 +155,17 @@ class ChallengesController < ApplicationController
       @challenge = Challenge.find(params[:id])
     end
 
+    def set_chal
+      @challenge = Challenge.find(params[:id])
+    end
+
     # Only allow a list of trusted parameters through.
     def challenge_params
       params.require(:challenge).permit(:title, :status, :description, :numb_guest, :meal_category, :meal_area, :theme_choice)
+    end
+
+    def chal_params
+      params.require(:challenge).permit(:id)
     end
 
 end

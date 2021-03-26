@@ -33,9 +33,9 @@
 
     <div class="row d-flex justify-content-center">
       <% if @guests.all? { |guest| guest.created_at != guest.updated_at  } == true %>
-        <br><%= link_to 'Valider', user_path(current_user), :class => "btn btn-primary btn-lg" %>
+        <%= link_to 'Valider', user_path(current_user), :class => "btn btn-primary btn-lg" %>
       <% else %>
-        <br><a href="#" class="btn btn-secondary btn-lg disabled" role="button" aria-disabled="true">valider</a>
+        <a href="#" class="btn btn-secondary btn-lg disabled" role="button" aria-disabled="true">valider</a>
       <% end %>
     </div>
     <div class="row d-flex justify-content-center mt-3">
