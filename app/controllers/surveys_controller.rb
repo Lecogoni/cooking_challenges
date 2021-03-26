@@ -50,7 +50,7 @@ class SurveysController < ApplicationController
         update_event_total()
         event_status(@survey.event)
         flash[:success] = "Le questionnaire vient d'être mis à jour."
-        format.html { redirect_to events_path(id: @survey.event_id) } 
+        format.html { redirect_to event_path(@survey.event_id) } 
         format.json { render :show, status: :ok, location: @survey }
       else
         flash.now[:warning] = "Echec :" + @survey.errors.full_messages.join(" ")
