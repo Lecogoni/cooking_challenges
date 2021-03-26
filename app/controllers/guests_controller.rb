@@ -57,8 +57,11 @@ class GuestsController < ApplicationController
         # fetch recipe from area or from category on API and save it according to user choice --> to user
         if @challenge.meal_category == nil || @challenge.meal_category == ""
           fetch_recipe_from_area(@challenge.meal_area, @new_event)
+          # fetch_recipe_from_area(@challenge.meal_area, @challenge.owner_event)
         elsif @challenge.meal_area == nil || @challenge.meal_area == ""
          fetch_recipe(@challenge.meal_category, @new_event)
+        #  fetch_recipe(@challenge.meal_category, @challenge.owner_event)
+
         end
 
         UserMailer.invitation_email(user, current_user).deliver_now
