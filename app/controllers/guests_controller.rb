@@ -53,15 +53,12 @@ class GuestsController < ApplicationController
         # Create an Event link to the mentionned challenge and  user
         @inviting = User.find_by(email: @guest.email)
         @new_event = Event.create(user_id: @inviting.id, challenge_id: @challenge_id )
-
+        
         # fetch recipe from area or from category on API and save it according to user choice --> to user
         if @challenge.meal_category == nil || @challenge.meal_category == ""
           fetch_recipe_from_area(@challenge.meal_area, @new_event)
-          # fetch_recipe_from_area(@challenge.meal_area, @challenge.owner_event)
         elsif @challenge.meal_area == nil || @challenge.meal_area == ""
-         fetch_recipe(@challenge.meal_category, @new_event)
-        #  fetch_recipe(@challenge.meal_category, @challenge.owner_event)
-
+          fetch_recipe(@challenge.meal_category, @new_event)
         end
 
         UserMailer.invitation_email(user, current_user).deliver_now
@@ -97,11 +94,23 @@ class GuestsController < ApplicationController
 
     @challenge = Challenge.find(params[:challenge])
 
+    puts "--------------------------------------@@@@@@@----------------------------------------------------------------------"
+    puts @new_event
+    puts "----------------------------------------@@@@@@--------------------------------------------------------------------"
+    puts "--------------------------------------@@@@@----------------------------------------------------------------------"
+    puts "---------------------------------------@@@@@@@---------------------------------------------------------------------"
+    puts "--------------------------------------@@@@@----------------------------------------------------------------------"
+    puts current_user.id
+    puts "---------------------------------------@@@@@@@---------------------------------------------------------------------"
+
     # fetch recipe from area or from category on API and save it according to user choice --> to guest
     if @challenge.meal_category == nil || @challenge.meal_category == ""
       fetch_recipe_from_area(@challenge.meal_area, @new_event)
+      fetch_recipe_from_area(@challenge.meal_area, current_user)
     elsif @challenge.meal_area == nil || @challenge.meal_area == ""
      fetch_recipe(@challenge.meal_category, @new_event)
+     fetch_recipe(@challenge.meal_category, current_user)
+
     end
     
     # generating a devise reset password
