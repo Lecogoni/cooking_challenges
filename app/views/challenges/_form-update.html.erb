@@ -1,0 +1,60 @@
+
+  <%= form_with(model: challenge) do |form| %>
+    <% if challenge.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(challenge.errors.count, "error") %> a empêché de sauvegarder ce challenge :</h2>
+        <ul>
+          <% challenge.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+    <div class="row">
+      <div class="col-6 p-2 mb-2">
+        <div class="card pt-2">
+          <div class="justify-content-center mb-3 challenge-create">
+            <% if @challenge.theme_choice == "Categorie" %>
+              <div class="text-center">
+                <h5>précise la catégorie de ton challenge</h5>
+              </div>
+              <div class="text-center">
+                <%= form.select :meal_category, [ "", "Breakfast", "Starter", "Dessert", "Seafood", "Beef", "Chicken", "Lamb", "Pork", "Pasta", "Vegan" ,"Vegetarian"],  :required => true %>
+              </div>
+            <% else %>
+              <div>
+                <h5>Sélectionne un pays</h5>
+              </div>
+              <div class="text-center">
+                <%= form.select :meal_area, ["", "American", "British", "Canadian", "Chinese", "Dutch", "Egyptian", "French", "Greek", "Indian", "Italian", "Japanese", "Mexican", "Turkish"],  :required => true %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+  
+      <div class="col-6 p-2 mb-2">
+        <div class="card pt-2">
+          <div class="d-flex justify-content-center mb-3 challenge-create">
+            <div class="text-center">
+              <h5>donne un titre à ton challenge</h5>
+            </div>
+          </div>
+          <div class="d-flex justify-content-around">
+            <div class="mb-1 red-text"> 
+              <%= form.text_field :title,required: true, class: 'form-control text-center' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <div class="actions mt-3">
+        <%= form.submit "On enfourne", class: 'btn btn-outline-primary' %>
+      </div>
+    </div>
+
+
+  <% end %>

@@ -34,16 +34,7 @@
     <div class="text-center">
       <h5>Etape 2 : En cuisine</h5>
     </div>
-    
-    <%= render 'form-update', challenge: @challenge %>
-
-    <% if (@challenge.meal_area == "" || @challenge.meal_area == nil) &&  (@challenge.meal_category == "" || @challenge.meal_category == nil) %>
-    <% else%>
-      <%= render 'form-invite', challenge: @challenge %>
-    <% end%>
-    
 
     
-
   </div>
 </div>

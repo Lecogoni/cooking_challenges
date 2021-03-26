@@ -304,7 +304,9 @@ article{
   
 }
 
-
+.challenge-create{
+  min-height: 50px;
+}
 
 
 .accordion-button:not(.collapsed)::after {

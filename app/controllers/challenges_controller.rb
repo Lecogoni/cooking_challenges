@@ -36,16 +36,6 @@ class ChallengesController < ApplicationController
     respond_to do |format|
       if @challenge.save
 
-        
-
-        # fetch recipe from area or from category on API and save it according to user choice
-        # if @meal_category == nil || @meal_category == ""
-        #   fetch_recipe_from_area(@meal_area, @owner_event)
-        # elsif @meal_area == nil || @meal_area == ""
-        #   fetch_recipe(@meal_category, @owner_event)
-        # end
-
-
         # create the number of Guest with the id of the current challenge
         @num_guest.times do
         Guest.create(email: "", username: "", challenge_id: @challenge.id)
@@ -66,6 +56,18 @@ class ChallengesController < ApplicationController
 
   # PATCH/PUT /challenges/1 or /challenges/1.json
   def update
+
+    # if @challenge.theme_choice == "area" && (@challenge.meal_area == "" || @challenge.meal_area == nil)
+    #   respond_to do |format|
+    #     format.html { redirect_to edit_challenge_path(@challenge.id), notice: "Vous devez choisir un pays" }
+    #     format.json { render json: @challenge.errors, status: :unprocessable_entity }
+    #   end
+    # elsif @challenge.theme_choice == "Category" && (@challenge.meal_category == "" || @challenge.meal_category == nil)
+    #   respond_to do |format|
+    #     format.html { render :new, notice: "Vous devez spécifie la catégorie de souhaitée" }
+    #     format.json { render json: @challenge.errors, status: :unprocessable_entity }
+    #   end
+    # end
 
     respond_to do |format|
       if @challenge.update(challenge_params)
@@ -93,7 +95,7 @@ class ChallengesController < ApplicationController
           end
         end
     
-        format.html { redirect_to edit_challenge_path, notice: "Ok, le challenge vient d'être modifié." }
+        format.html { redirect_to edit_challenge_path(@challenge.id), notice: "Ok, le challenge vient d'être modifié." }
         format.json { render :show, status: :ok, location: @challenge }
       else
         flash.now[:warning] = "Echec :" + @challenge.errors.full_messages.join(" ")
