@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2021_03_25_204206) do
   end
 
   create_table "guests", force: :cascade do |t|
-    t.string "username"
+    t.string "username", default: ""
     t.string "email"
     t.bigint "challenge_id"
     t.datetime "created_at", precision: 6, null: false
