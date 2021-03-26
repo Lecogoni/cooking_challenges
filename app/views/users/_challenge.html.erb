@@ -1,10 +1,8 @@
-<div class="container mb-3">
+
   <div class="mb-5">
-    <div class="d-flex justify-content-center">
       <div>
-        <h1>Mes Challenges</h1>
+        <h4>Mes Challenges</h4>
       </div>
-    </div>
   </div>
 
   <div class="row">
@@ -13,13 +11,12 @@
 
     <% @challenges.each do |challenge| %>
 
-   
     
       <% @events = challenge.events %>
 
       <% @my_event = Event.where(user_id: current_user.id, challenge_id: challenge.id)[0].id %>
       
-      <div class="col-lg-4">
+      <div class="col-lg-6">
         <div class="bs-component">
           <div class="list-group mb-3">
             <a href="/events/<%= @my_event %>"  class="list-group-item list-group-item-action flex-column align-items-start active">
@@ -90,5 +87,5 @@
     <% end %>
     
   </div>
-</div>
+
 

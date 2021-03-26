@@ -77,6 +77,12 @@ class EventsController < ApplicationController
       @event.save
     end  
     event_status(@event)
+
+    respond_to do |format|
+      format.html  { redirect_to user_path(@event.user.id) }
+      format.js { render user_path(@event.user.id) }
+    end
+
   end
 
 
@@ -87,6 +93,12 @@ class EventsController < ApplicationController
       @event.save
     end
     event_status(@event)
+
+    respond_to do |format|
+      format.html  { redirect_to user_path(@event.user.id) }
+      format.js { render user_path(@event.user.id) }
+    end
+    
   end
   
   # change event status and create the needed number of survey matching the event

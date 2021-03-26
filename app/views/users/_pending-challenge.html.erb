@@ -1,26 +1,22 @@
 <div class="mb-5">
-  <h1>Challenges en attentes de confirmation</h1>
+  <h4>Challenges en attentes</h4>
 </div>
 
 <div class="row">
   <% @pending_challenges.each do |event| %>
-    <div class="col-lg-6 mb-5">
-      <div class="bs-component">
-        <ul class="list-group">
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            <% @event_creator = Event.where(challenge_id: event.challenge_id, role: "créateur").first %>
+    <div class="col-11">
+      <div class="pl-2 pr-2 list-group-item">
+        <% @event_creator = Event.where(challenge_id: event.challenge_id, role: "créateur").first %>
             <div class="mr-auto p-2">
               <h5><%= event.challenge.title %></h5>
               <span class="text-muted">invité par : <%= @event_creator.user.username %></span><br>
               <span class="text-muted">Thème : <%= event.challenge.theme_choice %> => <%= event.challenge.meal_category %><%= event.challenge.meal_area %></span>
             </div>
+        <div class="d-flex align-items-center">
             <div class="p-2"><h5><span class=""><%= link_to 'Accepter', toggle_participation_event_path(id: event.id), method: 'post', :class => 'badge badge-primary' %></span></h5></div>
             <div class="p-2"><h5><span class=""><%= link_to 'Décliner', abort_status_event_path(id: event.id), method: 'post', :class => 'badge badge-warning' %></span></h5></div>
-          </li>
-        </ul>
+        </div>
       </div>
     </div>
   <% end %>
 </div>
-      
-

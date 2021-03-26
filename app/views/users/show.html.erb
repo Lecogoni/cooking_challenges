@@ -7,30 +7,32 @@
   <% else %>
 
     <!-- User challenge pending -->
+    <div class="row">
+      <% @pending_challenges = Event.where(user_id: current_user.id, participation: "pending") %>
+      <% if @pending_challenges.count != 0%>
+        <div class="col-4">
+          <%= render 'users/pending-challenge' %>
+        </div>
+      <% else%>
+        <div class="col-0">
+        </div>
+      <% end %>
 
-    <% @pending_challenges = Event.where(user_id: current_user.id, participation: "pending") %>
-    <% if @pending_challenges.count != 0%>
-    
-      <%= render 'users/pending-challenge' %>
-      
-    <% end %>
-
-    <!-- User challenge index -->
-
-    <%= render 'users/challenge' %>
-
-  <% end %>
-
-</div>
-<% if @user.events.count != 0 %>
-<div class="container">
-  <div class="p-5 d-flex justify-content-center">
-    <div>
-      <%= link_to 'créer un nouveau challenge', new_challenge_path, :class => "btn btn-primary btn-lg" %>
+      <% if @pending_challenges.count != 0%>
+      <div class="col-8">
+        <%= render 'users/challenge' %>
+      </div>
+      <% else%>
+      <div class="col-12">
+        <%= render 'users/challenge' %>
+      </div>
+      <% end %>
     </div>
-  </div>
 
+
+  
+  <% end %>
 </div>
-<% end %>
+
 
 
