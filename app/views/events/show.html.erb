@@ -28,7 +28,11 @@
           <div class="card-body header-event">
             <div class="row">
               <div class="col-5">
+                <% if @event.challenge.theme_choice = "Category" %>
                 <h5 class="card-title mb-4">Category du challenge : <span class="red-text"><%= @event.challenge.meal_category %></span></h5>
+                <% else %>
+                <h5 class="card-title mb-4">Pays du challenge : <span class="red-text"><%= @event.challenge.meal_area %></span></h5>
+                <% end %>
                 <h6 class="card-subtitle text-muted">message du créateur :</h6>
                 <p class="pt-2"><%= @event.challenge.description %></p>
               </div>
