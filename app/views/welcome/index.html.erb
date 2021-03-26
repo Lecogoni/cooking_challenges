@@ -26,8 +26,8 @@
 <!--ETAPE-->
 <div class="container">
 
-  <div class="mb-5">
-    <h2 class="text-center">Un Cooking Challenge c'est simple<br>comme une bonne recette 🥘</h2>
+  <div class="mb-5 mt-3">
+    <h2 class="text-center">Un Cooking Challenge c'est simple<br>comme une bonne recette 🥘</h2><br>
   </div>
 
   <div class="row">
@@ -86,10 +86,13 @@
     </div>
   </div>
 </div>
+<br>
+<br>
+<br>
 
 <!--CONTAINER ROUGE-->
 <div class="container-fluid bg-primary">
-
+  <br><br>
   <div class="row experience">
 
     <div class="col-xl-6 mb-4">
@@ -106,6 +109,7 @@
                 <%= image_tag "home-diner.jpg" %>
               </picture>
 
+
           </div>
         </div>
       </div>
@@ -118,7 +122,9 @@
           <div class="p-2">
             <div>
               <%= image_tag "choose-icon.png", :class => "step-icon mx-auto d-block" %>
+              <br>
             </div>
+            
             <h4 class="text-center">Sélectionne un thème</h4>
             <p class="white-text">
               C'est toi qui choisis. La catégorie ou le pays que tu sélectionnera définie les recettes attribuées aux participants
@@ -126,7 +132,9 @@
           </div>
           <div class="p-2">
             <div>
+              <br>
               <%= image_tag "recipe.png", :class => "step-icon mx-auto d-block" %>
+              <br>
             </div>
              <h4 class="text-center">Tous en cuisine</h4>
             <p class="white-text">
@@ -134,6 +142,7 @@
             </p>
           </div>
           <div class="p-2">
+          <br>
             <% if user_signed_in? %>
               <%= link_to 'CHALLENGE TES AMIS', new_challenge_path, :class => "btn btn-outline-light btn-lg" %>
             <% else %>
@@ -144,17 +153,23 @@
       </div>
     </div>
   </div>
+  <br>
 </div>
 
 <div class="container mt-5">
-  <div class="row">
+  
+  <div class="mb-5 mt-3">
+    <h2 class="text-center">La bonne cuisine, c'est le souvenir 🍛</h2><br>
+  </div>
+
+  <div class="row mb-4">
 
     <div class="col-md-6  col-xs-12">
       <div class="card mb-3 user">
         <%= image_tag "family-diner.jpg", :class => "img-user-experience" %>
         <div class="card-body">
-          <h5 class="user-quote">" Permet de découvrir des recettes "</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <h5 class="user-quote">"Et surtout bien adapté pour les débutants en cuisine"</h5>
+          <p class="card-text">Some quick example texme quick exaple texme quick example texme quick example texme quick example texme quick example text to build on the card title and make up the bulk of the card's content.</p>
         </div>
       </div>
     </div>
@@ -187,18 +202,17 @@
         
         <div class="card-body">
           <h5 class="user-quote">" convivialité "</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <p class="card-text">Des recettes très variées Some quick example text to build on the card title and make up the bulk of the card's content.</p>
         </div>
 
       </div>
     </div>
-
   </div>
-
 </div>
 
 <div class="container-fluid bg-primary p-5">
   <div class="container">
+    <br>
     <div class="d-flex justify-content-center">
       <div class="pt-2 mr-2">
         <h5 class="white-text">Alors tu es plutôt challenge Pasta 🍝 ou Cuisine japonaise 🇯🇵 </h5>
@@ -211,5 +225,6 @@
         <% end %>
       </div>
     </div>
+    <br>
   </div>
 </div>
