@@ -15,18 +15,40 @@
       </div>
       <div>
         <p class="text-center">
-          <%= @challenge.numb_guest %> invité(s)<br>
-          tu as choisis la catégorie : <%= @challenge.meal_category %>
-        </p>
+          <%= @challenge.numb_guest %> invité(s)
+        </p>       
       </div>
     </div>
 
 
     <div>
-      <h3>Invite tes amis à participer</h3>
+      <h3 class="text-center">Choisis un(e) <%= @challenge.theme_choice %> pour ton challenge</h3>
+      <%= form_with(model: @challenge) do |form| %>
+        <% if @challenge.theme_choice == "Categorie"  %>
+          <div class="text-center">
+            <%= form.label :meal_category %><br>
+            <%= form.select :meal_category, [ "", "Breakfast", "Starter", "Dessert", "Seafood", "Beef", "Chicken", "Lamb", "Pork", "Pasta", "Vegan" ,"Vegetarian"], selected: "" %>
+          </div>
+        <% else %>
+          <div class="text-center">
+            <%= form.label :meal_area %><br>
+            <%= form.select :meal_area, ["", "American", "British", "Canadian", "Chinese", "Dutch", "Egyptian", "French", "Greek", "Indian", "Italian", "Japanese", "Mexican", "Turkish"], selected: ""%>
+            </div>
+        <% end %>
+            <div class="actions text-center form">
+            <br/><%= form.submit "Selectionner"%>
+            </div>
+      <% end %>
     </div>
   </div>
+
+  <div>
+    <p class="text-center"><br/>Tu as choisis : <%= @challenge.meal_category %><%= @challenge.meal_area%></p>
+  </div>
   
+  <div>
+    <h3 class="text-center">Invite tes amis à participer</h3>
+  </div>
   <% @guests = @challenge.guests %>
 
     <div class="p-5">
@@ -58,10 +80,10 @@
     <% end %>
 
     <div class="row d-flex justify-content-center">
-      <% if @guests.all?{ |guest| guest.created_at != guest.updated_at  } == true %>
-        <%= link_to 'Valider mon challenge', new_user_session_path, :class => "btn btn-outline-primary btn-lg" %>
+      <% if @guests.all? { |guest| guest.created_at != guest.updated_at  } == true %>
+        <br><%= link_to 'Valider', user_path(current_user), :class => "btn btn-primary btn-lg" %>
       <% else %>
-        <p class="red-text text-center">envoie l'ensemble des invitations pour valider ton challenge</p>
+        <br><a href="#" class="btn btn-secondary btn-lg disabled" role="button" aria-disabled="true">valider</a>
       <% end %>
     </div>
     <div class="row d-flex justify-content-center mt-3">
@@ -76,5 +98,6 @@
 
   </div>
 
-
 </div>
+
+

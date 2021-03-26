@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 2021_03_25_204206) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "numb_guest"
     t.string "meal_category"
+    t.string "meal_area"
+    t.string "theme_choice"
   end
 
   create_table "events", force: :cascade do |t|

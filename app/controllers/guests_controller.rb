@@ -52,8 +52,12 @@ class GuestsController < ApplicationController
         @inviting = User.find_by(email: @guest.email)
         @new_event = Event.create(user_id: @inviting.id, challenge_id: @challenge_id )
 
-        # fetch recipe on API and save it
-        fetch_recipe(@challenge.meal_category, @new_event)
+        # fetch recipe from area or from category on API and save it according to user choice --> to user
+        if @challenge.meal_category == nil || @challenge.meal_category == ""
+          fetch_recipe_from_area(@challenge.meal_area, @new_event)
+        elsif @challenge.meal_area == nil || @challenge.meal_area == ""
+         fetch_recipe(@challenge.meal_category, @new_event)
+        end
 
         UserMailer.invitation_email(user, current_user).deliver_now
       else
@@ -86,10 +90,15 @@ class GuestsController < ApplicationController
     # Create an Event link to the mentionned challenge and invinted user
     @new_event = Event.create(user_id: @invinting_user.id, challenge_id: @challenge_id )
 
-    # fetch recipe on API and save it
     @challenge = Challenge.find(params[:challenge])
-    fetch_recipe(@challenge.meal_category, @new_event)
 
+    # fetch recipe from area or from category on API and save it according to user choice --> to guest
+    if @challenge.meal_category == nil || @challenge.meal_category == ""
+      fetch_recipe_from_area(@challenge.meal_area, @new_event)
+    elsif @challenge.meal_area == nil || @challenge.meal_area == ""
+     fetch_recipe(@challenge.meal_category, @new_event)
+    end
+    
     # generating a devise reset password
     raw, hashed = Devise.token_generator.generate(User, :reset_password_token)
 

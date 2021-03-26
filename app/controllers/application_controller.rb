@@ -15,11 +15,25 @@ class ApplicationController < ActionController::Base
     @my_recipe = get_recipe_by(@recipe["idMeal"]) # fetch recipe details with the id
     save_recipe(@my_recipe, event) 
   end
+  
+  def fetch_recipe_from_area(meal_area, event)
+    @recipies_area = search_mealdb_area(meal_area) # fetch array of recipes by search area
+    @recipe = @recipies_area[rand(0...@recipies_area.length)] # Get one random recipe in the array
+    @my_recipe = get_recipe_by(@recipe["idMeal"]) # fetch recipe details with the id
+    save_recipe(@my_recipe, event) 
+  end
 
-  #set MealDB Url with keyword
+  #set MealDB Url with keyword (Recipe)
   def mealdb_url_keyword(name)
     request_api(
       "https://themealdb.p.rapidapi.com/search.php?s=Arrabiata"
+    )
+  end
+
+  #set MealDB Url with keyword (Area)
+  def mealdb_area_url_keyword(name)
+    request_api(
+      "https://themealdb.p.rapidapi.com/filter.php?a=Canadian"
     )
   end
   
@@ -30,10 +44,24 @@ class ApplicationController < ActionController::Base
     )
   end
 
+  # ==>set MealDB Url with area
+  def mealdb_url_area(area)
+    request_api(
+      "https://themealdb.p.rapidapi.com/list.php?a=list"
+    )
+  end
+
   #set MealDB Url with category
   def search_mealdb_category(category)
     request_api(
       "https://themealdb.p.rapidapi.com/filter.php?c=#{category}"
+    )
+  end
+
+  #set MealDB Url with area
+  def search_mealdb_area(area)
+    request_api(
+      "https://themealdb.p.rapidapi.com/filter.php?a=#{area}"
     )
   end
 
@@ -55,6 +83,32 @@ class ApplicationController < ActionController::Base
       return nil
     else
       return @recipies
+    end
+  end
+
+  def get_recipe_by(id)
+    request_api(
+      "https://themealdb.p.rapidapi.com/lookup.php?i=#{id}"
+    )
+  end
+
+  # fetch the MealDb data from area
+  def request_api_from_area(url)
+    response = Excon.get(
+      url,
+      headers: {
+        'X-RapidAPI-Host' => URI.parse(url).host,
+        'X-RapidAPI-Key' => ENV['RAPIDAPI_API_KEY']
+      }
+    )
+
+    @json_data = JSON.parse(response.body)
+    @recipies_area = @json_data['meals']
+
+    if response.status != 200
+      return nil
+    else
+      return @recipies_area
     end
   end
 

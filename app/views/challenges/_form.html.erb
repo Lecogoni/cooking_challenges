@@ -1,3 +1,5 @@
+
+
 <%= form_with(model: challenge) do |form| %>
   <% if challenge.errors.any? %>
     <div id="error_explanation">
@@ -23,15 +25,22 @@
   </div>
 
   <div>
-    <%= form.label :nombre_de_participants %><br>
-    <%= form.text_field :numb_guest %>
+    <%= form.label :numb_guest %><br>
+    <%= form.number_field :numb_guest, in: 1..20, step: 1%>
   </div>
 
   <div>
-    <%= form.label :meal_category %><br>
-    <%= form.text_field :meal_category %>
-  </div>
+    <div>
+      <%= form.radio_button :theme_choice, "Categorie", class: 'mr-3' %>
+      <%= form.label :theme_choice, "Categorie" %>
+    </div>
 
+    <div>
+      <%= form.radio_button :theme_choice, "area", class: 'mr-3' %>
+      <%= form.label :theme_choice, "area" %>
+    </div>
+  </div>
+  
   <div class="actions">
     <%= form.submit %>
   </div>
