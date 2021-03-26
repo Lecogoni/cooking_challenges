@@ -198,6 +198,28 @@ article{
   line-height: 1em;
 }
 
+.recipe-pic{
+  float: left;
+  max-width: 10em;
+  height: auto;
+  margin-right: 10px;
+  margin-bottom: 5px;
+}
+
+.youtube-link{
+  max-width: 2em;
+  height: auto;
+}
+
+.fork-img{
+  max-width: 100%;
+  height: auto;
+  margin-top: 30px;
+}
+.youtube-link:hover{
+  fill: #f93f23;
+}
+
 
 @media screen and (min-width: 200px) and (max-width: 991px) {
 
@@ -248,22 +270,6 @@ article{
   
 }
 
-.recipe-pic{
-  float: left;
-  max-width: 10em;
-  height: auto;
-  margin-right: 10px;
-  margin-bottom: 5px;
-}
-
-.youtube-link{
-  max-width: 2em;
-  height: auto;
-}
-
-.youtube-link:hover{
-  fill: #f93f23;
-}
 
 
 
