@@ -36,7 +36,13 @@
             </ul>
           </li>
         <% end %>
-          <li></li>
+          <li class="mt-1">
+            <% if user_signed_in? %>
+              <%= link_to 'nouveau challenge', new_challenge_path, :class => "btn btn-outline-light btn-sm" %>
+            <% else %>
+              <%= link_to 'nouveau challenge', new_user_session_path, :class => "btn btn-outline-light btn-sm" %>
+            <% end %>
+          </li>
       </ul>
    
     </div>
